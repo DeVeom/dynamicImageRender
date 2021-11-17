@@ -1,0 +1,21 @@
+.analysisMenu {
+  display: flex;
+  width: 1050px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(1, 1, 1, 0.2);
+}
+
+.analysisMenuText {
+  margin-right: 32px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.analysisMenuText:hover {
+  color: #ff0044;
+}
+
+.analysisMenuText:first-child {
+  color: #ff0044;
+  border-bottom: 2px solid #ff0044;
+}
