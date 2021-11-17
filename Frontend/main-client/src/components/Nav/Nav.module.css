@@ -1,0 +1,45 @@
+.nav {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1080px;
+  height: 66px;
+  padding: 0 15px 0 15px;
+}
+
+.navLogo {
+  cursor: pointer;
+}
+
+.subMenuContainer {
+  display: flex;
+}
+
+.subMenu {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.subMenu:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 38px;
+  width: 115px;
+  color: white;
+  background-color: #ff0044;
+  border-radius: 5px;
+}

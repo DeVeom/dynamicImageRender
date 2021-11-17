@@ -1,0 +1,111 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchTitle {
+  font-size: 62px;
+  font-weight: 700;
+  padding: 244px 0 48px 0;
+  color: white;
+}
+
+.searchSubTitleContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchSubTitle {
+  font-size: 26px;
+  line-height: 38px;
+  color: white;
+}
+
+.searchBoxContainer {
+  padding-top: 75px;
+}
+
+.searchBox {
+  display: flex;
+  justify-content: space-between;
+  width: 786px;
+  height: 57px;
+  border: 3px solid #ff0044;
+  border-radius: 3px;
+}
+
+.searchOption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.searchOptionText {
+  padding-right: 13px;
+  font-size: 16px;
+}
+
+.searchOptionIcon {
+  padding-top: 5px;
+}
+
+.searchInput {
+  width: calc(100% - 140px);
+  border: none;
+  font-size: 16px;
+  outline-style: none;
+}
+
+.searchInput::placeholder {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.searchBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  background-color: #ff0044;
+}
+
+.searchBackGround {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  filter: brightness(50%);
+  z-index: -1;
+}
+
+@media screen and (max-width: 950px) {
+  .searchTitle {
+    font-size: 35px;
+    padding: 150px 0 48px 0;
+  }
+
+  .searchSubTitle {
+    font-size: 15px;
+    line-height: 20px;
+    color: white;
+  }
+
+  .searchBox {
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .searchBoxContainer {
+    padding-top: 40px;
+  }
+
+  .searchBackGround {
+    width: 700px;
+  }
+}
