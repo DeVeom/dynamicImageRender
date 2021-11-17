@@ -39,7 +39,7 @@ const List = () => {
               <section className={style.infoWrapper}>
                 <div className={style.infoName}>{data.name}</div>
                 <div className={style.infoDescription}>{data.description}</div>
-                <div className={style.infoTab}>
+                <div className={style.infoCategory}>
                   {data.category[0].categoryName}
                 </div>
               </section>
@@ -93,6 +93,13 @@ const List = () => {
                     </div>
                   </li>
                 </ul>
+              </section>
+              <section className={style.imageClipWrapper}>
+                <img
+                  className={style.imageClipWrapperImg}
+                  src={data.recentThumbnail}
+                  alt="최근 동영상"
+                />
               </section>
             </section>
           </section>
