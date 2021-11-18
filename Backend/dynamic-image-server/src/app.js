@@ -1,20 +1,19 @@
 import express from 'express';
-import router from './router';
-import cors from 'cors';
+import envConfig from './config';
+import loaders from './loaders';
 
-const app = express();
+const startServer = async () => {
+  try {
+    const app = express();
+    await loaders(app);
 
-app.use(cors());
-app.use(express.json());
+    const { port } = envConfig;
+    app.listen(port, () => {
+      console.log(`Image Server is listening on ${port}.`);
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-app.use(router);
-
-app.use((req, res, next, err) => {
-  console.error(err);
-  const { status, message } = err;
-  res
-    .status(status || 500)
-    .json({ message: message || 'internal server error' });
-});
-
-export default app;
+startServer();
