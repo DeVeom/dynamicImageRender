@@ -1,0 +1,32 @@
+.searchTitle {
+  font-size: 62px;
+  font-weight: 700;
+  padding: 244px 0 48px 0;
+  color: white;
+}
+
+.searchSubTitleContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchSubTitle {
+  font-size: 26px;
+  line-height: 38px;
+  color: white;
+}
+
+@media screen and (max-width: 950px) {
+  .searchTitle {
+    font-size: 35px;
+    padding: 150px 0 48px 0;
+  }
+
+  .searchSubTitle {
+    font-size: 15px;
+    line-height: 20px;
+    color: white;
+  }
+}

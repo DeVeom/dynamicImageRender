@@ -1,0 +1,6 @@
+.detailContainer {
+  padding-top: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
