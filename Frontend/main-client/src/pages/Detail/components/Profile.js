@@ -20,8 +20,10 @@ const Profile = ({ channelProfile, name, description, category }) => {
             <p className={style.channelDescription}>{description}</p>
           </div>
           <div className={style.channelCategoryContainer}>
-            {category?.map(category => (
-              <p className={style.channelCategory}>{category.categoryName}</p>
+            {category?.map((category, idx) => (
+              <p key={idx} className={style.channelCategory}>
+                {category.categoryName}
+              </p>
             ))}
           </div>
         </div>
