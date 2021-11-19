@@ -1,5 +1,44 @@
+@keyframes loading {
+  0% {
+    stroke-dashoffset: 157;
+  }
+  70% {
+    stroke-dashoffset: -140;
+  }
+  100% {
+    stroke-dashoffset: -157;
+  }
+}
+
 .reportContainer {
+  display: flex;
+  align-items: center;
+  margin: 20px;
   height: 349px;
   width: 1050px;
-  background-color: aquamarine;
+  border: 1px solid green;
 }
+
+.detailReport {
+  height: 309px;
+  width: 420px;
+  border: 1px solid blue;
+}
+
+/* .loadingSvg {
+  fill: transparent;
+  stroke: blue;
+  stroke-width: 4;
+}
+
+.loadingSvg circle {
+  animation: loading 1s infinite;
+}
+
+.loadingCircle {
+  fill: transparent;
+  stroke: blue;
+  stroke-width: 4;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 0;
+} */

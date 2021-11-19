@@ -1,0 +1,16 @@
+.textInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.textInfoList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textInfoName {
+  font-size: 13px;
+  font-weight: 300;
+}

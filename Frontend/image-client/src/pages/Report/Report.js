@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import style from './Report.module.css';
 import { useQuery, gql } from '@apollo/client';
+import PerformanceReport from './components/PerformanceReport';
+import DetailReport from './components/DetailReport';
 
 const Report = () => {
   const [reportData, setReportData] = useState({});
@@ -132,9 +134,33 @@ const Report = () => {
 
   if (loading) return <p>loading...</p>;
   if (error) return <p>Error T T</p>;
-  console.log(data);
 
-  return <div className={style.reportContainer}></div>;
+  const {
+    dailyViewCount,
+    averageVideoViewCount,
+    favorablePercent,
+    activePercent,
+  } = data.channelForGuest;
+
+  return (
+    <div className={style.reportContainer}>
+      {/* <svg className={style.loadingSvg}>
+        <circle
+          cx="10%"
+          cy="50%"
+          r="25"
+          className={style.loadingCircle}
+        ></circle>
+      </svg> */}
+      <PerformanceReport
+        dailyViewCount={dailyViewCount}
+        averageVideoViewCount={averageVideoViewCount}
+        favorablePercent={favorablePercent}
+        activePercent={activePercent}
+      />
+      <DetailReport />
+    </div>
+  );
 };
 
 export default Report;
