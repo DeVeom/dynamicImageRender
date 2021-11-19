@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
 import style from './Detail.module.css';
 import BackgroundImg from './components/BackgroundImg';
 import Profile from './components/Profile';
@@ -20,6 +21,30 @@ const Detail = () => {
       })
       .catch(console.log);
   };
+
+  const GET_DATA = gql`
+    query {
+      channelForGuest(id: "UCenG5DES1t6SYGrgzGNzWzQ") {
+        channelId
+        title
+        description
+        banner
+        thumbnails
+        nations
+        category
+        isFavorite
+        links {
+          name
+          href
+        }
+      }
+    }
+  `;
+
+  const { loading, error, data } = useQuery(GET_DATA);
+  console.log(loading, error, data);
+
+  if (loading) return <p style={{ paddingTop: '100px' }}>loading...</p>;
 
   return (
     <section className={style.detailContainer}>
