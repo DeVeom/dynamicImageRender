@@ -4,6 +4,7 @@
   justify-content: center;
   width: 100%;
   background-color: white;
+  border-bottom: 1px solid rgba(1, 1, 1, 0.1);
 }
 
 .navContainer {

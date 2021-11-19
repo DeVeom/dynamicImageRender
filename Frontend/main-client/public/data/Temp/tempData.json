@@ -9,6 +9,10 @@
         {
           "id": 1,
           "categoryName": "펫/동식물"
+        },
+        {
+          "id": 2,
+          "categoryName": "임시카테고리"
         }
       ],
       "subscriberCount": 568123,
