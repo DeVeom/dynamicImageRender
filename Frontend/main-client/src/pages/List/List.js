@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import style from './List.module.css';
+import { useQuery, gql } from '@apollo/client';
+
+const GET_LIST = gql`
+  query GetList {
+    channelsForList(
+      userId: ""
+      from: 0
+      size: 20
+      minSubscriber: 0
+      maxSubscriber: 200000000000
+      minViews: 0
+      maxViews: 200000000000
+      order: "subscriberCount"
+      minVideoViews: 0
+      maxVideoViews: 200000000000
+      minAdPrice: 0
+      maxAdPrice: 200000000000
+      categories: [""]
+      nation: "KR"
+      keyword: "코기"
+    )
+  }
+`;
 
 const List = () => {
-  const [listData, setListData] = useState([]);
-
-  useEffect(() => {
-    fetch('/data/Temp/tempData.json')
-      .then(res => res.json())
-      .then(res => {
-        setListData(res.data);
-      });
-  }, []);
+  const { loading, error, data } = useQuery(GET_LIST);
+  console.log(loading, error, data);
 
   return (
     <div className={style.listWrapper}>
@@ -26,22 +42,26 @@ const List = () => {
           </li>
         </ul>
       </section>
-      {listData.map((data, i) => {
+      {data?.channelsForList?.map((data, i) => {
         return (
-          <section className={style.card} key={data.id}>
+          <section className={style.card} key={i + 1}>
             <section className={style.cardWrapper}>
               <div className={style.rank}>{i + 1}</div>
               <img
-                src={data.channelProfile}
+                src={data.thumbnails}
                 alt="profile"
                 className={style.profile}
               />
               <section className={style.infoWrapper}>
-                <div className={style.infoName}>{data.name}</div>
+                <div className={style.infoName}>{data.title}</div>
                 <div className={style.infoDescription}>{data.description}</div>
-                <div className={style.infoCategory}>
-                  {data.category[0].categoryName}
-                </div>
+                {data.category.map((category, i) => {
+                  return (
+                    <div className={style.infoCategory} key={i}>
+                      {category}
+                    </div>
+                  );
+                })}
               </section>
               <section className={style.statusWrapper}>
                 <ul>
@@ -55,14 +75,16 @@ const List = () => {
                       <p>구독자 수</p>
                     </div>
                     <div className={style.countStatus}>
-                      {data.subscriberCount}
+                      {data.subscriberCount > 10000
+                        ? Math.round(data.subscriberCount * 0.0001) + '만'
+                        : data.subscriberCount}
                     </div>
                     <div className={style.countChangeStatus}>
                       <img
                         className={style.countChangeImg}
                         src="https://vling.net/media/icons/statusChange_up.png"
                       />
-                      {data.subscriberCountChange}
+                      {data.subscriberChange.toLocaleString()}
                     </div>
                   </li>
                   <li>
@@ -74,9 +96,14 @@ const List = () => {
                       />
                       <p>일일 조회 수</p>
                     </div>
-                    <div className={style.countStatus}>{data.dailyViews}</div>
+                    <div className={style.countStatus}>
+                      {data.dailyViewCount > 10000
+                        ? Math.round(data.dailyViewCount * 0.0001) + '만'
+                        : data.dailyViewCount}
+                    </div>
                     <div className={style.countChangeStatus}>
-                      {data.dailyViewsChange}
+                      {data.dailyViewChange % data.dailyViewCount}
+                      {/* {data.dailyViewChange} */}
                     </div>
                   </li>
                   <li>
@@ -89,7 +116,9 @@ const List = () => {
                       <p>영상별 평균 조회수</p>
                     </div>
                     <div className={style.countStatus}>
-                      {data.averageOfViewsPerVideo}
+                      {data.averageVideoViewCount > 10000
+                        ? Math.round(data.averageVideoViewCount * 0.0001) + '만'
+                        : data.averageVideoViewCount}
                     </div>
                   </li>
                 </ul>
@@ -97,7 +126,7 @@ const List = () => {
               <section className={style.imageClipWrapper}>
                 <img
                   className={style.imageClipWrapperImg}
-                  src={data.recentThumbnail}
+                  src={data.video[0].thumbnails}
                   alt="최근 동영상"
                 />
               </section>
