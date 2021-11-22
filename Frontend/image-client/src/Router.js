@@ -8,7 +8,6 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/report" element={<Report />} />
-        <Route path="/svg" element={<Svg />} />
       </Routes>
     </BrowserRouter>
   );
