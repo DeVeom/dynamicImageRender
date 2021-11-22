@@ -43,6 +43,7 @@
   align-items: center;
   width: 60px;
   background-color: #ff0044;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 950px) {

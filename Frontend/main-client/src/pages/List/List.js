@@ -1,32 +1,8 @@
 import React from 'react';
 import style from './List.module.css';
-import { useQuery, gql } from '@apollo/client';
 
-const GET_LIST = gql`
-  query GetList {
-    channelsForList(
-      userId: ""
-      from: 0
-      size: 20
-      minSubscriber: 0
-      maxSubscriber: 200000000000
-      minViews: 0
-      maxViews: 200000000000
-      order: "subscriberCount"
-      minVideoViews: 0
-      maxVideoViews: 200000000000
-      minAdPrice: 0
-      maxAdPrice: 200000000000
-      categories: [""]
-      nation: "KR"
-      keyword: "코기"
-    )
-  }
-`;
-
-const List = () => {
-  const { loading, error, data } = useQuery(GET_LIST);
-  console.log(loading, error, data);
+const List = props => {
+  const { data } = props;
 
   return (
     <div className={style.listWrapper}>
@@ -103,7 +79,6 @@ const List = () => {
                     </div>
                     <div className={style.countChangeStatus}>
                       {data.dailyViewChange % data.dailyViewCount}
-                      {/* {data.dailyViewChange} */}
                     </div>
                   </li>
                   <li>
