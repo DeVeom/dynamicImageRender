@@ -11,7 +11,7 @@ const Report = () => {
 
   const GET_DATA = gql`
     query {
-      channelForGuest(id: "UClqOEoJ2wnJA5jAbNul3mXA") {
+      channelForGuest(id: "UCOmHUn--16B90oW2L6FRR3A") {
         channelId
         title
         priceHidden
