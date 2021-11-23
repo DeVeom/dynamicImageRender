@@ -1,7 +1,9 @@
 import React from 'react';
 import style from './SearchBox.module.css';
 
-const SearchBox = () => {
+const SearchBox = props => {
+  const { InputSearchBox, clickSearchBtn, enterSearchBtn } = props;
+
   return (
     <div className={style.searchBox}>
       <div className={style.searchOption}>
@@ -14,6 +16,8 @@ const SearchBox = () => {
       </div>
       <input
         className={style.searchInput}
+        onChange={InputSearchBox}
+        onKeyPress={enterSearchBtn}
         type="text"
         placeholder="채널명 또는 관련 단어로 검색해주세요"
       />
@@ -21,6 +25,7 @@ const SearchBox = () => {
         <img
           alt="버즈앤비"
           src="https://vling.net/media/icons/home_search_icon.png"
+          onClick={clickSearchBtn}
         />
       </div>
     </div>
