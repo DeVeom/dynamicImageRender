@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
-import envConfig from '../config';
+import { envConfig, logger } from '../config';
 import { formatDateString } from '../utils/dateFormatter';
 
 const { awsEnv, layoutUrl } = envConfig;
@@ -14,10 +14,10 @@ const s3 = new aws.S3({
 let result;
 const dateWithDash = formatDateString(new Date(), '-');
 const dateWithNoSpace = formatDateString(new Date(), '');
-const fixedFilenameFormat = `-og-image-${dateWithNoSpace}`;
+const fixedFilenameFormat = `-report-image-${dateWithNoSpace}`;
 const type = 'jpeg';
 
-export const createOgImage = async (channelId, layoutType) => {
+export const createScreenshot = async (channelId, layoutType) => {
   try {
     const browser = await puppeteer.launch({
       args: ['--lang=ko-kr,kr'],
@@ -42,7 +42,7 @@ export const createOgImage = async (channelId, layoutType) => {
 
     const params = {
       ACL: 'public-read',
-      Bucket: `${awsEnv.bucket}/og-images/${dateWithDash}`,
+      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
       Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
       Body: capturedImage,
     };
@@ -57,26 +57,25 @@ export const createOgImage = async (channelId, layoutType) => {
     await page.close();
     await browser.close();
   } catch (err) {
-    console.log(`${layoutUrl}${channelId}`);
-    console.error(err);
+    logger.error(err);
   } finally {
     return result;
   }
 };
 
-export const getOgImage = async (channelId, layoutType) => {
+export const getScreenshot = async (channelId, layoutType) => {
   try {
     const params = {
-      Bucket: `${awsEnv.bucket}/og-images/${dateWithDash}`,
+      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
       Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
     };
     result = await s3.getObject(params).promise();
   } catch (err) {
     if (err.name == 'NoSuchKey')
-      console.log(
-        `[${dateWithDash}-${layoutType}] ${channelId} : new image created`
+      logger.info(
+        `${channelId}${fixedFilenameFormat}-${layoutType}.${type} : new image created`
       );
-    else console.error(err);
+    else logger.error(err);
   } finally {
     return result;
   }

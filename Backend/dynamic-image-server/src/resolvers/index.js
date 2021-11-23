@@ -1,3 +1,3 @@
-import { generateOgImage } from './generateOgImage';
+import { generateScreenshot } from './generateScreenshot';
 
-export { generateOgImage };
+export { generateScreenshot };

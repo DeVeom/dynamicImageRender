@@ -1,12 +1,13 @@
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
-import { generateOgImage } from '../resolvers';
+import { generateScreenshot } from '../resolvers';
+import { logger } from '../config';
 
 export default async (app) => {
   const resolvers = {
     Query: {
       info: () =>
-        'Generating Open Graph image of channel performance report by channel',
+        'Generating screenshot image of channel performance report by channel',
     },
     LayoutType: {
       SMALL: 'small',
@@ -14,16 +15,16 @@ export default async (app) => {
       LARGE: 'large',
     },
     Mutation: {
-      generateOgImage: generateOgImage,
+      generateScreenshot: generateScreenshot,
     },
   };
 
   const formatError = (err) => {
-    console.error('--- GraphQL Error ---');
-    console.error('Path: ', err.path);
-    console.error('Message: ', err.message);
-    console.error('Code: ', err.extensions.code);
-    console.error('Original Error: ', err.originalError);
+    logger.error('--- GraphQL Error ---');
+    logger.error('Path: ', err.path);
+    logger.error('Message: ', err.message);
+    logger.error('Code: ', err.extensions.code);
+    logger.error('Original Error: ', err.originalError);
     return err;
   };
 

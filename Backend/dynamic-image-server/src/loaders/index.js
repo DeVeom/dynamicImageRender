@@ -1,9 +1,10 @@
 import expressLoader from './express';
 import apolloServerLoader from './apolloServer';
+import { logger } from '../config';
 
 export default async (expressApp) => {
   await apolloServerLoader(expressApp);
-  console.log('Apollo Server Initialized');
+  logger.info('Apollo Server Initialized');
   await expressLoader(expressApp);
-  console.log('Express Initialized');
+  logger.info('Express Initialized');
 };
