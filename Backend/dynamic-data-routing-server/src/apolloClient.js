@@ -167,10 +167,9 @@ export const getChannelsForList = async (keyword) => {
       nation:"KR",
       )
     }`
-console.log(GET_LIST);
+
     const result = await client.query({ query: GET_LIST });
     const {data: {channelsForList}} = result;
-    console.log(result);
     return channelsForList;
   } catch (err) {
     console.error(err)
