@@ -45,7 +45,13 @@ const resolvers = {
 
 const serverStart = async ()=> {
   app.use(express.json());
-  app.use(cors());
+
+  const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    };
+    
+  app.use(cors(corsOptions));
 
   const apolloServer = new ApolloServer({ typeDefs, resolvers });
   
