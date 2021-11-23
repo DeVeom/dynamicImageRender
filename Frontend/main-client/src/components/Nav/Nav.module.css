@@ -44,3 +44,7 @@
   background-color: #ff0044;
   border-radius: 5px;
 }
+
+.subMenu:last-child:hover {
+  background-color: #e1003d;
+}
