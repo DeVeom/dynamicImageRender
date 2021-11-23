@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://api.dev.vling.net/graphql',
+  uri: 'https://dd09-116-124-50-130.ngrok.io/graphql',
   cache: new InMemoryCache(),
 });
 

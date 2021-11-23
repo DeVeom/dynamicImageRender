@@ -18,7 +18,7 @@ const List = props => {
           </li>
         </ul>
       </section>
-      {data?.channelsForList?.map((data, i) => {
+      {data?.getChannelsForList.channelsForList?.map((data, i) => {
         return (
           <section className={style.card} key={i + 1}>
             <section className={style.cardWrapper}>

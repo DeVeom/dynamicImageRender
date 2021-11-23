@@ -10,24 +10,10 @@ const Main = () => {
   const [keyword, setKeyword] = useState('');
 
   const GET_LIST = gql`
-    query GetList($keyword: String) {
-      channelsForList(
-        userId: ""
-        from: 0
-        size: 100
-        minSubscriber: 0
-        maxSubscriber: 200000000000
-        minViews: 0
-        maxViews: 200000000000
-        order: "subscriberCount"
-        minVideoViews: 0
-        maxVideoViews: 200000000000
-        minAdPrice: 0
-        maxAdPrice: 200000000000
-        categories: [""]
-        nation: "KR"
-        keyword: $keyword
-      )
+    query GetList($keyword: String!) {
+      getChannelsForList(keyword: $keyword) {
+        channelsForList
+      }
     }
   `;
 
