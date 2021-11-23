@@ -1,20 +1,62 @@
 import express from 'express';
-import router from './router';
+import { ApolloServer, gql } from 'apollo-server-express';
+import GraphQLJSON from 'graphql-type-json';
+import dotenv from 'dotenv';
+import { getChannelForGuest, getChannelsForList } from './apolloClient';
 import cors from 'cors';
 
+dotenv.config();
+
+const port = process.env.PORT;
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const typeDefs = gql`
+  scalar JSON
 
-app.use(router);
+  type Query {
+    getChannelData(id: ID!): ChannelForGuest
+    getChannelsForList(keyword: String!): ChannelsForList
+  }
 
-app.use((req, res, next, err) => {
-  console.error(err);
-  const { status, message } = err;
-  res
-    .status(status || 500)
-    .json({ message: message || 'internal server error' });
-});
+  type ChannelForGuest {
+    channelForGuest: JSON
+  }
 
-export default app;
+  type ChannelsForList {
+    channelsForList: [JSON]
+  }
+`;
+
+const resolvers = {
+  JSON: GraphQLJSON,
+  Query: {
+    async getChannelData(_, { id }) {
+      const channelData = await getChannelForGuest(id);
+      const data = { channelForGuest: channelData };
+      return data;
+    },
+    async getChannelsForList(_, {keyword}) {
+      const channelListData = await getChannelsForList(keyword);
+      const data = {channelsForList: channelListData}
+      return data;
+    }
+  },
+};
+
+const serverStart = async ()=> {
+  app.use(express.json());
+  app.use(cors());
+
+  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+  
+  await apolloServer.start();
+  
+  apolloServer.applyMiddleware({ app });
+  
+  app.listen(port, () => {
+    console.log(`server localhost:${port}${apolloServer.graphqlPath}`)
+  })
+}
+
+serverStart();
+
