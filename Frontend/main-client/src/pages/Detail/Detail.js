@@ -9,40 +9,16 @@ import AnalysisReport from './components/AnalysisReport';
 const Detail = () => {
   const [youtuberInfo, setYoutuberInfo] = useState({});
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    fetch(`/data/temp/tempData.json`)
-      .then(res => res.json())
-      .then(res => {
-        setYoutuberInfo(res.data[0]);
-      })
-      .catch(console.log);
-  };
-
   const GET_DATA = gql`
     query {
-      channelForGuest(id: "UCenG5DES1t6SYGrgzGNzWzQ") {
-        channelId
-        title
-        description
-        banner
-        thumbnails
-        nations
-        category
-        isFavorite
-        links {
-          name
-          href
-        }
+      getChannelData(id: "UCOmHUn--16B90oW2L6FRR3A") {
+        channelForGuest
       }
     }
   `;
 
   const { loading, error, data } = useQuery(GET_DATA);
-  console.log(loading, error, data);
+  console.log(data);
 
   if (loading) return <p style={{ paddingTop: '100px' }}>loading...</p>;
 
