@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import style from './Main.module.css';
 import List from '../List/List';
 import SearchTitleText from './components/SearchTitleText';
@@ -10,28 +10,30 @@ const Main = () => {
   const [keyword, setKeyword] = useState('');
 
   const GET_LIST = gql`
-  query GetList($keyword: String = "${keyword}") {
-    channelsForList(
-      userId: ""
-      from: 0
-      size: 20
-      minSubscriber: 0
-      maxSubscriber: 200000000000
-      minViews: 0
-      maxViews: 200000000000
-      order: "subscriberCount"
-      minVideoViews: 0
-      maxVideoViews: 200000000000
-      minAdPrice: 0
-      maxAdPrice: 200000000000
-      categories: [""]
-      nation: "KR"
-      keyword: $keyword
-    )
-  }
-`;
+    query GetList($keyword: String) {
+      channelsForList(
+        userId: ""
+        from: 0
+        size: 100
+        minSubscriber: 0
+        maxSubscriber: 200000000000
+        minViews: 0
+        maxViews: 200000000000
+        order: "subscriberCount"
+        minVideoViews: 0
+        maxVideoViews: 200000000000
+        minAdPrice: 0
+        maxAdPrice: 200000000000
+        categories: [""]
+        nation: "KR"
+        keyword: $keyword
+      )
+    }
+  `;
 
-  const [GetList, { loading, error, data }] = useLazyQuery(GET_LIST);
+  const [GetList, { loading, error, data }] = useLazyQuery(GET_LIST, {
+    variables: { keyword: `${keyword}` },
+  });
 
   const InputSearchBox = e => {
     setInputKeyword(e.target.value);

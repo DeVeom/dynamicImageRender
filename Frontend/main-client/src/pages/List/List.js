@@ -59,6 +59,7 @@ const List = props => {
                       <img
                         className={style.countChangeImg}
                         src="https://vling.net/media/icons/statusChange_up.png"
+                        alt="구독자 수 변화량 아이콘"
                       />
                       {data.subscriberChange.toLocaleString()}
                     </div>
