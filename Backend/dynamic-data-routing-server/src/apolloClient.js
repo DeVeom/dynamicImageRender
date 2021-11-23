@@ -137,7 +137,7 @@ export const getChannelForGuest = async (id) => {
     }`
 
     const data = await client.query({ query: QUERY });
-    
+
     return data;
   } catch (err) {
     console.error(err)
@@ -147,7 +147,7 @@ export const getChannelForGuest = async (id) => {
 
 export const getChannelsForList = async (keyword) => {
   try {
-  const QUERY = gql`
+  const GET_LIST = gql`
     query {
       channelsForList(
       keyword: "${keyword}"
@@ -167,10 +167,10 @@ export const getChannelsForList = async (keyword) => {
       nation:"KR",
       )
     }`
-
-    const result = await client.query({ query: QUERY });
+console.log(GET_LIST);
+    const result = await client.query({ query: GET_LIST });
     const {data: {channelsForList}} = result;
-
+    console.log(result);
     return channelsForList;
   } catch (err) {
     console.error(err)
