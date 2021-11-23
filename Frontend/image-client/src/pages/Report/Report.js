@@ -168,7 +168,12 @@ const Report = () => {
       ? 222 - Math.min((data / 100) * 58, 58)
       : 248 + Math.min((Math.abs(data) / 100) * 80, 80);
 
-  const summaryTextPosition = data =>
+  const summaryTextStartPosition = data =>
+    data >= 0
+      ? summaryVerticalPoint(data) - 12
+      : summaryVerticalPoint(data) + 15;
+
+  const summaryTextFinalPosition = data =>
     data >= 0 ? summaryHeight(data) - 12 : summaryHeight(data) + 15;
 
   const getGrade = data => {
@@ -270,10 +275,22 @@ const Report = () => {
                   }
                   d={`M 56 ${summaryVerticalPoint(
                     dailyViewCountSummary
-                  )} V ${summaryHeight(
+                  )} V ${summaryVerticalPoint(
                     dailyViewCountSummary
                   )} H 126 V ${summaryVerticalPoint(dailyViewCountSummary)}`}
-                ></path>
+                >
+                  <animate
+                    attributeName="d"
+                    dur="1s"
+                    to={`M 56 ${summaryVerticalPoint(
+                      dailyViewCountSummary
+                    )} V ${summaryHeight(
+                      dailyViewCountSummary
+                    )} H 126 V ${summaryVerticalPoint(dailyViewCountSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
+                </path>
               }
               {
                 <text
@@ -284,12 +301,19 @@ const Report = () => {
                       : { fill: '#DA4437' }
                   }
                   x="91"
-                  y={`${summaryTextPosition(dailyViewCountSummary)}`}
+                  y={`${summaryTextStartPosition(dailyViewCountSummary)}`}
                 >
                   {dailyViewCountSummary >= 0
                     ? '+' + dailyViewCountSummary
                     : dailyViewCountSummary}
                   %
+                  <animate
+                    attributeName="y"
+                    dur="1s"
+                    to={`${summaryTextFinalPosition(dailyViewCountSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
                 </text>
               }
             </g>
@@ -304,10 +328,22 @@ const Report = () => {
                   }
                   d={`M 205 ${summaryVerticalPoint(
                     videoViewCountSummary
-                  )} V ${summaryHeight(
+                  )} V ${summaryVerticalPoint(
                     videoViewCountSummary
                   )} H 275 V ${summaryVerticalPoint(videoViewCountSummary)}`}
-                ></path>
+                >
+                  <animate
+                    attributeName="d"
+                    dur="1s"
+                    to={`M 205 ${summaryVerticalPoint(
+                      videoViewCountSummary
+                    )} V ${summaryHeight(
+                      videoViewCountSummary
+                    )} H 275 V ${summaryVerticalPoint(videoViewCountSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
+                </path>
               }
               {
                 <text
@@ -318,12 +354,19 @@ const Report = () => {
                       : { fill: '#DA4437' }
                   }
                   x="240"
-                  y={`${summaryTextPosition(videoViewCountSummary)}`}
+                  y={`${summaryTextStartPosition(videoViewCountSummary)}`}
                 >
                   {videoViewCountSummary >= 0
                     ? '+' + videoViewCountSummary
                     : videoViewCountSummary}
                   %
+                  <animate
+                    attributeName="y"
+                    dur="1s"
+                    to={`${summaryTextFinalPosition(videoViewCountSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
                 </text>
               }
             </g>
@@ -338,10 +381,22 @@ const Report = () => {
                   }
                   d={`M 355 ${summaryVerticalPoint(
                     activePercentSummary
-                  )} V ${summaryHeight(
+                  )} V ${summaryVerticalPoint(
                     activePercentSummary
                   )} H 425 V ${summaryVerticalPoint(activePercentSummary)}`}
-                ></path>
+                >
+                  <animate
+                    attributeName="d"
+                    dur="1s"
+                    to={`M 355 ${summaryVerticalPoint(
+                      activePercentSummary
+                    )} V ${summaryHeight(
+                      activePercentSummary
+                    )} H 425 V ${summaryVerticalPoint(activePercentSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
+                </path>
               }
               {
                 <text
@@ -352,12 +407,19 @@ const Report = () => {
                       : { fill: '#DA4437' }
                   }
                   x="390"
-                  y={`${summaryTextPosition(activePercentSummary)}`}
+                  y={`${summaryTextStartPosition(activePercentSummary)}`}
                 >
                   {activePercentSummary >= 0
                     ? '+' + activePercentSummary
                     : activePercentSummary}
                   %
+                  <animate
+                    attributeName="y"
+                    dur="1s"
+                    to={`${summaryTextFinalPosition(activePercentSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
                 </text>
               }
             </g>
@@ -372,10 +434,24 @@ const Report = () => {
                   }
                   d={`M 505 ${summaryVerticalPoint(
                     favorablePercentSummary
-                  )} V ${summaryHeight(
+                  )} V ${summaryVerticalPoint(
                     favorablePercentSummary
                   )} H 575 V ${summaryVerticalPoint(favorablePercentSummary)}`}
-                ></path>
+                >
+                  <animate
+                    attributeName="d"
+                    dur="1s"
+                    to={`M 505 ${summaryVerticalPoint(
+                      favorablePercentSummary
+                    )} V ${summaryHeight(
+                      favorablePercentSummary
+                    )} H 575 V ${summaryVerticalPoint(
+                      favorablePercentSummary
+                    )}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
+                </path>
               }
               {
                 <text
@@ -386,12 +462,19 @@ const Report = () => {
                       : { fill: '#DA4437' }
                   }
                   x="540"
-                  y={`${summaryTextPosition(favorablePercentSummary)}`}
+                  y={`${summaryTextStartPosition(favorablePercentSummary)}`}
                 >
                   {favorablePercentSummary >= 0
                     ? '+' + favorablePercentSummary
                     : favorablePercentSummary}
                   %
+                  <animate
+                    attributeName="y"
+                    dur="1s"
+                    to={`${summaryTextFinalPosition(favorablePercentSummary)}`}
+                    fill="freeze"
+                    begin="2s"
+                  ></animate>
                 </text>
               }
             </g>
@@ -446,10 +529,10 @@ const Report = () => {
         </g>
         <g>
           <g>
-            <text className={style.detailInfoTitle} x="686" y="199">
+            <text className={style.detailInfoTitle1} x="686" y="199">
               구독자 등급
             </text>
-            <text className={style.detailInfo} x="1050" y="199">
+            <text className={style.detailInfo1} x="1050" y="199">
               <rect width="50" height="24"></rect>
               {getGrade(subscriberCount).kor}
             </text>
@@ -473,26 +556,26 @@ const Report = () => {
             }
           </g>
           <g>
-            <text className={style.detailInfoTitle} x="686" y="235">
+            <text className={style.detailInfoTitle2} x="686" y="235">
               구독자수
             </text>
-            <text className={style.detailInfo} x="1050" y="235">
+            <text className={style.detailInfo2} x="1050" y="235">
               {getRoundNumber(subscriberCount)}
             </text>
           </g>
           <g>
-            <text className={style.detailInfoTitle} x="686" y="271">
+            <text className={style.detailInfoTitle3} x="686" y="271">
               채널 가입일
             </text>
-            <text className={style.detailInfo} x="1050" y="271">
+            <text className={style.detailInfo3} x="1050" y="271">
               {getPublishDate(publishedAt)}
             </text>
           </g>
           <g>
-            <text className={style.detailInfoTitle} x="686" y="307">
+            <text className={style.detailInfoTitle4} x="686" y="307">
               총 영상수
             </text>
-            <text className={style.detailInfo} x="1050" y="307">
+            <text className={style.detailInfo4} x="1050" y="307">
               {videoTotalCount}
             </text>
           </g>

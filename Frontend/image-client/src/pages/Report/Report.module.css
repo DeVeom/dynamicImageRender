@@ -1,3 +1,30 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showCompetingChannelAvgBar {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 598px;
+  }
+}
+
+@keyframes showSubscriberGrade {
+  0% {
+    font-size: 0px;
+  }
+  100% {
+    font-size: 11px;
+  }
+}
+
 .reportContainer {
   margin: 185px;
 }
@@ -5,6 +32,7 @@
 .performanceReportTitle {
   font-size: 16px;
   font-weight: 500;
+  animation: showContents 1s;
 }
 
 .textInfoList {
@@ -12,6 +40,9 @@
   font-weight: 300;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.3s;
 }
 
 .textInfoName {
@@ -19,12 +50,16 @@
   font-weight: 700;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.6s;
 }
 
 .competingChannelAvg {
-  width: 598px;
   height: 26px;
   fill: #7f7f7f;
+  animation: showCompetingChannelAvgBar 1.5s forwards;
+  animation-delay: 0.9s;
 }
 
 .competingChannelAvgText {
@@ -32,23 +67,35 @@
   font-size: 13px;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.9s;
 }
 
 .channelSummaryGraph {
   stroke-width: 4px;
   stroke-linejoin: round;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.8s;
 }
 
 .channelSummaryText {
   font-size: 13px;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.8s;
 }
 
 .rankTextContainer {
   width: 172px;
   height: 102px;
   fill: #f7f7f7;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.3s;
 }
 
 .rankTitle {
@@ -56,6 +103,9 @@
   opacity: 0.5;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.5s;
 }
 
 .rankNumber {
@@ -63,22 +113,82 @@
   font-weight: 700;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.7s;
 }
 
 .rankTop {
   font-size: 13px;
   text-anchor: middle;
   alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.9s;
 }
 
-.detailInfoTitle {
+.detailInfoTitle1 {
   font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.1s;
 }
 
-.detailInfo {
+.detailInfoTitle2 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.3s;
+}
+
+.detailInfoTitle3 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.5s;
+}
+
+.detailInfoTitle4 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.7s;
+}
+
+.detailInfo1 {
   font-size: 20px;
   font-weight: 700;
   text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.1s;
+}
+
+.detailInfo2 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.3s;
+}
+
+.detailInfo3 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.5s;
+}
+
+.detailInfo4 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.7s;
 }
 
 .subscriberGradeContainer {
@@ -87,12 +197,18 @@
   fill: transparent;
   stroke: #ff0044;
   stroke-width: 1px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.1s;
 }
 
 .subscriberGrade {
-  font-size: 11px;
+  font-size: 0px;
   font-weight: 500;
   fill: #ff0044;
   text-anchor: middle;
   alignment-baseline: middle;
+  animation: showSubscriberGrade 1s cubic-bezier(0.01, 0.49, 0.58, 1.64)
+    forwards;
+  animation-delay: 2.3s;
 }
