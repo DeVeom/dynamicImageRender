@@ -9,7 +9,7 @@ const startServer = async () => {
 
     const { port } = envConfig;
     app.listen(port, () => {
-      console.log(`Image Server is listening on ${port}.`);
+      console.log(`Image Server ready at http://localhost:${port}/graphql`);
     });
   } catch (err) {
     console.error(err);
