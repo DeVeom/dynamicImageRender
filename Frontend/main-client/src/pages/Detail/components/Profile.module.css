@@ -87,6 +87,7 @@
   height: 55px;
   border: 1px solid rgba(1, 1, 1, 0.15);
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .likeBtn {
@@ -98,6 +99,7 @@
   height: 55px;
   border: 1px solid rgba(1, 1, 1, 0.15);
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .offerAdBtn {
@@ -109,4 +111,9 @@
   border-radius: 3px;
   color: white;
   background-color: #ff0044;
+  cursor: pointer;
+}
+
+.offerAdBtn:hover {
+  background-color: #e1003d;
 }
