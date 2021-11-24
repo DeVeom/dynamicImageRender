@@ -1,160 +1,23 @@
 import React from 'react';
-import style from './Report.module.css';
-import { useQuery, gql } from '@apollo/client';
+import style from './SvgReport.module.css';
 
-const Report = () => {
-  // 8코기 id : UCenG5DES1t6SYGrgzGNzWzQ
-  // BLACKPINK id : UCOmHUn--16B90oW2L6FRR3A
-  // 빠니보틀 id : UCNhofiqfw5nl-NeDJkXtPvw
-  // 꿈꾸는 집 id : UClqOEoJ2wnJA5jAbNul3mXA
-  // 꼬마자연인 id : UCfqR11mGVGxAMJzTBuhUHoQ
-
-  const GET_DATA = gql`
-    query {
-      channelForGuest(id: "UCOmHUn--16B90oW2L6FRR3A") {
-        channelId
-        title
-        priceHidden
-        publishedAt
-        isCustomAdPrice
-        description
-        banner
-        activePercent
-        favorablePercent
-        subscriberCount
-        subscriberCountRank
-        subscriberCountRankPercent
-        expectedRevenueRank
-        expectedRevenueRankPercent
-        viewCount
-        dailyAverageViewCount
-        dailyViewCount
-        averageVideoViewCount
-        cpv
-        cpvBrand
-        thumbnails
-        mails
-        mcn
-        nations
-        minAdvertisingUnitPrice
-        maxAdvertisingUnitPrice
-        advertisingUnitPrice
-        subscriberChange
-        replyRatio
-        category
-        dailyViewCountSummary
-        videoViewCountSummary
-        favorablePercentSummary
-        activePercentSummary
-        isFavorite
-        interestTags
-        interestChannels
-        favorablePercentAboutNormalVideo
-        favorablePercentAboutAdVideo
-        averageNormalVideoViewCount
-        averageAdVideoViewCount
-        averageCommentCountAboutNormalVideo
-        averageCommentCountAboutAdVideo
-        averagePredictionVideoViewCount
-        links {
-          name
-          href
-        }
-        gender {
-          M
-          F
-          N
-        }
-        language {
-          lang
-          count
-        }
-        wordCount {
-          word
-          count
-        }
-        stat {
-          searchDate
-          dailyViewCount
-          subscriberCount
-          videoCount
-          favorablePercent
-          activePercent
-        }
-        video {
-          videoId
-          channelId
-          publishedAt
-          title
-          description
-          thumbnails
-          viewCount
-          likeCount
-          dislikeCount
-          commentCount
-          isAd
-        }
-        age {
-          min
-          max
-          percent
-        }
-        similarChannels {
-          channelId
-          title
-          description
-          thumbnails
-          dailyViewCount
-          subscriberCount
-          isFavorite
-        }
-        competingChannels {
-          title
-          thumbnails
-          dailyViewCount
-          subscriberCount
-          averageVideoViewCount
-        }
-        commentEmojis
-        commentPubInfo
-        lackOfChannelData
-        averageVideoAnalyticsCommentCount
-        averageVideoAnalyticsLikeCount
-        averageVideoAnalyticsViewCount
-        averageVideoAnalyticsDislikeCount
-        videoStats
-        videoCount
-        videoYearCount
-        videoMonthCount
-        videoTotalCount
-        adTagList
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(GET_DATA);
-
-  if (loading) return <p>loading...</p>;
-  if (error) return <p>Error T T</p>;
-
-  const {
-    dailyAverageViewCount,
-    averageVideoViewCount,
-    favorablePercent,
-    activePercent,
-    dailyViewCountSummary,
-    videoViewCountSummary,
-    activePercentSummary,
-    favorablePercentSummary,
-    subscriberCountRank,
-    subscriberCountRankPercent,
-    expectedRevenueRank,
-    expectedRevenueRankPercent,
-    subscriberCount,
-    publishedAt,
-    videoTotalCount,
-  } = data.channelForGuest;
-
+const SvgReport = ({
+  dailyAverageViewCount,
+  averageVideoViewCount,
+  favorablePercent,
+  activePercent,
+  dailyViewCountSummary,
+  videoViewCountSummary,
+  activePercentSummary,
+  favorablePercentSummary,
+  subscriberCountRank,
+  subscriberCountRankPercent,
+  expectedRevenueRank,
+  expectedRevenueRankPercent,
+  subscriberCount,
+  publishedAt,
+  videoTotalCount,
+}) => {
   const getRoundNumber = data => {
     const roundNumber =
       data >= 10000 ? parseFloat((data / 10000).toFixed(1)) + '만' : data;
@@ -253,13 +116,13 @@ const Report = () => {
         <g>
           <g>
             <rect
-              class={style.competingChannelAvg}
+              className={style.competingChannelAvg}
               x="16"
               y="222"
               rx="5"
               ry="5"
             ></rect>
-            <text class={style.competingChannelAvgText} x="315" y="236">
+            <text className={style.competingChannelAvgText} x="315" y="236">
               경쟁 채널 평균
             </text>
           </g>
@@ -585,4 +448,4 @@ const Report = () => {
   );
 };
 
-export default Report;
+export default SvgReport;

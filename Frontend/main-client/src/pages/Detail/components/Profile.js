@@ -1,28 +1,24 @@
 import React from 'react';
 import style from './Profile.module.css';
 
-const Profile = ({ channelProfile, name, description, category }) => {
+const Profile = ({ thumbnails, title, description, category }) => {
   return (
     <div className={style.profile}>
       <div className={style.profileLeftContainer}>
         <div className={style.profileImgContainer}>
-          <img
-            className={style.profileImg}
-            alt="버즈앤비"
-            src={channelProfile}
-          />
+          <img className={style.profileImg} alt={title} src={thumbnails} />
         </div>
         <div className={style.profileTextContainer}>
           <div>
-            <p className={style.channelName}>{name}</p>
+            <p className={style.channelName}>{title}</p>
           </div>
           <div>
             <p className={style.channelDescription}>{description}</p>
           </div>
           <div className={style.channelCategoryContainer}>
-            {category?.map((category, idx) => (
+            {category?.map((el, idx) => (
               <p key={idx} className={style.channelCategory}>
-                {category.categoryName}
+                {el}
               </p>
             ))}
           </div>

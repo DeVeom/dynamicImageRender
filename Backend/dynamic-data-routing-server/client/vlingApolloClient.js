@@ -148,15 +148,19 @@ export const getChannelForGuest = async (id) => {
   }
 };
 
+<<<<<<< HEAD:Backend/dynamic-data-routing-server/src/apolloClient.js
 export const getChannelsForList = async (keyword) => {
+=======
+export const getChannelsForList = async (keyword, from, size) => {
+>>>>>>> master:Backend/dynamic-data-routing-server/client/vlingApolloClient.js
   try {
     const GET_LIST = gql`
     query {
       channelsForList(
       keyword: "${keyword}",
       userId:"",
-      from: 0,
-      size: 20,
+      from: ${from},
+      size: ${size},
       minSubscriber:0,
       maxSubscriber:200000000000,
       minViews:0,
@@ -171,12 +175,10 @@ export const getChannelsForList = async (keyword) => {
       )
     }`;
 
-    console.log(GET_LIST);
     const result = await client.query({ query: GET_LIST });
     const {
       data: { channelsForList },
     } = result;
-    console.log(result);
     return channelsForList;
   } catch (err) {
     console.error(err);
