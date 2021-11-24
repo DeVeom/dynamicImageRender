@@ -365,10 +365,14 @@ const SvgReport = ({
               유튜브 구독자 순위
             </text>
             <text x="772" y="110" className={style.rankNumber}>
-              {subscriberCountRank.toLocaleString('en-US')} th
+              {subscriberCountRank
+                ? subscriberCountRank.toLocaleString('en-US') + 'th'
+                : '-'}
             </text>
             <text x="772" y="132" className={style.rankTop}>
-              [Top {subscriberCountRankPercent}%]
+              {subscriberCountRankPercent
+                ? `[Top ${subscriberCountRankPercent}%]`
+                : '데이터 산정 중'}
             </text>
           </g>
           <g>
@@ -383,10 +387,14 @@ const SvgReport = ({
               유튜브 수익 순위
             </text>
             <text x="964" y="110" className={style.rankNumber}>
-              {expectedRevenueRank.toLocaleString('en-US')} th
+              {expectedRevenueRank
+                ? expectedRevenueRank.toLocaleString('en-US') + 'th'
+                : '-'}
             </text>
             <text x="964" y="132" className={style.rankTop}>
-              [Top {expectedRevenueRankPercent}%]
+              {expectedRevenueRank
+                ? `[Top ${expectedRevenueRankPercent}%]`
+                : '데이터 산정 중'}
             </text>
           </g>
         </g>
