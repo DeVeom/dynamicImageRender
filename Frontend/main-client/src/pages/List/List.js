@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const List = props => {
-  const { data, onLoadMore, loading } = props;
+  const { data, onLoadMore, loading, error } = props;
+
+  if (loading) return 'Loading...';
+  if (error) return alert('Error!: `${error.message}`');
+
   return (
     <div className={style.listWrapper}>
       <section className={style.sortWrapper}>
@@ -19,13 +23,13 @@ const List = props => {
           </li>
         </ul>
       </section>
-      {!loading && data && data?.getChannelsForList.channelsForList && (
+      {data && data.getChannelsForList.channelsForList && (
         <InfiniteScroll
-          dataLength={data?.getChannelsForList.channelsForList.length}
+          dataLength={(data && data.getChannelsForList.channelsForList).length}
           next={onLoadMore}
           hasMore={true}
         >
-          {data?.getChannelsForList.channelsForList.map((data, i) => {
+          {data.getChannelsForList.channelsForList.map((data, i) => {
             return (
               <section className={style.card} key={i + 1}>
                 <section className={style.cardWrapper}>
