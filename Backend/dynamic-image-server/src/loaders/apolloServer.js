@@ -31,6 +31,9 @@ export default async (app) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }) => {
+      return { req };
+    },
     formatError,
     debug: false,
   });

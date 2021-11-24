@@ -16,6 +16,7 @@ export default {
     secretAccessKey: process.env.AWS_SCERET_ACCESS_KEY,
     region: process.env.AWS_REGION,
     bucket: process.env.AWS_S3_BUCKET,
+    logGroup: process.env.AWS_CLOUDWATCH_GROUP_NAME,
   },
   layoutUrl: process.env.GENERATE_OG_LAYOUT_URL,
 };

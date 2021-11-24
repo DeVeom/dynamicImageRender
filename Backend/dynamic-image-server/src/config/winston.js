@@ -1,6 +1,8 @@
 import winston from 'winston';
+import WinstonCloudwatch from 'winston-cloudwatch';
 import winstonDaily from 'winston-daily-rotate-file';
 import packageJson from '../../package.json';
+import { envConfig } from './index';
 
 /*
  * VLING LOG FORMAT
@@ -29,7 +31,7 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winstonDaily({
-      level: 'info',
+      level: 'verbose',
       datePattern: 'YYYY-MM-DD',
       dirname: logDir,
       filename: `%DATE%.log`,
@@ -46,6 +48,20 @@ const logger = winston.createLogger({
     }),
   ],
 });
+
+const { awsEnv } = envConfig;
+
+const cloudWatchConfig = {
+  logGroupName: awsEnv.logGroup,
+  logStreamName: `${awsEnv.logGroup}-${process.env.NODE_ENV}`,
+  awsAccessKey: awsEnv.accessKeyId,
+  awsSecretKey: awsEnv.secretAccessKey,
+  awsRegion: awsEnv.region,
+  messageFormatter: (info) =>
+    `${info.timestamp} [${packageJson.name}:${process.env.NODE_ENV}] ${info.level}: ${info.message}`,
+};
+
+logger.add(new WinstonCloudwatch(cloudWatchConfig));
 
 if (process.env.NODE_ENV !== 'production') {
   logger.add(

@@ -23,6 +23,7 @@
     "graphql": "^16.0.1",
     "puppeteer": "^11.0.0",
     "winston": "^3.3.3",
+    "winston-cloudwatch": "^3.1.1",
     "winston-daily-rotate-file": "^4.5.5"
   },
   "devDependencies": {

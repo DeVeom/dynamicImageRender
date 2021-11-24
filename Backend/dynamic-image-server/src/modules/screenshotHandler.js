@@ -14,7 +14,7 @@ const s3 = new aws.S3({
 let result;
 const dateWithDash = formatDateString(new Date(), '-');
 const dateWithNoSpace = formatDateString(new Date(), '');
-const fixedFilenameFormat = `-report-image-${dateWithNoSpace}`;
+const fixedFilenameFormat = `-report-image-${dateWithNoSpace}-`;
 const type = 'jpeg';
 
 export const createScreenshot = async (channelId, layoutType) => {
@@ -25,7 +25,7 @@ export const createScreenshot = async (channelId, layoutType) => {
     const page = await browser.newPage();
 
     await page.goto(`${layoutUrl}${channelId}`, {
-      // layoutType path variaable로 추가할 것
+      // layoutType path variable로 추가할 것
       waitUntil: 'networkidle0',
     });
     await page.waitForSelector(
@@ -43,7 +43,7 @@ export const createScreenshot = async (channelId, layoutType) => {
     const params = {
       ACL: 'public-read',
       Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
+      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
       Body: capturedImage,
     };
 
@@ -67,13 +67,13 @@ export const getScreenshot = async (channelId, layoutType) => {
   try {
     const params = {
       Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
+      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
     };
     result = await s3.getObject(params).promise();
   } catch (err) {
     if (err.name == 'NoSuchKey')
       logger.info(
-        `${channelId}${fixedFilenameFormat}-${layoutType}.${type} : new image created`
+        `${channelId}${fixedFilenameFormat}${layoutType}.${type} : new image created`
       );
     else logger.error(err);
   } finally {

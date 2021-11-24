@@ -12,7 +12,7 @@ const startServer = async () => {
       logger.info(`Image Server ready at http://localhost:${port}/graphql`);
     });
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
