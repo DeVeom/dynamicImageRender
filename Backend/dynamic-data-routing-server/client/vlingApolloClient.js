@@ -153,7 +153,7 @@ export const getChannelsForList = async (keyword, from, size) => {
     const GET_LIST = gql`
     query {
       channelsForList(
-      keyword: "${keyword}"
+      keyword: "${keyword}",
       userId:"",
       from: ${from},
       size: ${size},
