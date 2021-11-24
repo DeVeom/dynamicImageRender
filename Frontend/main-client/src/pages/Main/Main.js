@@ -31,16 +31,17 @@ const Main = () => {
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult) return prev;
-        console.log(prev);
-        console.log(fetchMoreResult);
         return Object.assign({}, prev, {
-          getChannelsForList: [
-            ...prev.getChannelsForList,
-            ...fetchMoreResult.getChannelsForList,
-          ],
+          getChannelsForList: {
+            channelsForList: [
+              ...prev.getChannelsForList.channelsForList,
+              ...fetchMoreResult.getChannelsForList.channelsForList,
+            ],
+          },
         });
       },
     });
+    GetList();
   };
 
   const InputSearchBox = e => {
@@ -59,7 +60,6 @@ const Main = () => {
   };
 
   console.log(loading, error, data);
-  console.log(data?.getChannelsForList.channelsForList.length);
 
   return (
     <section className={style.searchContainer}>

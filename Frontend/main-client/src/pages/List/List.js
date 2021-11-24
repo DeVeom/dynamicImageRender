@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './List.module.css';
+import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const List = props => {
@@ -29,16 +30,20 @@ const List = props => {
               <section className={style.card} key={i + 1}>
                 <section className={style.cardWrapper}>
                   <div className={style.rank}>{i + 1}</div>
-                  <img
-                    src={data.thumbnails}
-                    alt="profile"
-                    className={style.profile}
-                  />
+                  <Link to={`/search/${data.channelId}`}>
+                    <img
+                      src={data.thumbnails}
+                      alt="profile"
+                      className={style.profile}
+                    />
+                  </Link>
                   <section className={style.infoWrapper}>
-                    <div className={style.infoName}>{data.title}</div>
-                    <div className={style.infoDescription}>
-                      {data.description}
-                    </div>
+                    <Link to={`/search/${data.channelId}`}>
+                      <div className={style.infoName}>{data.title}</div>
+                      <div className={style.infoDescription}>
+                        {data.description}
+                      </div>
+                    </Link>
                     {data.category.map((category, i) => {
                       return (
                         <div className={style.infoCategory} key={i}>
