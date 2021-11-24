@@ -1,20 +1,33 @@
-import express from 'express';
-import router from './router';
-import cors from 'cors';
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
+import { port } from "../config/environment/index";
+import { typeDefs } from "../graphql/typeDefs";
+import { resolvers } from "../graphql/resolvers";
+import cors from "cors";
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+const serverStart = async () => {
+  app.use(express.json());
 
-app.use(router);
+  const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+  };
 
-app.use((req, res, next, err) => {
-  console.error(err);
-  const { status, message } = err;
-  res
-    .status(status || 500)
-    .json({ message: message || 'internal server error' });
-});
+  app.use(cors(corsOptions));
 
-export default app;
+  const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+  await apolloServer.start();
+
+  apolloServer.applyMiddleware({ app });
+
+  app.listen(port, () => {
+    console.log(
+      `data routing server localhost:${port}${apolloServer.graphqlPath}`
+    );
+  });
+};
+
+serverStart();

@@ -1,7 +1,7 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: "https://api.dev.vling.net/graphql",
+  uri: 'https://api.dev.vling.net/graphql',
   cache: new InMemoryCache(),
 });
 

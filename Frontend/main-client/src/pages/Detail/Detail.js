@@ -1,62 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { useParams } from 'react-router';
 import style from './Detail.module.css';
-import BackgroundImg from './components/BackgroundImg';
+import Banner from './components/Banner';
 import Profile from './components/Profile';
 import AnalysisMenu from './components/AnalysisMenu';
-import AnalysisReport from './components/AnalysisReport';
+import SvgReport from '../../components/SVGReport/SvgReport';
 
 const Detail = () => {
-  const [youtuberInfo, setYoutuberInfo] = useState({});
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = () => {
-    fetch(`/data/temp/tempData.json`)
-      .then(res => res.json())
-      .then(res => {
-        setYoutuberInfo(res.data[0]);
-      })
-      .catch(console.log);
-  };
-
+  const params = useParams();
+  const channelId = params.id;
   const GET_DATA = gql`
     query {
-      channelForGuest(id: "UCenG5DES1t6SYGrgzGNzWzQ") {
-        channelId
-        title
-        description
-        banner
-        thumbnails
-        nations
-        category
-        isFavorite
-        links {
-          name
-          href
-        }
+      getChannelData(id: "${channelId}") {
+        channelForGuest
       }
     }
   `;
 
   const { loading, error, data } = useQuery(GET_DATA);
-  console.log(loading, error, data);
 
-  if (loading) return <p style={{ paddingTop: '100px' }}>loading...</p>;
+  if (loading) return <p>loading...</p>;
+  if (error) return <p style={{ paddingTop: '100px' }}>Error T T</p>;
+
+  const {
+    banner,
+    title,
+    thumbnails,
+    description,
+    category,
+    dailyAverageViewCount,
+    averageVideoViewCount,
+    favorablePercent,
+    activePercent,
+    dailyViewCountSummary,
+    videoViewCountSummary,
+    activePercentSummary,
+    favorablePercentSummary,
+    subscriberCountRank,
+    subscriberCountRankPercent,
+    expectedRevenueRank,
+    expectedRevenueRankPercent,
+    subscriberCount,
+    publishedAt,
+    videoTotalCount,
+  } = data.getChannelData.channelForGuest.data.channelForGuest;
 
   return (
     <section className={style.detailContainer}>
-      <BackgroundImg backgroundImg={youtuberInfo.backgroundImg} />
+      <Banner banner={banner} title={title} />
       <Profile
-        channelProfile={youtuberInfo.channelProfile}
-        name={youtuberInfo.name}
-        description={youtuberInfo.description}
-        category={youtuberInfo.category}
+        thumbnails={thumbnails}
+        title={title}
+        description={description}
+        category={category}
       />
-      <AnalysisMenu />
-      <AnalysisReport />
+      <AnalysisMenu channelId={channelId} />
+      <SvgReport
+        dailyAverageViewCount={dailyAverageViewCount}
+        averageVideoViewCount={averageVideoViewCount}
+        favorablePercent={favorablePercent}
+        activePercent={activePercent}
+        dailyViewCountSummary={dailyViewCountSummary}
+        videoViewCountSummary={videoViewCountSummary}
+        activePercentSummary={activePercentSummary}
+        favorablePercentSummary={favorablePercentSummary}
+        subscriberCountRank={subscriberCountRank}
+        subscriberCountRankPercent={subscriberCountRankPercent}
+        expectedRevenueRank={expectedRevenueRank}
+        expectedRevenueRankPercent={expectedRevenueRankPercent}
+        subscriberCount={subscriberCount}
+        publishedAt={publishedAt}
+        videoTotalCount={videoTotalCount}
+      />
     </section>
   );
 };
