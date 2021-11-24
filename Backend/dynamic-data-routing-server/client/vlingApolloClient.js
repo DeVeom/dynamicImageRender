@@ -1,20 +1,24 @@
-import { ApolloClient, gql, InMemoryCache, createHttpLink } from "@apollo/client";
-import fetch from 'cross-fetch';
+import {
+  ApolloClient,
+  gql,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
+import fetch from "cross-fetch";
 
 const httpLink = createHttpLink({
-  uri: 'https://api.dev.vling.net/graphql',
-  fetch: fetch
-})
+  uri: "https://api.dev.vling.net/graphql",
+  fetch: fetch,
+});
 
 const client = new ApolloClient({
   link: httpLink,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
-
 
 export const getChannelForGuest = async (id) => {
   try {
-  const QUERY = gql`
+    const QUERY = gql`
     query {
       channelForGuest(id: "${id}") {
         channelId      
@@ -134,26 +138,25 @@ export const getChannelForGuest = async (id) => {
         videoTotalCount                    
         adTagList                 
       }
-    }`
+    }`;
 
     const data = await client.query({ query: QUERY });
 
     return data;
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 };
 
-
-export const getChannelsForList = async (keyword) => {
+export const getChannelsForList = async (keyword, from, size) => {
   try {
-  const GET_LIST = gql`
+    const GET_LIST = gql`
     query {
       channelsForList(
-      keyword: "${keyword}"
+      keyword: "${keyword}",
       userId:"",
-      from: 0,
-      size: 20,
+      from: ${from},
+      size: ${size},
       minSubscriber:0,
       maxSubscriber:200000000000,
       minViews:0,
@@ -166,13 +169,14 @@ export const getChannelsForList = async (keyword) => {
       categories:[""],
       nation:"KR",
       )
-    }`
-console.log(GET_LIST);
+    }`;
+
     const result = await client.query({ query: GET_LIST });
-    const {data: {channelsForList}} = result;
-    console.log(result);
+    const {
+      data: { channelsForList },
+    } = result;
     return channelsForList;
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
 };

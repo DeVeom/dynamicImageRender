@@ -1,68 +1,33 @@
-import express from 'express';
-import { ApolloServer, gql } from 'apollo-server-express';
-import GraphQLJSON from 'graphql-type-json';
-import dotenv from 'dotenv';
-import { getChannelForGuest, getChannelsForList } from './apolloClient';
-import cors from 'cors';
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
+import { port } from "../config/environment/index";
+import { typeDefs } from "../graphql/typeDefs";
+import { resolvers } from "../graphql/resolvers";
+import cors from "cors";
 
-dotenv.config();
-
-const port = process.env.PORT;
 const app = express();
 
-const typeDefs = gql`
-  scalar JSON
-
-  type Query {
-    getChannelData(id: ID!): ChannelForGuest
-    getChannelsForList(keyword: String!): ChannelsForList
-  }
-
-  type ChannelForGuest {
-    channelForGuest: JSON
-  }
-
-  type ChannelsForList {
-    channelsForList: [JSON]
-  }
-`;
-
-const resolvers = {
-  JSON: GraphQLJSON,
-  Query: {
-    async getChannelData(_, { id }) {
-      const channelData = await getChannelForGuest(id);
-      const data = { channelForGuest: channelData };
-      return data;
-    },
-    async getChannelsForList(_, {keyword}) {
-      const channelListData = await getChannelsForList(keyword);
-      const data = {channelsForList: channelListData}
-      return data;
-    }
-  },
-};
-
-const serverStart = async ()=> {
+const serverStart = async () => {
   app.use(express.json());
 
   const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: "http://localhost:3000",
     credentials: true,
-    };
-    
+  };
+
   app.use(cors(corsOptions));
 
   const apolloServer = new ApolloServer({ typeDefs, resolvers });
-  
+
   await apolloServer.start();
-  
+
   apolloServer.applyMiddleware({ app });
-  
+
   app.listen(port, () => {
-    console.log(`server localhost:${port}${apolloServer.graphqlPath}`)
-  })
-}
+    console.log(
+      `data routing server localhost:${port}${apolloServer.graphqlPath}`
+    );
+  });
+};
 
 serverStart();
-
