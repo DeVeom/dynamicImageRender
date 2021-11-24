@@ -4,7 +4,9 @@ import style from './Banner.module.css';
 const BackgroundImg = ({ banner, title }) => {
   return (
     <div className={style.backgroundImgContainer}>
-      <img className={style.backgroundImg} alt={title} src={banner} />
+      {banner && (
+        <img className={style.backgroundImg} alt={title} src={banner} />
+      )}
     </div>
   );
 };

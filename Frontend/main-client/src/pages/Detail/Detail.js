@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { useParams } from 'react-router';
 import style from './Detail.module.css';
 import Banner from './components/Banner';
 import Profile from './components/Profile';
@@ -7,15 +8,11 @@ import AnalysisMenu from './components/AnalysisMenu';
 import SvgReport from '../../components/SVGReport/SvgReport';
 
 const Detail = () => {
-  // 8코기 id : UCenG5DES1t6SYGrgzGNzWzQ
-  // BLACKPINK id : UCOmHUn--16B90oW2L6FRR3A
-  // 빠니보틀 id : UCNhofiqfw5nl-NeDJkXtPvw
-  // 꿈꾸는 집 id : UClqOEoJ2wnJA5jAbNul3mXA
-  // 꼬마자연인 id : UCfqR11mGVGxAMJzTBuhUHoQ
-
+  const params = useParams();
+  const channelId = params.id;
   const GET_DATA = gql`
     query {
-      getChannelData(id: "UCOmHUn--16B90oW2L6FRR3A") {
+      getChannelData(id: "${channelId}") {
         channelForGuest
       }
     }
@@ -58,7 +55,7 @@ const Detail = () => {
         description={description}
         category={category}
       />
-      <AnalysisMenu />
+      <AnalysisMenu channelId={channelId} />
       <SvgReport
         dailyAverageViewCount={dailyAverageViewCount}
         averageVideoViewCount={averageVideoViewCount}
