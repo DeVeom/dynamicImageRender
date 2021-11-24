@@ -148,11 +148,7 @@ export const getChannelForGuest = async (id) => {
   }
 };
 
-<<<<<<< HEAD:Backend/dynamic-data-routing-server/src/apolloClient.js
-export const getChannelsForList = async (keyword) => {
-=======
 export const getChannelsForList = async (keyword, from, size) => {
->>>>>>> master:Backend/dynamic-data-routing-server/client/vlingApolloClient.js
   try {
     const GET_LIST = gql`
     query {
