@@ -148,15 +148,15 @@ export const getChannelForGuest = async (id) => {
   }
 };
 
-export const getChannelsForList = async (keyword, from, size) => {
+export const getChannelsForList = async (keyword) => {
   try {
     const GET_LIST = gql`
     query {
       channelsForList(
       keyword: "${keyword}",
       userId:"",
-      from: ${from},
-      size: ${size},
+      from: 0,
+      size: 20,
       minSubscriber:0,
       maxSubscriber:200000000000,
       minViews:0,

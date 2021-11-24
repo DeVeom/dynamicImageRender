@@ -15,11 +15,7 @@ const typeDefs = gql`
 
   type Query {
     getChannelData(id: ID!): ChannelForGuest
-    getChannelsForList(
-      keyword: String!
-      from: Int!
-      size: Int!
-    ): ChannelsForList
+    getChannelsForList(keyword: String!): ChannelsForList
   }
 
   type ChannelForGuest {
@@ -39,8 +35,8 @@ const resolvers = {
       const data = { channelForGuest: channelData };
       return data;
     },
-    async getChannelsForList(_, { keyword, from, size }) {
-      const channelListData = await getChannelsForList(keyword, from, size);
+    async getChannelsForList(_, { keyword }) {
+      const channelListData = await getChannelsForList(keyword);
       const data = { channelsForList: channelListData };
       return data;
     },
