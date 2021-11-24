@@ -16,6 +16,7 @@ const AnalysisMenu = ({ channelId }) => {
   const handleMutation = async () => {
     const result = await mutateFunction();
     console.log(result);
+    alert('코드가 복사되었습니다.');
   };
 
   return (
