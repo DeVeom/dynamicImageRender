@@ -1,7 +1,8 @@
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
-import { generateScreenshot } from '../resolvers';
+import { generateScreenshot } from '../services';
 import { logger } from '../config';
+import { ApolloError } from 'apollo-server-errors';
 
 export default async (app) => {
   const resolvers = {
@@ -15,7 +16,24 @@ export default async (app) => {
       LARGE: 'large',
     },
     Mutation: {
-      generateScreenshot: generateScreenshot,
+      generateScreenshot: async (parent, args, context, info) => {
+        logger.verbose(`${info.path.typename}: ${info.path.key}`);
+        const { channelId } = args;
+        if (!channelId) {
+          throw new ApolloError(
+            'channelId must be contained',
+            'INVALID_CHANNEL_ID',
+            {
+              parameter: 'channelId',
+            }
+          );
+        }
+        let { layoutType } = args;
+        if (!layoutType || layoutType === 'undefined') layoutType = 'large';
+        logger.info(`channerId: ${channelId}, layoutType: ${layoutType}`);
+        const data = await generateScreenshot(channelId, layoutType);
+        return data;
+      },
     },
   };
 
