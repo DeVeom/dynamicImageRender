@@ -10,6 +10,9 @@ export const typeDefs = gql`
       from: Int!
       size: Int!
     ): ChannelsForList
+  }
+
+  type Mutation {
     generateScreenshot(channelId: ID!, layoutType: String): String
   }
 

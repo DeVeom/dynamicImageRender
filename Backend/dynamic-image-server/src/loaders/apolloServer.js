@@ -1,12 +1,14 @@
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
-import { generateOgImage } from '../resolvers';
+import { generateScreenshot } from '../services';
+import { logger } from '../config';
+import { ApolloError } from 'apollo-server-errors';
 
 export default async (app) => {
   const resolvers = {
     Query: {
       info: () =>
-        'Generating Open Graph image of channel performance report by channel',
+        'Generating screenshot image of channel performance report by channel',
     },
     LayoutType: {
       SMALL: 'small',
@@ -14,22 +16,42 @@ export default async (app) => {
       LARGE: 'large',
     },
     Mutation: {
-      generateOgImage: generateOgImage,
+      generateScreenshot: async (parent, args, context, info) => {
+        logger.verbose(`${info.path.typename}: ${info.path.key}`);
+        const { channelId } = args;
+        if (!channelId) {
+          throw new ApolloError(
+            'channelId must be contained',
+            'INVALID_CHANNEL_ID',
+            {
+              parameter: 'channelId',
+            }
+          );
+        }
+        let { layoutType } = args;
+        if (!layoutType || layoutType === 'undefined') layoutType = 'large';
+        logger.info(`channerId: ${channelId}, layoutType: ${layoutType}`);
+        const data = await generateScreenshot(channelId, layoutType);
+        return data;
+      },
     },
   };
 
   const formatError = (err) => {
-    console.error('--- GraphQL Error ---');
-    console.error('Path: ', err.path);
-    console.error('Message: ', err.message);
-    console.error('Code: ', err.extensions.code);
-    console.error('Original Error: ', err.originalError);
+    logger.error('--- GraphQL Error ---');
+    logger.error('Path: ', err.path);
+    logger.error('Message: ', err.message);
+    logger.error('Code: ', err.extensions.code);
+    logger.error('Original Error: ', err.originalError);
     return err;
   };
 
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: ({ req }) => {
+      return { req };
+    },
     formatError,
     debug: false,
   });

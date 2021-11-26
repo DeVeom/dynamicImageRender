@@ -1,13 +1,18 @@
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config();
+if (process.env.NODE_ENV === "production") {
+  dotenv.config({ path: path.join(__dirname, "../../.env.production") });
+} else if (process.env.NODE_ENV === "development") {
+  dotenv.config({ path: path.join(__dirname, "../../.env.development") });
+} else {
+  throw new Error(`process.env.NODE_ENV is no set!`);
+}
 
-const port = process.env.PORT;
-
-const env = {
-  development: process.env.NODE_ENV === "development",
-  test: process.env.NODE_ENV === "test",
-  production: process.env.NODE_ENV === "production",
+export default {
+  port: process.env.PORT,
+  DATA_URI: {
+    imageClient: process.env.IMAGE_CLIENT_URI,
+    vlingClient: process.env.VLING_CLIENT_URI,
+  },
 };
-
-export { port, env };

@@ -5,7 +5,7 @@ export default gql`
     info: String!
   }
 
-  type OgImage {
+  type Screenshot {
     message: String!
     imageUrl: String!
   }
@@ -17,6 +17,6 @@ export default gql`
   }
 
   type Mutation {
-    generateOgImage(channelId: ID!, layoutType: String): OgImage
+    generateScreenshot(channelId: ID!, layoutType: String): Screenshot
   }
 `;

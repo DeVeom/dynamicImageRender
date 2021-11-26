@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
-import envConfig from '../config';
+import { envConfig, logger } from '../config';
 import { formatDateString } from '../utils/dateFormatter';
 
 const { awsEnv, layoutUrl } = envConfig;
@@ -11,13 +11,13 @@ const s3 = new aws.S3({
   region: awsEnv.region,
 });
 
-let result;
 const dateWithDash = formatDateString(new Date(), '-');
 const dateWithNoSpace = formatDateString(new Date(), '');
-const fixedFilenameFormat = `-og-image-${dateWithNoSpace}`;
+const fixedFilenameFormat = `-report-image-${dateWithNoSpace}-`;
 const type = 'jpeg';
 
-export const createOgImage = async (channelId, layoutType) => {
+export const createScreenshot = async (channelId, layoutType) => {
+  let result;
   try {
     const browser = await puppeteer.launch({
       args: ['--lang=ko-kr,kr'],
@@ -25,15 +25,12 @@ export const createOgImage = async (channelId, layoutType) => {
     const page = await browser.newPage();
 
     await page.goto(`${layoutUrl}${channelId}`, {
-      // layoutType path variaable로 추가할 것
+      // layoutType path variable로 추가할 것
       waitUntil: 'networkidle0',
     });
-    await page.waitForSelector(
-      '#root > div > div > div > div.layoutCantainer > div:nth-child(2) > div > div.channel-detail-info-wrap.channel-basic-info > div'
-    );
-    const caputreArea = await page.$(
-      '#root > div > div > div > div.layoutCantainer > div:nth-child(2) > div > div.channel-detail-info-wrap.channel-basic-info > div'
-    );
+    await page.waitForSelector('#root > section > svg'); // 실제 레이아웃 페이지에 맞는 selector로 변경
+    await page.waitForTimeout(2000);
+    const caputreArea = await page.$('#root > section > svg');
 
     const capturedImage = await caputreArea.screenshot({
       quality: 100,
@@ -42,8 +39,9 @@ export const createOgImage = async (channelId, layoutType) => {
 
     const params = {
       ACL: 'public-read',
-      Bucket: `${awsEnv.bucket}/og-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
+      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
+      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
+      ContentType: 'image/jpeg',
       Body: capturedImage,
     };
 
@@ -57,26 +55,27 @@ export const createOgImage = async (channelId, layoutType) => {
     await page.close();
     await browser.close();
   } catch (err) {
-    console.log(`${layoutUrl}${channelId}`);
-    console.error(err);
+    logger.error(err);
   } finally {
     return result;
   }
 };
 
-export const getOgImage = async (channelId, layoutType) => {
+export const getScreenshot = async (channelId, layoutType) => {
+  let result;
   try {
     const params = {
-      Bucket: `${awsEnv.bucket}/og-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}-${layoutType}.${type}`,
+      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
+      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
     };
     result = await s3.getObject(params).promise();
   } catch (err) {
-    if (err.name == 'NoSuchKey')
-      console.log(
-        `[${dateWithDash}-${layoutType}] ${channelId} : new image created`
+    if (err.name == 'NoSuchKey') {
+      logger.info(
+        `${channelId}${fixedFilenameFormat}${layoutType}.${type} : new image created`
       );
-    else console.error(err);
+      result = null;
+    } else logger.error(err);
   } finally {
     return result;
   }
