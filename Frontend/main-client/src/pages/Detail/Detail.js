@@ -56,23 +56,25 @@ const Detail = () => {
         category={category}
       />
       <AnalysisMenu channelId={channelId} />
-      <SvgReport
-        dailyAverageViewCount={dailyAverageViewCount}
-        averageVideoViewCount={averageVideoViewCount}
-        favorablePercent={favorablePercent}
-        activePercent={activePercent}
-        dailyViewCountSummary={dailyViewCountSummary}
-        videoViewCountSummary={videoViewCountSummary}
-        activePercentSummary={activePercentSummary}
-        favorablePercentSummary={favorablePercentSummary}
-        subscriberCountRank={subscriberCountRank}
-        subscriberCountRankPercent={subscriberCountRankPercent}
-        expectedRevenueRank={expectedRevenueRank}
-        expectedRevenueRankPercent={expectedRevenueRankPercent}
-        subscriberCount={subscriberCount}
-        publishedAt={publishedAt}
-        videoTotalCount={videoTotalCount}
-      />
+      <div className={style.svgReportContainer}>
+        <SvgReport
+          dailyAverageViewCount={dailyAverageViewCount}
+          averageVideoViewCount={averageVideoViewCount}
+          favorablePercent={favorablePercent}
+          activePercent={activePercent}
+          dailyViewCountSummary={dailyViewCountSummary}
+          videoViewCountSummary={videoViewCountSummary}
+          activePercentSummary={activePercentSummary}
+          favorablePercentSummary={favorablePercentSummary}
+          subscriberCountRank={subscriberCountRank}
+          subscriberCountRankPercent={subscriberCountRankPercent}
+          expectedRevenueRank={expectedRevenueRank}
+          expectedRevenueRankPercent={expectedRevenueRankPercent}
+          subscriberCount={subscriberCount}
+          publishedAt={publishedAt}
+          videoTotalCount={videoTotalCount}
+        />
+      </div>
     </section>
   );
 };
