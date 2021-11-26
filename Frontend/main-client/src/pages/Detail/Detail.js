@@ -10,7 +10,6 @@ import SvgReport from '../../components/SVGReport/SvgReport';
 const Detail = () => {
   const params = useParams();
   const channelId = params.id;
-  console.log(channelId);
   const GET_DATA = gql`
     query {
       getChannelData(id: "${channelId}") {
