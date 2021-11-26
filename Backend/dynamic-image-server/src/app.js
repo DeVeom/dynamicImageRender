@@ -1,5 +1,5 @@
 import express from 'express';
-import envConfig from './config';
+import { envConfig, logger } from './config';
 import loaders from './loaders';
 
 const startServer = async () => {
@@ -9,10 +9,10 @@ const startServer = async () => {
 
     const { port } = envConfig;
     app.listen(port, () => {
-      console.log(`Image Server ready at http://localhost:${port}/graphql`);
+      logger.info(`Image Server ready at http://localhost:${port}/graphql`);
     });
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
