@@ -5,9 +5,12 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import fetch from "cross-fetch";
+import config from "../config/environment/index";
+
+const { DATA_URI } = config;
 
 const httpLink = createHttpLink({
-  uri: "https://065e-116-124-50-130.ngrok.io/graphql",
+  uri: `${DATA_URI.imageClient}`,
   fetch: fetch,
 });
 

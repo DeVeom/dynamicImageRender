@@ -5,9 +5,12 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import fetch from "cross-fetch";
+import config from "../config/environment/index";
+
+const { DATA_URI } = config;
 
 const httpLink = createHttpLink({
-  uri: "https://api.dev.vling.net/graphql",
+  uri: `${DATA_URI.vlingClient}`,
   fetch: fetch,
 });
 

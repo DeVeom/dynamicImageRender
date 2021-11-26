@@ -1,21 +1,18 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import { port } from "../config/environment/index";
+import config from "../config/environment/index";
 import { typeDefs } from "../graphql/typeDefs";
 import { resolvers } from "../graphql/resolvers";
 import cors from "cors";
 
 const app = express();
 
+const { port } = config;
+
 const serverStart = async () => {
   app.use(express.json());
 
-  const corsOptions = {
-    origin: "http://localhost:3000",
-    credentials: true,
-  };
-
-  app.use(cors(corsOptions));
+  app.use(cors());
 
   const apolloServer = new ApolloServer({ typeDefs, resolvers });
 

@@ -18,6 +18,8 @@ export const resolvers = {
       const data = { channelsForList: channelListData };
       return data;
     },
+  },
+  Mutation: {
     async generateScreenshot(_, { channelId, layoutType }) {
       const imageData = await generateScreenshot(channelId, layoutType);
       const {
