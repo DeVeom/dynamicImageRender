@@ -1,13 +1,13 @@
 import React from 'react';
-import style from './List.module.css';
-import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { Link } from 'react-router-dom';
+import style from './List.module.css';
 
 const List = props => {
   const { data, onLoadMore, loading, error } = props;
 
   if (loading) return 'Loading...';
-  if (error) return alert('Error!: `${error.message}`');
+  if (error) return alert(`Error: ${error.message}`);
 
   return (
     <div className={style.listWrapper}>
