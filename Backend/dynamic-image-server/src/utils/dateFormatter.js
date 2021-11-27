@@ -5,7 +5,9 @@ if (process.env.NODE_ENV === 'production') {
     const localeString = dateObj.toLocaleDateString();
 
     const splittedArr = localeString.split('/');
-    splittedArr.pop();
+    const temp = splittedArr[0];
+    splittedArr[0] = splittedArr[2];
+    splittedArr[2] = temp;
 
     const resultString = splittedArr.join(separator);
 
