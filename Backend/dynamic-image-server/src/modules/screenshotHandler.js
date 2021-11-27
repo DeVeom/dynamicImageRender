@@ -11,13 +11,11 @@ const s3 = new aws.S3({
   region: awsEnv.region,
 });
 
-const dateWithDash = formatDateString(new Date(), '-');
-const dateWithNoSpace = formatDateString(new Date(), '');
-const fixedFilenameFormat = `-report-image-${dateWithNoSpace}-`;
-const type = 'jpeg';
+const TYPE = 'jpeg';
 
 export const createScreenshot = async (channelId, layoutType) => {
   let result;
+
   try {
     const browser = await puppeteer.launch({
       headless: true,
@@ -45,13 +43,19 @@ export const createScreenshot = async (channelId, layoutType) => {
 
     const capturedImage = await caputreArea.screenshot({
       quality: 100,
-      type: type,
+      type: TYPE,
     });
 
     const params = {
       ACL: 'public-read',
-      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
+      Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
+        new Date(),
+        '-'
+      )}`,
+      Key: `${channelId}-report-image-${formatDateString(
+        new Date(),
+        ''
+      )}-${layoutType}.${TYPE}`,
       ContentType: 'image/jpeg',
       Body: capturedImage,
     };
@@ -76,14 +80,23 @@ export const getScreenshot = async (channelId, layoutType) => {
   let result;
   try {
     const params = {
-      Bucket: `${awsEnv.bucket}/report-images/${dateWithDash}`,
-      Key: `${channelId}${fixedFilenameFormat}${layoutType}.${type}`,
+      Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
+        new Date(),
+        '-'
+      )}`,
+      Key: `${channelId}-report-image-${formatDateString(
+        new Date(),
+        ''
+      )}-${layoutType}.${TYPE}`,
     };
     result = await s3.getObject(params).promise();
   } catch (err) {
     if (err.name == 'NoSuchKey') {
       logger.info(
-        `${channelId}${fixedFilenameFormat}${layoutType}.${type} : new image created`
+        `${channelId}-report-image-${formatDateString(
+          new Date(),
+          ''
+        )}-${layoutType}.${TYPE} : new image created`
       );
       result = null;
     } else logger.error(err);

@@ -1,11 +1,28 @@
-export const formatDateString = (dateObj, separator) => {
-  const localeString = dateObj.toLocaleDateString();
-  const trimedLocaleString = localeString.replace(/(\s*)/g, '');
+let formatDateString;
 
-  const splittedArr = trimedLocaleString.split('.');
-  splittedArr.pop();
+if (process.env.NODE_ENV === 'production') {
+  formatDateString = (dateObj, separator) => {
+    const localeString = dateObj.toLocaleDateString();
 
-  const dashedString = splittedArr.join(separator);
+    const splittedArr = localeString.split('/');
+    splittedArr.pop();
 
-  return dashedString;
-};
+    const resultString = splittedArr.join(separator);
+
+    return resultString;
+  };
+} else {
+  formatDateString = (dateObj, separator) => {
+    const localeString = dateObj.toLocaleDateString();
+    const trimedLocaleString = localeString.replace(/(\s*)/g, '');
+
+    const splittedArr = trimedLocaleString.split('.');
+    splittedArr.pop();
+
+    const resultString = splittedArr.join(separator);
+
+    return resultString;
+  };
+}
+
+export { formatDateString };
