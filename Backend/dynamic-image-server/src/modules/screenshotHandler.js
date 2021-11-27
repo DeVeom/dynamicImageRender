@@ -35,9 +35,13 @@ export const createScreenshot = async (channelId, layoutType) => {
       // layoutType path variable로 추가할 것
       waitUntil: 'networkidle0',
     });
-    await page.waitForSelector('#root > section > svg'); // 실제 레이아웃 페이지에 맞는 selector로 변경
+    await page.waitForSelector(
+      '#root > section > div.Detail_svgReportContainer__2-ECl'
+    );
     await page.waitForTimeout(2000);
-    const caputreArea = await page.$('#root > section > svg');
+    const caputreArea = await page.$(
+      '#root > section > div.Detail_svgReportContainer__2-ECl'
+    );
 
     const capturedImage = await caputreArea.screenshot({
       quality: 100,
