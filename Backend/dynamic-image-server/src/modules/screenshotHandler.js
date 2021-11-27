@@ -20,7 +20,14 @@ export const createScreenshot = async (channelId, layoutType) => {
   let result;
   try {
     const browser = await puppeteer.launch({
-      args: ['--lang=ko-kr,kr'],
+      headless: true,
+      args: [
+        '--lang=ko-kr,kr',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+      ],
     });
     const page = await browser.newPage();
 
