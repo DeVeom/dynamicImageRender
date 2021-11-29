@@ -1,0 +1,25 @@
+.rankTextContainer {
+  width: 172px;
+  height: 102px;
+  fill: #f7f7f7;
+}
+
+.rankTitle {
+  font-size: 13px;
+  opacity: 0.5;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
+
+.rankNumber {
+  font-size: 18px;
+  font-weight: 700;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
+
+.rankTop {
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}

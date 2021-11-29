@@ -1,0 +1,23 @@
+.competingChannelAvg {
+  width: 598px;
+  height: 26px;
+  fill: #7f7f7f;
+}
+
+.competingChannelAvgText {
+  fill: white;
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
+
+.channelSummaryGraph {
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.channelSummaryText {
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
