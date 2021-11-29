@@ -24,13 +24,17 @@ export const createScreenshot = async (channelId, layoutType) => {
     });
     const page = await browser.newPage();
 
-    await page.goto(`${layoutUrl}${channelId}`, {
-      // layoutType path variable로 추가할 것
-      waitUntil: 'networkidle0',
-    });
-    await page.waitForSelector('#root > section > svg'); // 실제 레이아웃 페이지에 맞는 selector로 변경
+    await page.goto(
+      `${layoutUrl}${
+        layoutType === 'large' ? 'bigreport/' : 'smallreport/'
+      }${channelId}`,
+      {
+        waitUntil: 'networkidle0',
+      }
+    );
+    await page.waitForSelector('#root > div > div');
     await page.waitForTimeout(2000);
-    const caputreArea = await page.$('#root > section > svg');
+    const caputreArea = await page.$('#root > div > div');
 
     const capturedImage = await caputreArea.screenshot({
       quality: 100,
