@@ -117,3 +117,18 @@
 .offerAdBtn:hover {
   background-color: #e1003d;
 }
+
+@media screen and (max-width: 1050px) {
+  .profile {
+    width: 100%;
+  }
+
+  .offerAdBtn {
+    width: 60px;
+    height: 55px;
+  }
+
+  .offerAdText {
+    font-size: 10px;
+  }
+}

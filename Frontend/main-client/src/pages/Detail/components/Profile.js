@@ -46,7 +46,7 @@ const Profile = ({ thumbnails, title, description, category }) => {
           />
         </div>
         <div className={style.offerAdBtn}>
-          <p>광고 제안하기</p>
+          <p className={style.offerAdText}>광고 제안하기</p>
         </div>
       </div>
     </div>
