@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
 import { envConfig, logger } from '../config';
-import { formatDateString } from '../utils/dateFormatter';
+import { dateTypeEnum, formatDateString } from '../utils/dateFormatter';
 
 const { awsEnv, layoutUrl } = envConfig;
 
@@ -50,11 +50,13 @@ export const createScreenshot = async (channelId, layoutType) => {
       ACL: 'public-read',
       Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
         new Date(),
-        '-'
+        '/',
+        dateTypeEnum.YYYYMM
       )}`,
       Key: `${channelId}-report-image-${formatDateString(
         new Date(),
-        ''
+        '',
+        dateTypeEnum.YYYYMMDD
       )}-${layoutType}.${TYPE}`,
       ContentType: 'image/jpeg',
       Body: capturedImage,
@@ -82,11 +84,13 @@ export const getScreenshot = async (channelId, layoutType) => {
     const params = {
       Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
         new Date(),
-        '-'
+        '/',
+        dateTypeEnum.YYYYMM
       )}`,
       Key: `${channelId}-report-image-${formatDateString(
         new Date(),
-        ''
+        '',
+        dateTypeEnum.YYYYMMDD
       )}-${layoutType}.${TYPE}`,
     };
     result = await s3.getObject(params).promise();
@@ -95,7 +99,8 @@ export const getScreenshot = async (channelId, layoutType) => {
       logger.info(
         `${channelId}-report-image-${formatDateString(
           new Date(),
-          ''
+          '',
+          dateTypeEnum.YYYYMMDD
         )}-${layoutType}.${TYPE} : new image created`
       );
       result = null;
