@@ -1,0 +1,12 @@
+.svgReportContainer {
+  display: flex;
+}
+
+.containerForSnapShot {
+  border: 1px solid green;
+}
+
+.reportContainer {
+  width: 490px;
+  height: 488px;
+}
