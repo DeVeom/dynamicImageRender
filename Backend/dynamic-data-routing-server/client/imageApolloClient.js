@@ -5,7 +5,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import fetch from "cross-fetch";
-import config from "../config/environment/index";
+import config from "../config/index";
+import { logger } from "../config/winston";
 
 const { DATA_URI } = config;
 
@@ -32,6 +33,6 @@ export const generateScreenshot = async (channelId, layoutType) => {
     const data = await client.mutate({ mutation: GET_IMAGE_URL });
     return data;
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };

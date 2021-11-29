@@ -1,6 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import config from "../config/environment/index";
+import config from "../config/index";
+import { logger } from "../config/winston";
 import { typeDefs } from "../graphql/typeDefs";
 import { resolvers } from "../graphql/resolvers";
 import cors from "cors";
@@ -21,7 +22,7 @@ const serverStart = async () => {
   apolloServer.applyMiddleware({ app });
 
   app.listen(port, () => {
-    console.log(
+    logger.info(
       `data routing server localhost:${port}${apolloServer.graphqlPath}`
     );
   });
