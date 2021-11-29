@@ -16,7 +16,7 @@ const List = props => {
   });
 
   if (loading) return 'Loading...';
-  if (error) return alert('Error!: `${error.message}`');
+  if (error) return alert(`Error: ${error.message}`);
 
   return (
     <div className={style.listWrapper}>

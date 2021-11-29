@@ -1,0 +1,25 @@
+.detailInfoTitle {
+  font-size: 14px;
+}
+
+.detailInfo {
+  font-size: 18px;
+  font-weight: 700;
+  text-anchor: end;
+}
+
+.subscriberGradeContainer {
+  width: 48px;
+  height: 22px;
+  fill: transparent;
+  stroke: #ff0044;
+  stroke-width: 1px;
+}
+
+.subscriberGrade {
+  font-size: 11px;
+  font-weight: 500;
+  fill: #ff0044;
+  text-anchor: middle;
+  alignment-baseline: middle;
+}
