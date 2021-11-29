@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
 import { envConfig, logger } from '../config';
-import { dateTypeEnum, formatDateString } from '../utils/dateFormatter';
+import { formatDateString } from '../utils/dateFormatter';
 
 const { awsEnv, layoutUrl } = envConfig;
 
@@ -48,15 +48,15 @@ export const createScreenshot = async (channelId, layoutType) => {
 
     const params = {
       ACL: 'public-read',
-      Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
+      Bucket: `${awsEnv.bucket}/report-images/${layoutType}/${formatDateString(
         new Date(),
         '/',
-        dateTypeEnum.YYYYMM
+        'YYYYMM'
       )}`,
       Key: `${channelId}-report-image-${formatDateString(
         new Date(),
         '',
-        dateTypeEnum.YYYYMMDD
+        'YYYYMMDD'
       )}-${layoutType}.${TYPE}`,
       ContentType: 'image/jpeg',
       Body: capturedImage,
@@ -82,29 +82,43 @@ export const getScreenshot = async (channelId, layoutType) => {
   let result;
   try {
     const params = {
-      Bucket: `${awsEnv.bucket}/report-images/${formatDateString(
+      Bucket: `${awsEnv.bucket}/report-images/${layoutType}/${formatDateString(
         new Date(),
         '/',
-        dateTypeEnum.YYYYMM
+        'YYYYMM'
       )}`,
       Key: `${channelId}-report-image-${formatDateString(
         new Date(),
         '',
-        dateTypeEnum.YYYYMMDD
+        'YYYYMMDD'
       )}-${layoutType}.${TYPE}`,
     };
     result = await s3.getObject(params).promise();
   } catch (err) {
     if (err.name == 'NoSuchKey') {
-      logger.info(
-        `${channelId}-report-image-${formatDateString(
-          new Date(),
-          '',
-          dateTypeEnum.YYYYMMDD
-        )}-${layoutType}.${TYPE} : new image created`
-      );
       result = null;
     } else logger.error(err);
+  } finally {
+    return result;
+  }
+};
+
+export const getScreenshotList = async (imageParams) => {
+  const { channelId, layoutType, bucketFilter, keyFilter } = imageParams;
+  let result;
+  try {
+    const params = {
+      Bucket: awsEnv.bucket,
+      Prefix: keyFilter
+        ? `report-images/${layoutType}/${bucketFilter}/${channelId}-report-image-${keyFilter}`
+        : channelId,
+      MaxKeys: 4000,
+    };
+
+    result = await s3.listObjects(params).promise();
+  } catch (err) {
+    logger.error(err);
+    result = null;
   } finally {
     return result;
   }

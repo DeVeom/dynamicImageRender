@@ -12,7 +12,6 @@ export default async (app) => {
     },
     LayoutType: {
       SMALL: 'small',
-      MID: 'mid',
       LARGE: 'large',
     },
     Mutation: {

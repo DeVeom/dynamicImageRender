@@ -1,3 +1,3 @@
-import { generateScreenshot } from './generateScreenshot';
+import { generateScreenshot, getScreenshotByDate } from './generateScreenshot';
 
-export { generateScreenshot };
+export { generateScreenshot, getScreenshotByDate };
