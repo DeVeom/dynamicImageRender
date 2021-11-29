@@ -1,0 +1,39 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showCompetingChannelAvgBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 598px;
+  }
+}
+
+.performanceReportTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.competingChannelAvg {
+  height: 26px;
+  fill: #7f7f7f;
+  animation: showCompetingChannelAvgBar 1.5s forwards;
+  animation-delay: 0.9s;
+}
+
+.competingChannelAvgText {
+  fill: white;
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.9s;
+}

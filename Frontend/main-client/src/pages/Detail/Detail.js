@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useParams } from 'react-router';
+import { useMediaQuery } from 'react-responsive';
 import style from './Detail.module.css';
 import Banner from './components/Banner';
 import Profile from './components/Profile';
@@ -8,6 +9,14 @@ import AnalysisMenu from './components/AnalysisMenu';
 import SvgReport from '../../components/SVGReport/SvgReport';
 
 const Detail = () => {
+  const isPc = useMediaQuery({
+    query: '(min-width:768px)',
+  });
+
+  const isMobile = useMediaQuery({
+    query: '(max-width:767px)',
+  });
+
   const params = useParams();
   const channelId = params.id;
   const GET_DATA = gql`
@@ -48,33 +57,37 @@ const Detail = () => {
 
   return (
     <section className={style.detailContainer}>
-      <Banner banner={banner} title={title} />
-      <Profile
-        thumbnails={thumbnails}
-        title={title}
-        description={description}
-        category={category}
-      />
-      <AnalysisMenu channelId={channelId} />
-      <div className={style.svgReportContainer}>
-        <SvgReport
-          dailyAverageViewCount={dailyAverageViewCount}
-          averageVideoViewCount={averageVideoViewCount}
-          favorablePercent={favorablePercent}
-          activePercent={activePercent}
-          dailyViewCountSummary={dailyViewCountSummary}
-          videoViewCountSummary={videoViewCountSummary}
-          activePercentSummary={activePercentSummary}
-          favorablePercentSummary={favorablePercentSummary}
-          subscriberCountRank={subscriberCountRank}
-          subscriberCountRankPercent={subscriberCountRankPercent}
-          expectedRevenueRank={expectedRevenueRank}
-          expectedRevenueRankPercent={expectedRevenueRankPercent}
-          subscriberCount={subscriberCount}
-          publishedAt={publishedAt}
-          videoTotalCount={videoTotalCount}
-        />
-      </div>
+      {isPc && (
+        <div className={style.pcVersionContainer}>
+          <Banner banner={banner} title={title} />
+          <Profile
+            thumbnails={thumbnails}
+            title={title}
+            description={description}
+            category={category}
+          />
+          <AnalysisMenu channelId={channelId} />
+          <div className={style.svgReportContainer}>
+            <SvgReport
+              dailyAverageViewCount={dailyAverageViewCount}
+              averageVideoViewCount={averageVideoViewCount}
+              favorablePercent={favorablePercent}
+              activePercent={activePercent}
+              dailyViewCountSummary={dailyViewCountSummary}
+              videoViewCountSummary={videoViewCountSummary}
+              activePercentSummary={activePercentSummary}
+              favorablePercentSummary={favorablePercentSummary}
+              subscriberCountRank={subscriberCountRank}
+              subscriberCountRankPercent={subscriberCountRankPercent}
+              expectedRevenueRank={expectedRevenueRank}
+              expectedRevenueRankPercent={expectedRevenueRankPercent}
+              subscriberCount={subscriberCount}
+              publishedAt={publishedAt}
+              videoTotalCount={videoTotalCount}
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

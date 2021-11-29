@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './SvgReport.module.css';
+import PerformanceReport from './components/PerformanceReport';
+import DetailReport from './components/DetailReport';
 
 const SvgReport = ({
   dailyAverageViewCount,
@@ -74,276 +76,22 @@ const SvgReport = ({
   };
 
   return (
-    <svg className={style.reportContainer} height="349" width="1050">
-      <g className={style.performanceReport}>
-        <text className={style.performanceReportTitle} x="0" y="30">
-          Performance 요약
-        </text>
-        <g>
-          <g>
-            <text className={style.textInfoList} x="90" y="100">
-              일일 조회수
-            </text>
-            <text className={style.textInfoName} x="90" y="130">
-              {getRoundNumber(dailyAverageViewCount)}
-            </text>
-          </g>
-          <g>
-            <text className={style.textInfoList} x="240" y="100">
-              영상별 평균 조회수
-            </text>
-            <text className={style.textInfoName} x="240" y="130">
-              {getRoundNumber(averageVideoViewCount)}
-            </text>
-          </g>
-          <g>
-            <text className={style.textInfoList} x="390" y="100">
-              활성도
-            </text>
-            <text className={style.textInfoName} x="390" y="130">
-              {activePercent}%
-            </text>
-          </g>
-          <g>
-            <text className={style.textInfoList} x="540" y="100">
-              호감도
-            </text>
-            <text className={style.textInfoName} x="540" y="130">
-              {favorablePercent}%
-            </text>
-          </g>
-        </g>
-        <g>
-          <g>
-            <rect
-              className={style.competingChannelAvg}
-              x="16"
-              y="222"
-              rx="5"
-              ry="5"
-            ></rect>
-            <text className={style.competingChannelAvgText} x="315" y="236">
-              경쟁 채널 평균
-            </text>
-          </g>
-          <g>
-            <g>
-              {
-                <path
-                  className={style.channelSummaryGraph}
-                  style={
-                    dailyViewCountSummary >= 0
-                      ? { fill: '#0A9D58', stroke: '#0A9D58' }
-                      : { fill: '#DA4437', stroke: '#DA4437' }
-                  }
-                  d={`M 56 ${summaryVerticalPoint(
-                    dailyViewCountSummary
-                  )} V ${summaryVerticalPoint(
-                    dailyViewCountSummary
-                  )} H 126 V ${summaryVerticalPoint(dailyViewCountSummary)}`}
-                >
-                  <animate
-                    attributeName="d"
-                    dur="1s"
-                    to={`M 56 ${summaryVerticalPoint(
-                      dailyViewCountSummary
-                    )} V ${summaryHeight(
-                      dailyViewCountSummary
-                    )} H 126 V ${summaryVerticalPoint(dailyViewCountSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </path>
-              }
-              {
-                <text
-                  className={style.channelSummaryText}
-                  style={
-                    dailyViewCountSummary >= 0
-                      ? { fill: '#0A9D58' }
-                      : { fill: '#DA4437' }
-                  }
-                  x="91"
-                  y={`${summaryTextStartPosition(dailyViewCountSummary)}`}
-                >
-                  {dailyViewCountSummary >= 0
-                    ? '+' + dailyViewCountSummary
-                    : dailyViewCountSummary}
-                  %
-                  <animate
-                    attributeName="y"
-                    dur="1s"
-                    to={`${summaryTextFinalPosition(dailyViewCountSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </text>
-              }
-            </g>
-            <g>
-              {
-                <path
-                  className={style.channelSummaryGraph}
-                  style={
-                    videoViewCountSummary >= 0
-                      ? { fill: '#0A9D58', stroke: '#0A9D58' }
-                      : { fill: '#DA4437', stroke: '#DA4437' }
-                  }
-                  d={`M 205 ${summaryVerticalPoint(
-                    videoViewCountSummary
-                  )} V ${summaryVerticalPoint(
-                    videoViewCountSummary
-                  )} H 275 V ${summaryVerticalPoint(videoViewCountSummary)}`}
-                >
-                  <animate
-                    attributeName="d"
-                    dur="1s"
-                    to={`M 205 ${summaryVerticalPoint(
-                      videoViewCountSummary
-                    )} V ${summaryHeight(
-                      videoViewCountSummary
-                    )} H 275 V ${summaryVerticalPoint(videoViewCountSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </path>
-              }
-              {
-                <text
-                  className={style.channelSummaryText}
-                  style={
-                    videoViewCountSummary >= 0
-                      ? { fill: '#0A9D58' }
-                      : { fill: '#DA4437' }
-                  }
-                  x="240"
-                  y={`${summaryTextStartPosition(videoViewCountSummary)}`}
-                >
-                  {videoViewCountSummary >= 0
-                    ? '+' + videoViewCountSummary
-                    : videoViewCountSummary}
-                  %
-                  <animate
-                    attributeName="y"
-                    dur="1s"
-                    to={`${summaryTextFinalPosition(videoViewCountSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </text>
-              }
-            </g>
-            <g>
-              {
-                <path
-                  className={style.channelSummaryGraph}
-                  style={
-                    activePercentSummary >= 0
-                      ? { fill: '#0A9D58', stroke: '#0A9D58' }
-                      : { fill: '#DA4437', stroke: '#DA4437' }
-                  }
-                  d={`M 355 ${summaryVerticalPoint(
-                    activePercentSummary
-                  )} V ${summaryVerticalPoint(
-                    activePercentSummary
-                  )} H 425 V ${summaryVerticalPoint(activePercentSummary)}`}
-                >
-                  <animate
-                    attributeName="d"
-                    dur="1s"
-                    to={`M 355 ${summaryVerticalPoint(
-                      activePercentSummary
-                    )} V ${summaryHeight(
-                      activePercentSummary
-                    )} H 425 V ${summaryVerticalPoint(activePercentSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </path>
-              }
-              {
-                <text
-                  className={style.channelSummaryText}
-                  style={
-                    activePercentSummary >= 0
-                      ? { fill: '#0A9D58' }
-                      : { fill: '#DA4437' }
-                  }
-                  x="390"
-                  y={`${summaryTextStartPosition(activePercentSummary)}`}
-                >
-                  {activePercentSummary >= 0
-                    ? '+' + activePercentSummary
-                    : activePercentSummary}
-                  %
-                  <animate
-                    attributeName="y"
-                    dur="1s"
-                    to={`${summaryTextFinalPosition(activePercentSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </text>
-              }
-            </g>
-            <g>
-              {
-                <path
-                  className={style.channelSummaryGraph}
-                  style={
-                    favorablePercentSummary >= 0
-                      ? { fill: '#0A9D58', stroke: '#0A9D58' }
-                      : { fill: '#DA4437', stroke: '#DA4437' }
-                  }
-                  d={`M 505 ${summaryVerticalPoint(
-                    favorablePercentSummary
-                  )} V ${summaryVerticalPoint(
-                    favorablePercentSummary
-                  )} H 575 V ${summaryVerticalPoint(favorablePercentSummary)}`}
-                >
-                  <animate
-                    attributeName="d"
-                    dur="1s"
-                    to={`M 505 ${summaryVerticalPoint(
-                      favorablePercentSummary
-                    )} V ${summaryHeight(
-                      favorablePercentSummary
-                    )} H 575 V ${summaryVerticalPoint(
-                      favorablePercentSummary
-                    )}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </path>
-              }
-              {
-                <text
-                  className={style.channelSummaryText}
-                  style={
-                    favorablePercentSummary >= 0
-                      ? { fill: '#0A9D58' }
-                      : { fill: '#DA4437' }
-                  }
-                  x="540"
-                  y={`${summaryTextStartPosition(favorablePercentSummary)}`}
-                >
-                  {favorablePercentSummary >= 0
-                    ? '+' + favorablePercentSummary
-                    : favorablePercentSummary}
-                  %
-                  <animate
-                    attributeName="y"
-                    dur="1s"
-                    to={`${summaryTextFinalPosition(favorablePercentSummary)}`}
-                    fill="freeze"
-                    begin="2s"
-                  ></animate>
-                </text>
-              }
-            </g>
-          </g>
-        </g>
-      </g>
+    <svg className={style.reportContainer}>
+      <PerformanceReport
+        dailyAverageViewCount={dailyAverageViewCount}
+        averageVideoViewCount={averageVideoViewCount}
+        favorablePercent={favorablePercent}
+        activePercent={activePercent}
+        dailyViewCountSummary={dailyViewCountSummary}
+        videoViewCountSummary={videoViewCountSummary}
+        activePercentSummary={activePercentSummary}
+        favorablePercentSummary={favorablePercentSummary}
+        getRoundNumber={getRoundNumber}
+        summaryVerticalPoint={summaryVerticalPoint}
+        summaryHeight={summaryHeight}
+        summaryTextStartPosition={summaryTextStartPosition}
+        summaryTextFinalPosition={summaryTextFinalPosition}
+      />
       <line
         x1="629"
         x2="629"
@@ -351,107 +99,19 @@ const SvgReport = ({
         y2="329"
         stroke="rgba(1, 1, 1, 0.2)"
       ></line>
-      <g className={style.detailReport}>
-        <g>
-          <g>
-            <rect
-              className={style.rankTextContainer}
-              x="686"
-              y="55"
-              rx="8"
-              ry="8"
-            ></rect>
-            <text x="772" y="81" className={style.rankTitle}>
-              유튜브 구독자 순위
-            </text>
-            <text x="772" y="110" className={style.rankNumber}>
-              {subscriberCountRank
-                ? subscriberCountRank.toLocaleString('en-US') + 'th'
-                : '-'}
-            </text>
-            <text x="772" y="132" className={style.rankTop}>
-              {subscriberCountRankPercent
-                ? `[Top ${subscriberCountRankPercent}%]`
-                : '데이터 산정 중'}
-            </text>
-          </g>
-          <g>
-            <rect
-              className={style.rankTextContainer}
-              x="878"
-              y="55"
-              rx="8"
-              ry="8"
-            ></rect>
-            <text x="964" y="81" className={style.rankTitle}>
-              유튜브 수익 순위
-            </text>
-            <text x="964" y="110" className={style.rankNumber}>
-              {expectedRevenueRank
-                ? expectedRevenueRank.toLocaleString('en-US') + 'th'
-                : '-'}
-            </text>
-            <text x="964" y="132" className={style.rankTop}>
-              {expectedRevenueRank
-                ? `[Top ${expectedRevenueRankPercent}%]`
-                : '데이터 산정 중'}
-            </text>
-          </g>
-        </g>
-        <g>
-          <g>
-            <text className={style.detailInfoTitle1} x="686" y="199">
-              구독자 등급
-            </text>
-            <text className={style.detailInfo1} x="1050" y="199">
-              <rect width="50" height="24"></rect>
-              {getGrade(subscriberCount).kor}
-            </text>
-            {
-              <rect
-                x={getSubscriberGradePosition(subscriberCount)}
-                y="182"
-                rx="10"
-                ry="10"
-                className={style.subscriberGradeContainer}
-              ></rect>
-            }
-            {
-              <text
-                x={getSubscriberGradePosition(subscriberCount) + 24}
-                y="193"
-                className={style.subscriberGrade}
-              >
-                {getGrade(subscriberCount).eng}
-              </text>
-            }
-          </g>
-          <g>
-            <text className={style.detailInfoTitle2} x="686" y="235">
-              구독자수
-            </text>
-            <text className={style.detailInfo2} x="1050" y="235">
-              {getRoundNumber(subscriberCount)}
-            </text>
-          </g>
-          <g>
-            <text className={style.detailInfoTitle3} x="686" y="271">
-              채널 가입일
-            </text>
-            <text className={style.detailInfo3} x="1050" y="271">
-              {getPublishDate(publishedAt)}
-            </text>
-          </g>
-          <g>
-            <text className={style.detailInfoTitle4} x="686" y="307">
-              총 영상수
-            </text>
-            <text className={style.detailInfo4} x="1050" y="307">
-              {videoTotalCount}
-            </text>
-          </g>
-        </g>
-      </g>
+      <DetailReport
+        subscriberCountRank={subscriberCountRank}
+        subscriberCountRankPercent={subscriberCountRankPercent}
+        expectedRevenueRank={expectedRevenueRank}
+        expectedRevenueRankPercent={expectedRevenueRankPercent}
+        subscriberCount={subscriberCount}
+        publishedAt={publishedAt}
+        videoTotalCount={videoTotalCount}
+        getRoundNumber={getRoundNumber}
+        getGrade={getGrade}
+        getPublishDate={getPublishDate}
+        getSubscriberGradePosition={getSubscriberGradePosition}
+      />
     </svg>
   );
 };
