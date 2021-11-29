@@ -29,17 +29,17 @@ export const createScreenshot = async (channelId, layoutType) => {
     });
     const page = await browser.newPage();
 
-    await page.goto(`${layoutUrl}${channelId}`, {
-      // layoutType path variable로 추가할 것
-      waitUntil: 'networkidle0',
-    });
-    await page.waitForSelector(
-      '#root > section > div.Detail_svgReportContainer__2-ECl'
+    await page.goto(
+      `${layoutUrl}${
+        layoutType === 'large' ? 'bigreport/' : 'smallreport/'
+      }${channelId}`,
+      {
+        waitUntil: 'networkidle0',
+      }
     );
+    await page.waitForSelector('#root > div > div');
     await page.waitForTimeout(2000);
-    const caputreArea = await page.$(
-      '#root > section > div.Detail_svgReportContainer__2-ECl'
-    );
+    const caputreArea = await page.$('#root > div > div');
 
     const capturedImage = await caputreArea.screenshot({
       quality: 100,
