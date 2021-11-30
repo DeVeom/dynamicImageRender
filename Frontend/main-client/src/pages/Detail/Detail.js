@@ -139,97 +139,75 @@ const Detail = () => {
 
   return (
     <section className={style.detailContainer}>
+      <Banner banner={banner} title={title} />
+      <Profile
+        thumbnails={thumbnails}
+        title={title}
+        description={description}
+        category={korCategory}
+      />
+      <AnalysisMenu channelId={channelId} />
       {isPc && (
-        <div className={style.pcVersionContainer}>
-          <Banner banner={banner} title={title} />
-          <Profile
-            thumbnails={thumbnails}
-            title={title}
-            description={description}
-            category={korCategory}
+        <div className={style.svgReportContainer}>
+          <SvgReportForPc
+            dailyAverageViewCount={dailyAverageViewCount}
+            averageVideoViewCount={averageVideoViewCount}
+            favorablePercent={favorablePercent}
+            activePercent={activePercent}
+            dailyViewCountSummary={dailyViewCountSummary}
+            videoViewCountSummary={videoViewCountSummary}
+            activePercentSummary={activePercentSummary}
+            favorablePercentSummary={favorablePercentSummary}
+            subscriberCountRank={subscriberCountRank}
+            subscriberCountRankPercent={subscriberCountRankPercent}
+            expectedRevenueRank={expectedRevenueRank}
+            expectedRevenueRankPercent={expectedRevenueRankPercent}
+            subscriberCount={subscriberCount}
+            publishedAt={publishedAt}
+            videoTotalCount={videoTotalCount}
           />
-          <AnalysisMenu channelId={channelId} />
-          <div className={style.svgReportContainer}>
-            <SvgReportForPc
-              dailyAverageViewCount={dailyAverageViewCount}
-              averageVideoViewCount={averageVideoViewCount}
-              favorablePercent={favorablePercent}
-              activePercent={activePercent}
-              dailyViewCountSummary={dailyViewCountSummary}
-              videoViewCountSummary={videoViewCountSummary}
-              activePercentSummary={activePercentSummary}
-              favorablePercentSummary={favorablePercentSummary}
-              subscriberCountRank={subscriberCountRank}
-              subscriberCountRankPercent={subscriberCountRankPercent}
-              expectedRevenueRank={expectedRevenueRank}
-              expectedRevenueRankPercent={expectedRevenueRankPercent}
-              subscriberCount={subscriberCount}
-              publishedAt={publishedAt}
-              videoTotalCount={videoTotalCount}
-            />
-          </div>
         </div>
       )}
       {isTablet && (
-        <div className={style.pcVersionContainer}>
-          <Banner banner={banner} title={title} />
-          <Profile
-            thumbnails={thumbnails}
-            title={title}
-            description={description}
-            category={korCategory}
+        <div className={style.svgReportContainer}>
+          <SvgReportForTablet
+            dailyAverageViewCount={dailyAverageViewCount}
+            averageVideoViewCount={averageVideoViewCount}
+            favorablePercent={favorablePercent}
+            activePercent={activePercent}
+            dailyViewCountSummary={dailyViewCountSummary}
+            videoViewCountSummary={videoViewCountSummary}
+            activePercentSummary={activePercentSummary}
+            favorablePercentSummary={favorablePercentSummary}
+            subscriberCountRank={subscriberCountRank}
+            subscriberCountRankPercent={subscriberCountRankPercent}
+            expectedRevenueRank={expectedRevenueRank}
+            expectedRevenueRankPercent={expectedRevenueRankPercent}
+            subscriberCount={subscriberCount}
+            publishedAt={publishedAt}
+            videoTotalCount={videoTotalCount}
           />
-          <AnalysisMenu channelId={channelId} />
-          <div className={style.svgReportContainer}>
-            <SvgReportForTablet
-              dailyAverageViewCount={dailyAverageViewCount}
-              averageVideoViewCount={averageVideoViewCount}
-              favorablePercent={favorablePercent}
-              activePercent={activePercent}
-              dailyViewCountSummary={dailyViewCountSummary}
-              videoViewCountSummary={videoViewCountSummary}
-              activePercentSummary={activePercentSummary}
-              favorablePercentSummary={favorablePercentSummary}
-              subscriberCountRank={subscriberCountRank}
-              subscriberCountRankPercent={subscriberCountRankPercent}
-              expectedRevenueRank={expectedRevenueRank}
-              expectedRevenueRankPercent={expectedRevenueRankPercent}
-              subscriberCount={subscriberCount}
-              publishedAt={publishedAt}
-              videoTotalCount={videoTotalCount}
-            />
-          </div>
         </div>
       )}
       {isMobile && (
-        <div className={style.pcVersionContainer}>
-          <Banner banner={banner} title={title} />
-          <Profile
-            thumbnails={thumbnails}
-            title={title}
-            description={description}
-            category={korCategory}
+        <div className={style.svgReportContainer}>
+          <SvgReportForMobile
+            dailyAverageViewCount={dailyAverageViewCount}
+            averageVideoViewCount={averageVideoViewCount}
+            favorablePercent={favorablePercent}
+            activePercent={activePercent}
+            dailyViewCountSummary={dailyViewCountSummary}
+            videoViewCountSummary={videoViewCountSummary}
+            activePercentSummary={activePercentSummary}
+            favorablePercentSummary={favorablePercentSummary}
+            subscriberCountRank={subscriberCountRank}
+            subscriberCountRankPercent={subscriberCountRankPercent}
+            expectedRevenueRank={expectedRevenueRank}
+            expectedRevenueRankPercent={expectedRevenueRankPercent}
+            subscriberCount={subscriberCount}
+            publishedAt={publishedAt}
+            videoTotalCount={videoTotalCount}
           />
-          <AnalysisMenu channelId={channelId} />
-          <div className={style.svgReportContainer}>
-            <SvgReportForMobile
-              dailyAverageViewCount={dailyAverageViewCount}
-              averageVideoViewCount={averageVideoViewCount}
-              favorablePercent={favorablePercent}
-              activePercent={activePercent}
-              dailyViewCountSummary={dailyViewCountSummary}
-              videoViewCountSummary={videoViewCountSummary}
-              activePercentSummary={activePercentSummary}
-              favorablePercentSummary={favorablePercentSummary}
-              subscriberCountRank={subscriberCountRank}
-              subscriberCountRankPercent={subscriberCountRankPercent}
-              expectedRevenueRank={expectedRevenueRank}
-              expectedRevenueRankPercent={expectedRevenueRankPercent}
-              subscriberCount={subscriberCount}
-              publishedAt={publishedAt}
-              videoTotalCount={videoTotalCount}
-            />
-          </div>
         </div>
       )}
     </section>
