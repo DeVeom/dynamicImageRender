@@ -12,10 +12,10 @@ const List = props => {
     query: '(min-width:1050px)',
   });
   const isTablet = useMediaQuery({
-    query: '(min-width:501px) and (max-width:1050px)',
+    query: '(min-width:768px) and (max-width:1050px)',
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return <div className={style.loading}>Loading...</div>;
   if (error) return alert(`Error: ${error.message}`);
 
   return (

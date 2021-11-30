@@ -1,3 +1,9 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
 .listWrapper {
   position: relative;
   top: 230px;
@@ -182,8 +188,9 @@
 
   .cardMobileTop {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    margin-left: 80px;
+    margin-left: 20px;
     height: 50%;
     font-size: 18px;
     font-weight: 700;
@@ -222,20 +229,20 @@
   }
 }
 
-@media screen and (max-width: 501px) {
+@media screen and (max-width: 768px) {
   .subscriberSort {
-    margin-right: 570px;
+    margin-right: 430px;
   }
 
   .cardMobileWrapper {
-    width: 62vh;
+    width: 88vh;
   }
   .cardMobileTop {
-    margin-left: 25px;
+    margin-left: 5px;
     cursor: pointer;
   }
 
   .cardMobileBottom {
-    margin-left: -25px;
+    margin-left: -80px;
   }
 }
