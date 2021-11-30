@@ -55,7 +55,7 @@ const { awsEnv } = config;
 
 const cloudwatchConfig = {
   logGroupName: awsEnv.logGroup,
-  logStreamName: "streamName",
+  logStreamName: `${awsEnv.logGroup}-${process.env.NODE_ENV}`,
   awsConfig: {
     awsAccessKeyId: awsEnv.accessKeyId,
     awsSecretKey: awsEnv.secretAccessKey,
@@ -67,6 +67,8 @@ const cloudwatchConfig = {
 };
 
 logger.add(new WinstonCloudwatch(cloudwatchConfig));
+const error = new Error("err???");
+winston.error(error);
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(
