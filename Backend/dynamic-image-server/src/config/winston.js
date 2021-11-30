@@ -1,4 +1,4 @@
-import winston from 'winston';
+import winston, { verbose } from 'winston';
 import WinstonCloudwatch from 'winston-cloudwatch';
 import winstonDaily from 'winston-daily-rotate-file';
 import packageJson from '../../package.json';
@@ -52,6 +52,7 @@ const logger = winston.createLogger({
 const { awsEnv } = envConfig;
 
 const cloudWatchConfig = {
+  level: 'verbose',
   logGroupName: awsEnv.logGroup,
   logStreamName: `${awsEnv.logGroup}-${process.env.NODE_ENV}`,
   awsAccessKey: awsEnv.accessKeyId,
@@ -66,6 +67,7 @@ logger.add(new WinstonCloudwatch(cloudWatchConfig));
 if (process.env.NODE_ENV !== 'production') {
   logger.add(
     new winston.transports.Console({
+      level: 'verbose',
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.simple()

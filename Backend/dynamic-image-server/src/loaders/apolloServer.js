@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
-import { generateScreenshot } from '../services';
+import { imageService } from '../services';
 import { logger } from '../config';
 import { ApolloError } from 'apollo-server-errors';
 
@@ -30,7 +30,10 @@ export default async (app) => {
         let { layoutType } = args;
         if (!layoutType || layoutType === 'undefined') layoutType = 'large';
         logger.info(`channerId: ${channelId}, layoutType: ${layoutType}`);
-        const data = await generateScreenshot(channelId, layoutType);
+        const data = await imageService.generateScreenshot({
+          channelId,
+          layoutType,
+        });
         return data;
       },
     },

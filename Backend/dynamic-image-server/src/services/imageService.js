@@ -1,18 +1,19 @@
 import { envConfig, logger } from '../config';
-import { formatDateString } from '../utils/dateFormatter';
+import { formatDateString } from '../utils/dateUtils';
 import {
   createScreenshot,
   getScreenshot,
-  getScreenshotList,
+  getS3ImageByDate,
 } from '../modules/screenshotHandler';
 
-export const generateScreenshot = async (channelId, layoutType) => {
+const generateScreenshot = async (params) => {
+  const { channelId, layoutType } = params;
   let data = await getScreenshot(channelId, layoutType);
 
   const { awsEnv } = envConfig;
   let imageUrl = `https://${awsEnv.bucket}.s3.${
     awsEnv.region
-  }.amazonaws.com/report-images/${layoutType}/${formatDateString(
+  }.amazonaws.com/report-images/${layoutType}/${channelId}/${formatDateString(
     new Date(),
     '/',
     'YYYYMM'
@@ -25,17 +26,19 @@ export const generateScreenshot = async (channelId, layoutType) => {
   if (!data) {
     data = await createScreenshot(channelId, layoutType);
     imageUrl = data.Location;
-    logger.info(`${imageUrl} : new image created`);
+    logger.info(`${channelId} - ${layoutType} : new image created`);
   }
   const image = {
-    message: 'Get report screenshot image url succeeded',
+    message: 'Get report-image url succeeded',
     imageUrl,
   };
   return image;
 };
 
-export const getScreenshotByDate = async (params) => {
-  const data = await getScreenshotList(params);
+const getImageByDate = async (params) => {
+  const data = await getS3ImageByDate(params);
 
   return data;
 };
+
+export default { generateScreenshot, getImageByDate };

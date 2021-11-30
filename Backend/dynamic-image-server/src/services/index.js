@@ -1,3 +1,3 @@
-import { generateScreenshot, getScreenshotByDate } from './generateScreenshot';
+import imageService from './imageService';
 
-export { generateScreenshot, getScreenshotByDate };
+export { imageService };

@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
 import { envConfig, logger } from '../config';
-import { formatDateString } from '../utils/dateFormatter';
+import { formatDateString } from '../utils/dateUtils';
 
 const { awsEnv, layoutUrl } = envConfig;
 
@@ -38,7 +38,6 @@ export const createScreenshot = async (channelId, layoutType) => {
       }
     );
     await page.waitForSelector('#root > div > div');
-    await page.waitForTimeout(2000);
     const caputreArea = await page.$('#root > div > div');
 
     const capturedImage = await caputreArea.screenshot({
@@ -48,7 +47,9 @@ export const createScreenshot = async (channelId, layoutType) => {
 
     const params = {
       ACL: 'public-read',
-      Bucket: `${awsEnv.bucket}/report-images/${layoutType}/${formatDateString(
+      Bucket: `${
+        awsEnv.bucket
+      }/report-images/${layoutType}/${channelId}/${formatDateString(
         new Date(),
         '/',
         'YYYYMM'
@@ -82,7 +83,9 @@ export const getScreenshot = async (channelId, layoutType) => {
   let result;
   try {
     const params = {
-      Bucket: `${awsEnv.bucket}/report-images/${layoutType}/${formatDateString(
+      Bucket: `${
+        awsEnv.bucket
+      }/report-images/${layoutType}/${channelId}/${formatDateString(
         new Date(),
         '/',
         'YYYYMM'
@@ -103,17 +106,19 @@ export const getScreenshot = async (channelId, layoutType) => {
   }
 };
 
-export const getScreenshotList = async (imageParams) => {
+export const getS3ImageByDate = async (imageParams) => {
   const { channelId, layoutType, bucketFilter, keyFilter } = imageParams;
   let result;
   try {
     const params = {
       Bucket: awsEnv.bucket,
       Prefix: keyFilter
-        ? `report-images/${layoutType}/${bucketFilter}/${channelId}-report-image-${keyFilter}`
-        : channelId,
+        ? `report-images/${layoutType}/${channelId}/${bucketFilter}/${channelId}-report-image-${keyFilter}`
+        : `report-images/${layoutType}/${channelId}/${bucketFilter}/${channelId}`,
       MaxKeys: 4000,
     };
+    if (bucketFilter.length === 4)
+      params.Prefix = `report-images/${layoutType}/${channelId}/${bucketFilter}`;
 
     result = await s3.listObjects(params).promise();
   } catch (err) {
