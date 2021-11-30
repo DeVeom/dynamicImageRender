@@ -1,6 +1,8 @@
 import winston from "winston";
+import WinstonCloudwatch from "winston-cloudwatch";
 import winstonDayily from "winston-daily-rotate-file";
 import packageJason from "../package.json";
+import config from "./index";
 
 const logDir = `logs`;
 
@@ -48,6 +50,23 @@ const logger = winston.createLogger({
     }),
   ],
 });
+
+const { awsEnv } = config;
+
+const cloudwatchConfig = {
+  logGroupName: awsEnv.logGroup,
+  logStreamName: "streamName",
+  awsConfig: {
+    awsAccessKeyId: awsEnv.accessKeyId,
+    awsSecretKey: awsEnv.secretAccessKey,
+    awsRegion: awsEnv.region,
+  },
+  formatLog: function (info) {
+    return `${info.timestamp} [${packageJason.name}] ${info.level}: ${info.message}`;
+  },
+};
+
+logger.add(new WinstonCloudwatch(cloudwatchConfig));
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(
