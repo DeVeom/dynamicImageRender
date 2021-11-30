@@ -4,7 +4,7 @@ import style from './List.module.css';
 import { useMediaQuery } from 'react-responsive';
 
 const List = props => {
-  const { data, onLoadMore, loading, error } = props;
+  const { data, onLoadMore, loading, error, searchRef } = props;
   const { REACT_APP_LINK_TO_DETAIL } = process.env;
   const [newWindowName, setNewWindowName] = useState(0);
 
@@ -20,7 +20,7 @@ const List = props => {
 
   return (
     <div className={style.listWrapper}>
-      <section className={style.sortWrapper}>
+      <section className={style.sortWrapper} ref={searchRef}>
         <ul className={style.sortTitle}>
           <li>
             <img
@@ -62,7 +62,7 @@ const List = props => {
                         setNewWindowName(newWindowName + 1);
                         return window.open(
                           `${REACT_APP_LINK_TO_DETAIL}/search/${data.channelId}`,
-                          'ToDetailPage'
+                          `ToDetailPage${newWindowName}`
                         );
                       }}
                     >

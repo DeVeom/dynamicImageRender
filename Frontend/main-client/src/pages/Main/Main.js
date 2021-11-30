@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import style from './Main.module.css';
 import List from '../List/List';
 import SearchTitleText from './components/SearchTitleText';
 import SearchBox from './components/SearchBox';
-import { gql, useLazyQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 
 const Main = () => {
   const [inputKeyword, setInputKeyword] = useState('');
   const [keyword, setKeyword] = useState('');
+  const searchRef = useRef();
 
   const GET_LIST = gql`
     query GetList($keyword: String!, $size: Int!, $from: Int!) {
@@ -17,12 +18,9 @@ const Main = () => {
     }
   `;
 
-  const [GetList, { loading, error, data, fetchMore }] = useLazyQuery(
-    GET_LIST,
-    {
-      variables: { keyword: `${keyword}`, from: 0, size: 20 },
-    }
-  );
+  const { loading, error, data, fetchMore } = useQuery(GET_LIST, {
+    variables: { keyword: `${keyword}`, from: 0, size: 20 },
+  });
 
   const onLoadMore = () => {
     fetchMore({
@@ -49,7 +47,10 @@ const Main = () => {
 
   const clickSearchBtn = () => {
     setKeyword(inputKeyword);
-    GetList();
+    // GetList();
+    searchRef.current.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   const enterSearchBtn = e => {
@@ -78,14 +79,14 @@ const Main = () => {
           src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80"
         />
       </section>
-      {keyword ? (
-        <List
-          error={error}
-          loading={loading}
-          data={data}
-          onLoadMore={onLoadMore}
-        />
-      ) : null}
+
+      <List
+        error={error}
+        loading={loading}
+        data={data}
+        onLoadMore={onLoadMore}
+        searchRef={searchRef}
+      />
     </div>
   );
 };
