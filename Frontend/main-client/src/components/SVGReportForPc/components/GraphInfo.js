@@ -14,6 +14,18 @@ function GraphInfo({
   return (
     <g>
       <g>
+        <rect
+          className={style.competingChannelAvg}
+          x="16"
+          y="222"
+          rx="5"
+          ry="5"
+        ></rect>
+        <text className={style.competingChannelAvgText} x="315" y="236">
+          경쟁 채널 평균
+        </text>
+      </g>
+      <g>
         {
           <path
             className={style.channelSummaryGraph}

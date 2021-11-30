@@ -1,9 +1,9 @@
 import React from 'react';
-import style from './SvgReport.module.css';
+import style from './SvgReportForTablet.module.css';
 import PerformanceReport from './components/PerformanceReport';
 import DetailReport from './components/DetailReport';
 
-const SvgReport = ({
+const SvgReportForTablet = ({
   dailyAverageViewCount,
   averageVideoViewCount,
   favorablePercent,
@@ -63,13 +63,13 @@ const SvgReport = ({
   const getSubscriberGradePosition = data => {
     let position;
     if (getGrade(data).kor.length === 2) {
-      position = 957;
+      position = 659;
     } else if (getGrade(data).kor.length === 3) {
-      position = 938;
+      position = 640;
     } else if (getGrade(data).kor.length === 4) {
-      position = 919;
+      position = 621;
     } else if (getGrade(data).kor.length === 5) {
-      position = 900;
+      position = 602;
     }
 
     return position;
@@ -92,13 +92,6 @@ const SvgReport = ({
         summaryTextStartPosition={summaryTextStartPosition}
         summaryTextFinalPosition={summaryTextFinalPosition}
       />
-      <line
-        x1="629"
-        x2="629"
-        y1="20"
-        y2="329"
-        stroke="rgba(1, 1, 1, 0.2)"
-      ></line>
       <DetailReport
         subscriberCountRank={subscriberCountRank}
         subscriberCountRankPercent={subscriberCountRankPercent}
@@ -116,4 +109,4 @@ const SvgReport = ({
   );
 };
 
-export default SvgReport;
+export default SvgReportForTablet;

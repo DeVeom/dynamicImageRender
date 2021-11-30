@@ -20,7 +20,7 @@ function PerformanceReport({
 }) {
   return (
     <g className={style.performanceReport}>
-      <text className={style.performanceReportTitle} x="0" y="30">
+      <text className={style.performanceReportTitle} x="20" y="210">
         Performance 요약
       </text>
       <TextInfo
@@ -30,30 +30,16 @@ function PerformanceReport({
         favorablePercent={favorablePercent}
         getRoundNumber={getRoundNumber}
       />
-      <g>
-        <g>
-          <rect
-            className={style.competingChannelAvg}
-            x="16"
-            y="222"
-            rx="5"
-            ry="5"
-          ></rect>
-          <text className={style.competingChannelAvgText} x="315" y="236">
-            경쟁 채널 평균
-          </text>
-        </g>
-        <GraphInfo
-          dailyViewCountSummary={dailyViewCountSummary}
-          videoViewCountSummary={videoViewCountSummary}
-          activePercentSummary={activePercentSummary}
-          favorablePercentSummary={favorablePercentSummary}
-          summaryVerticalPoint={summaryVerticalPoint}
-          summaryHeight={summaryHeight}
-          summaryTextStartPosition={summaryTextStartPosition}
-          summaryTextFinalPosition={summaryTextFinalPosition}
-        />
-      </g>
+      <GraphInfo
+        dailyViewCountSummary={dailyViewCountSummary}
+        videoViewCountSummary={videoViewCountSummary}
+        activePercentSummary={activePercentSummary}
+        favorablePercentSummary={favorablePercentSummary}
+        summaryVerticalPoint={summaryVerticalPoint}
+        summaryHeight={summaryHeight}
+        summaryTextStartPosition={summaryTextStartPosition}
+        summaryTextFinalPosition={summaryTextFinalPosition}
+      />
     </g>
   );
 }

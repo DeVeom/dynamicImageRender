@@ -31,7 +31,7 @@ const Profile = ({ thumbnails, title, description, category }) => {
             alt="버즈앤비"
             src="https://vling.net/media/icons/channel-detail-nation-icon.png"
           />
-          <p>대한민국</p>
+          <p className={style.checkCountryText}>대한민국</p>
         </div>
         <div className={style.shareBtn}>
           <img

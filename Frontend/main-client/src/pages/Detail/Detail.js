@@ -6,13 +6,17 @@ import style from './Detail.module.css';
 import Banner from './components/Banner';
 import Profile from './components/Profile';
 import AnalysisMenu from './components/AnalysisMenu';
-import SvgReport from '../../components/SVGReport/SvgReport';
+import SvgReportForPc from '../../components/SVGReportForPc/SvgReportForPc';
+import SvgReportForTablet from '../../components/SVGReportForTablet/SvgReportForTablet';
+import SvgReportForMobile from '../../components/SVGReportForMobile/SvgReportForMobile';
 
 const Detail = () => {
   const isPc = useMediaQuery({
-    query: '(min-width:768px)',
+    query: '(min-width:1051px)',
   });
-
+  const isTablet = useMediaQuery({
+    query: '(min-width:768px) and (max-width:1050px)',
+  });
   const isMobile = useMediaQuery({
     query: '(max-width:767px)',
   });
@@ -68,7 +72,69 @@ const Detail = () => {
           />
           <AnalysisMenu channelId={channelId} />
           <div className={style.svgReportContainer}>
-            <SvgReport
+            <SvgReportForPc
+              dailyAverageViewCount={dailyAverageViewCount}
+              averageVideoViewCount={averageVideoViewCount}
+              favorablePercent={favorablePercent}
+              activePercent={activePercent}
+              dailyViewCountSummary={dailyViewCountSummary}
+              videoViewCountSummary={videoViewCountSummary}
+              activePercentSummary={activePercentSummary}
+              favorablePercentSummary={favorablePercentSummary}
+              subscriberCountRank={subscriberCountRank}
+              subscriberCountRankPercent={subscriberCountRankPercent}
+              expectedRevenueRank={expectedRevenueRank}
+              expectedRevenueRankPercent={expectedRevenueRankPercent}
+              subscriberCount={subscriberCount}
+              publishedAt={publishedAt}
+              videoTotalCount={videoTotalCount}
+            />
+          </div>
+        </div>
+      )}
+      {isTablet && (
+        <div className={style.pcVersionContainer}>
+          <Banner banner={banner} title={title} />
+          <Profile
+            thumbnails={thumbnails}
+            title={title}
+            description={description}
+            category={category}
+          />
+          <AnalysisMenu channelId={channelId} />
+          <div className={style.svgReportContainer}>
+            <SvgReportForTablet
+              dailyAverageViewCount={dailyAverageViewCount}
+              averageVideoViewCount={averageVideoViewCount}
+              favorablePercent={favorablePercent}
+              activePercent={activePercent}
+              dailyViewCountSummary={dailyViewCountSummary}
+              videoViewCountSummary={videoViewCountSummary}
+              activePercentSummary={activePercentSummary}
+              favorablePercentSummary={favorablePercentSummary}
+              subscriberCountRank={subscriberCountRank}
+              subscriberCountRankPercent={subscriberCountRankPercent}
+              expectedRevenueRank={expectedRevenueRank}
+              expectedRevenueRankPercent={expectedRevenueRankPercent}
+              subscriberCount={subscriberCount}
+              publishedAt={publishedAt}
+              videoTotalCount={videoTotalCount}
+            />
+          </div>
+        </div>
+      )}
+      {isMobile && (
+        <div className={style.pcVersionContainer}>
+          <Banner banner={banner} title={title} />
+          <Profile
+            thumbnails={thumbnails}
+            title={title}
+            description={description}
+            category={category}
+          />
+          <AnalysisMenu channelId={channelId} />
+          <div className={style.svgReportContainer}>
+            <SvgReportForMobile
               dailyAverageViewCount={dailyAverageViewCount}
               averageVideoViewCount={averageVideoViewCount}
               favorablePercent={favorablePercent}

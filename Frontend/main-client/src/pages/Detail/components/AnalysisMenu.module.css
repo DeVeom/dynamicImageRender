@@ -24,3 +24,20 @@
   color: #ff0044;
   border-bottom: 2px solid #ff0044;
 }
+
+@media screen and (max-width: 1050px) {
+  .analysisMenu {
+    width: 767px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .analysisMenu {
+    width: 490px;
+  }
+
+  .analysisMenuText {
+    font-size: 12px;
+    margin-right: 14px;
+  }
+}

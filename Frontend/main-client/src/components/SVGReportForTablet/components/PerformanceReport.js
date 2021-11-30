@@ -15,11 +15,12 @@ function PerformanceReport({
   getRoundNumber,
   summaryVerticalPoint,
   summaryHeight,
+  summaryTextStartPosition,
   summaryTextFinalPosition,
 }) {
   return (
     <g className={style.performanceReport}>
-      <text className={style.performanceReportTitle} x="20" y="210">
+      <text className={style.performanceReportTitle} x="0" y="30">
         Performance 요약
       </text>
       <TextInfo
@@ -36,6 +37,7 @@ function PerformanceReport({
         favorablePercentSummary={favorablePercentSummary}
         summaryVerticalPoint={summaryVerticalPoint}
         summaryHeight={summaryHeight}
+        summaryTextStartPosition={summaryTextStartPosition}
         summaryTextFinalPosition={summaryTextFinalPosition}
       />
     </g>
