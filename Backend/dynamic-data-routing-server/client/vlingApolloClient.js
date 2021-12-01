@@ -5,7 +5,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import fetch from "cross-fetch";
-import config from "../config/environment/index";
+import config from "../config/index";
+import { logger } from "../config/winston";
 
 const { DATA_URI } = config;
 
@@ -24,11 +25,8 @@ export const getChannelForGuest = async (id) => {
     const QUERY = gql`
     query {
       channelForGuest(id: "${id}") {
-        channelId      
         title                  
-        priceHidden                    
         publishedAt                    
-        isCustomAdPrice                    
         description                    
         banner                    
         activePercent                    
@@ -37,109 +35,15 @@ export const getChannelForGuest = async (id) => {
         subscriberCountRank                    
         subscriberCountRankPercent                    
         expectedRevenueRank                    
-        expectedRevenueRankPercent                    
-        viewCount                    
-        dailyAverageViewCount                    
-        dailyViewCount                    
-        averageVideoViewCount                    
-        cpv                    
-        cpvBrand                    
-        thumbnails                    
-        mails                    
-        mcn                    
-        nations                    
-        minAdvertisingUnitPrice                     
-        maxAdvertisingUnitPrice                      
-        advertisingUnitPrice                    
-        subscriberChange                    
-        replyRatio                    
+        expectedRevenueRankPercent     
+        thumbnails                                      
         category                    
         dailyViewCountSummary                    
         videoViewCountSummary                    
         favorablePercentSummary                    
         activePercentSummary                                        
-        isFavorite                    
-        interestTags                    
-        interestChannels                    
-        favorablePercentAboutNormalVideo                    
-        favorablePercentAboutAdVideo                    
-        averageNormalVideoViewCount                    
         averageAdVideoViewCount                    
-        averageCommentCountAboutNormalVideo                    
-        averageCommentCountAboutAdVideo                    
-        averagePredictionVideoViewCount              
-        links {                        
-          name                        
-          href                    
-        }                    
-        gender {                        
-          M                        
-          F                        
-          N                    
-        }                    
-        language {                        
-          lang                        
-          count                    
-        }                    
-        wordCount {                        
-          word                        
-          count                    
-        }                    
-        stat {                        
-          searchDate                                                
-          dailyViewCount                        
-          subscriberCount                        
-          videoCount                        
-          favorablePercent                        
-          activePercent                    
-        }                    
-        video {                        
-          videoId                        
-          channelId                        
-          publishedAt                        
-          title                        
-          description                        
-          thumbnails                        
-          viewCount                        
-          likeCount                        
-          dislikeCount                        
-          commentCount                        
-          isAd                    
-        }                    
-        age {                        
-          min                        
-          max                        
-          percent                    
-        }                    
-        similarChannels {                        
-          channelId                        
-          title                        
-          description                        
-          thumbnails                        
-          dailyViewCount                        
-          subscriberCount                        
-          isFavorite                    
-        }                    
-        competingChannels {                      
-          title                      
-          thumbnails                      
-          dailyViewCount                      
-          subscriberCount                      
-          averageVideoViewCount                    
-        }                    
-        commentEmojis                    
-        commentPubInfo                    
-        lackOfChannelData                    
-        averageVideoAnalyticsCommentCount                    
-        averageVideoAnalyticsLikeCount                    
-        averageVideoAnalyticsViewCount                    
-        averageVideoAnalyticsDislikeCount                    
-        videoStats                    
-        videoCount                    
-        videoYearCount                    
-        videoMonthCount                   
         videoTotalCount                    
-        adTagList                 
       }
     }`;
 
@@ -147,7 +51,7 @@ export const getChannelForGuest = async (id) => {
 
     return data;
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
@@ -171,8 +75,7 @@ export const getChannelsForList = async (keyword, from, size) => {
       maxAdPrice:200000000000,
       categories:[""],
       nation:"KR",
-      )
-    }`;
+      )}`;
 
     const result = await client.query({ query: GET_LIST });
     const {
@@ -180,6 +83,6 @@ export const getChannelsForList = async (keyword, from, size) => {
     } = result;
     return channelsForList;
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
