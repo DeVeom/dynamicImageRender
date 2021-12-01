@@ -25,7 +25,16 @@ router.get(
 
       const params = { channelId, layoutType };
       if (!dateFilter) {
+        // const startTime = process.hrtime();
         data = await imageService.generateScreenshot(params);
+        // const NS_PER_SEC = 1e9;
+        // const MS_PER_NS = 1e-6;
+        // const diff = process.hrtime(startTime);
+        // console.log(
+        //   `elapsed: ${
+        //     Math.round((diff[0] * NS_PER_SEC + diff[1]) * MS_PER_NS * 100) / 100
+        //   }`
+        // );
       } else {
         if (checkDateRegExp(dateFilter)) {
           const splittedArr = dateFilter.split('/');

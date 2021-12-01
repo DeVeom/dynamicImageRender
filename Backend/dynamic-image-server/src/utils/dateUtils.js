@@ -8,6 +8,9 @@ export const formatDateString = (dateObj, separator, dateType) => {
   const trimedLocaleString = localeString.replace(/(\s*)/g, '');
 
   const splittedArr = trimedLocaleString.split('.');
+  if (splittedArr[1].length === 1) splittedArr[1] = '0' + splittedArr[1];
+  if (splittedArr[2].length === 1) splittedArr[2] = '0' + splittedArr[2];
+
   splittedArr.pop();
 
   if (dateTypeEnum[dateType] > 0) splittedArr.pop();
