@@ -1,19 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-const defaultOptions = {
-  watchQuery: {
-    fetchPolicy: 'network-only',
-    errorPolicy: 'ignore',
-  },
-  query: {
-    fetchPolicy: 'network-only',
-    errorPolicy: 'all',
-  },
-  mutate: {
-    errorPolicy: 'all',
-  },
-};
-
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BACKEND_HOST,
   cache: new InMemoryCache({
@@ -29,7 +15,6 @@ const client = new ApolloClient({
       },
     },
   }),
-  defaultOptions,
 });
 
 export default client;
