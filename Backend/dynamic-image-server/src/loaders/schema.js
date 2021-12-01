@@ -12,7 +12,6 @@ export default gql`
 
   enum LayoutType {
     SMALL
-    MID
     LARGE
   }
 
