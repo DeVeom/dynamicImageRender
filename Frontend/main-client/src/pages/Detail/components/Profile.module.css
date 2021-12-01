@@ -117,3 +117,57 @@
 .offerAdBtn:hover {
   background-color: #e1003d;
 }
+
+@media screen and (max-width: 1050px) {
+  .profile {
+    width: 100%;
+  }
+
+  .channelName {
+    font-size: 16px;
+  }
+
+  .offerAdBtn {
+    width: 60px;
+    height: 55px;
+  }
+
+  .offerAdText {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .profile {
+    width: 767px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    width: 490px;
+  }
+
+  .channelName {
+    font-size: 24px;
+  }
+
+  .channelDescription {
+    display: none;
+  }
+
+  .channelCategoryContainer {
+    width: 140px;
+  }
+
+  .channelCategory {
+    margin: 0 5px 5px 0;
+    font-size: 10px;
+    margin-top: 10px;
+  }
+
+  .checkCountryIcon,
+  .checkCountryText {
+    display: none;
+  }
+}

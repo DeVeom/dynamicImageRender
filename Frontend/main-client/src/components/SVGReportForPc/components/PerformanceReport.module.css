@@ -1,0 +1,13 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.performanceReportTitle {
+  font-size: 16px;
+  font-weight: 500;
+}

@@ -15,6 +15,7 @@ function PerformanceReport({
   getRoundNumber,
   summaryVerticalPoint,
   summaryHeight,
+  summaryTextStartPosition,
   summaryTextFinalPosition,
 }) {
   return (
@@ -36,6 +37,7 @@ function PerformanceReport({
         favorablePercentSummary={favorablePercentSummary}
         summaryVerticalPoint={summaryVerticalPoint}
         summaryHeight={summaryHeight}
+        summaryTextStartPosition={summaryTextStartPosition}
         summaryTextFinalPosition={summaryTextFinalPosition}
       />
     </g>

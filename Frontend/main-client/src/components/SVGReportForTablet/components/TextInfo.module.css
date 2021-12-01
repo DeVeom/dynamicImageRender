@@ -1,0 +1,28 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.textInfoList {
+  font-size: 13px;
+  font-weight: 300;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.3s;
+}
+
+.textInfoName {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 0.6s;
+}

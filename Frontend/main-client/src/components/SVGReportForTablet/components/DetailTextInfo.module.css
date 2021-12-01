@@ -1,0 +1,103 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showSubscriberGrade {
+  0% {
+    font-size: 0px;
+  }
+  100% {
+    font-size: 11px;
+  }
+}
+
+.detailInfoTitle1 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.8s;
+}
+
+.detailInfoTitle2 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2s;
+}
+
+.detailInfoTitle3 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2.2s;
+}
+
+.detailInfoTitle4 {
+  font-size: 14px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2.4s;
+}
+
+.detailInfo1 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.8s;
+}
+
+.detailInfo2 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2s;
+}
+
+.detailInfo3 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2.2s;
+}
+
+.detailInfo4 {
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: end;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 2.4s;
+}
+
+.subscriberGradeContainer {
+  width: 48px;
+  height: 22px;
+  fill: transparent;
+  stroke: #ff0044;
+  stroke-width: 1px;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.8s;
+}
+
+.subscriberGrade {
+  font-size: 0px;
+  font-weight: 500;
+  fill: #ff0044;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  animation: showSubscriberGrade 1s cubic-bezier(0.01, 0.49, 0.58, 1.64)
+    forwards;
+  animation-delay: 3s;
+}

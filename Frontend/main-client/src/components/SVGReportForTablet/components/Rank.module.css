@@ -1,0 +1,54 @@
+@keyframes showContents {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showRankTitle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.rankTextContainer {
+  width: 352px;
+  height: 102px;
+  fill: #f7f7f7;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.2s;
+}
+
+.rankTitle {
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showRankTitle 1s forwards;
+  animation-delay: 1.2s;
+}
+
+.rankNumber {
+  font-size: 18px;
+  font-weight: 700;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.4s;
+}
+
+.rankTop {
+  font-size: 13px;
+  text-anchor: middle;
+  alignment-baseline: middle;
+  opacity: 0;
+  animation: showContents 1s forwards;
+  animation-delay: 1.6s;
+}
