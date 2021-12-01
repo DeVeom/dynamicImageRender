@@ -67,8 +67,6 @@ const cloudwatchConfig = {
 };
 
 logger.add(new WinstonCloudwatch(cloudwatchConfig));
-const error = new Error("err???");
-winston.error(error);
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(
