@@ -15,7 +15,6 @@ const TYPE = 'jpeg';
 
 export const createScreenshot = async (channelId, layoutType) => {
   let result;
-
   try {
     const browser = await puppeteer.launch({
       headless: true,
@@ -34,9 +33,10 @@ export const createScreenshot = async (channelId, layoutType) => {
         layoutType === 'large' ? 'bigreport/' : 'smallreport/'
       }${channelId}`,
       {
-        waitUntil: 'networkidle0',
+        waitUntil: 'domcontentloaded',
       }
     );
+
     await page.waitForSelector('#root > div > div');
     const caputreArea = await page.$('#root > div > div');
 

@@ -4,7 +4,7 @@ import {
   createScreenshot,
   getScreenshot,
   getS3ImageByDate,
-} from '../modules/screenshotHandler';
+} from '../modules/imageHandler';
 
 const generateScreenshot = async (params) => {
   const { channelId, layoutType } = params;

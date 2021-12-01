@@ -1,4 +1,4 @@
-import winston, { verbose } from 'winston';
+import winston from 'winston';
 import WinstonCloudwatch from 'winston-cloudwatch';
 import winstonDaily from 'winston-daily-rotate-file';
 import packageJson from '../../package.json';
