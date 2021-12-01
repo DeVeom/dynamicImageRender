@@ -46,8 +46,16 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 810px) {
   .searchBox {
+    margin-left: 150px;
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .searchBox {
+    margin-left: 150px;
     width: 80vw;
   }
 }
