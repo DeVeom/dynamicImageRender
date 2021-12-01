@@ -76,6 +76,9 @@
   font-size: 19px;
   font-weight: 800;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .infoDescription {
@@ -148,6 +151,15 @@
   height: 100%;
   line-height: 20px;
   color: #0f9d58;
+  font-size: 13px;
+}
+
+.minusCountChangeStatus {
+  text-align: center;
+  width: 65px;
+  height: 100%;
+  line-height: 20px;
+  color: #dc4e41;
   font-size: 13px;
 }
 

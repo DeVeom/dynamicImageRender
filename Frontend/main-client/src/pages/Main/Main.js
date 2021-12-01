@@ -19,6 +19,7 @@ const Main = () => {
   `;
 
   const { loading, error, data, fetchMore } = useQuery(GET_LIST, {
+    fetchPolicy: 'network-only',
     variables: { keyword: `${keyword}`, from: 0, size: 20 },
   });
 
@@ -47,7 +48,6 @@ const Main = () => {
 
   const clickSearchBtn = () => {
     setKeyword(inputKeyword);
-    // GetList();
     searchRef.current.scrollIntoView({
       behavior: 'smooth',
     });
@@ -58,8 +58,6 @@ const Main = () => {
       clickSearchBtn();
     }
   };
-
-  console.log(loading, error, data);
 
   return (
     <div>
@@ -79,7 +77,6 @@ const Main = () => {
           src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80"
         />
       </section>
-
       <List
         error={error}
         loading={loading}
