@@ -25,25 +25,26 @@ export const getChannelForGuest = async (id) => {
     const QUERY = gql`
     query {
       channelForGuest(id: "${id}") {
-        title                  
-        publishedAt                    
-        description                    
-        banner                    
-        activePercent                    
-        favorablePercent                    
-        subscriberCount                    
-        subscriberCountRank                    
-        subscriberCountRankPercent                    
-        expectedRevenueRank                    
-        expectedRevenueRankPercent     
-        thumbnails                                      
-        category                    
-        dailyViewCountSummary                    
-        videoViewCountSummary                    
-        favorablePercentSummary                    
-        activePercentSummary                                        
-        averageAdVideoViewCount                    
-        videoTotalCount                    
+        banner,
+        title,
+        thumbnails,
+        description,
+        category,
+        dailyAverageViewCount,
+        averageVideoViewCount,
+        favorablePercent,
+        activePercent,
+        dailyViewCountSummary,
+        videoViewCountSummary,
+        activePercentSummary,
+        favorablePercentSummary,
+        subscriberCountRank,
+        subscriberCountRankPercent,
+        expectedRevenueRank,
+        expectedRevenueRankPercent,
+        subscriberCount,
+        publishedAt,
+        videoTotalCount,                 
       }
     }`;
 

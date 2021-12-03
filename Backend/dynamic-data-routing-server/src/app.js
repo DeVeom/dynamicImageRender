@@ -1,6 +1,5 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import responseCachePlugin from "apollo-server-plugin-response-cache";
 import config from "../config/index";
 import { logger } from "../config/winston";
 import { typeDefs } from "../graphql/typeDefs";
@@ -19,7 +18,6 @@ const serverStart = async () => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [responseCachePlugin()],
   });
 
   await apolloServer.start();

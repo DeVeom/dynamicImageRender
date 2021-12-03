@@ -31,8 +31,6 @@ const Detail = () => {
     }
   `;
 
-  // console.log(isCopyOptionOpen);
-
   const { loading, error, data } = useQuery(GET_DATA);
 
   if (loading) return <p>loading...</p>;
