@@ -146,7 +146,7 @@ const Detail = () => {
         description={description}
         category={korCategory}
       />
-      <AnalysisMenu channelId={channelId} />
+      <AnalysisMenu channelId={channelId} title={title} />
       {isPc && (
         <div className={style.svgReportContainer}>
           <SvgReportForPc

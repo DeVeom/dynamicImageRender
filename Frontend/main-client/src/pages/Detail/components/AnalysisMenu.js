@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const AnalysisMenu = ({ channelId }) => {
+const AnalysisMenu = ({ channelId, title }) => {
   const [isCopyOptionOpen, setIsCopyOptionOpen] = useState(false);
   const [layout, setLayout] = useState('');
   const [imgUrl, setImgUrl] = useState('');
@@ -51,7 +51,7 @@ const AnalysisMenu = ({ channelId }) => {
 
   useDidMountEffect(() => {
     navigator.clipboard
-      .writeText(`<img alt='버즈앤비' src=${imgUrl} />`)
+      .writeText(`<img alt='${title}' src=${imgUrl} />`)
       .then(() => {
         alert(`클립보드에 복사했습니다.`);
       })
