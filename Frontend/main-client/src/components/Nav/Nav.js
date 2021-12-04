@@ -15,20 +15,6 @@ const Nav = () => {
             />
           </Link>
         </div>
-        <div className={style.subMenuContainer}>
-          <div className={style.subMenu}>
-            <span>한국어</span>
-          </div>
-          <div className={style.subMenu}>
-            <span>요금안내</span>
-          </div>
-          <div className={style.subMenu}>
-            <span>로그인</span>
-          </div>
-          <div className={style.subMenu}>
-            <span>무료 회원가입</span>
-          </div>
-        </div>
       </div>
     </nav>
   );

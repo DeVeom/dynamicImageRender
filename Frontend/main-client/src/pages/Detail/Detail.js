@@ -148,7 +148,7 @@ const Detail = () => {
       />
       <AnalysisMenu channelId={channelId} title={title} />
       {isPc && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForPcContainer}>
           <SvgReportForPc
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}
@@ -169,7 +169,7 @@ const Detail = () => {
         </div>
       )}
       {isTablet && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForTabletContainer}>
           <SvgReportForTablet
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}
@@ -190,7 +190,7 @@ const Detail = () => {
         </div>
       )}
       {isMobile && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForMobileContainer}>
           <SvgReportForMobile
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}

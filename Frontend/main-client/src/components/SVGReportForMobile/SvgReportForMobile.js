@@ -72,43 +72,44 @@ const SvgReportForMobile = ({
   };
 
   return (
-    <div className={style.svgReportContainer}>
-      <div className={style.containerForSnapShot}>
-        <svg className={style.reportContainer}>
-          <PerformanceReport
-            dailyAverageViewCount={dailyAverageViewCount}
-            averageVideoViewCount={averageVideoViewCount}
-            favorablePercent={favorablePercent}
-            activePercent={activePercent}
-            dailyViewCountSummary={dailyViewCountSummary}
-            videoViewCountSummary={videoViewCountSummary}
-            activePercentSummary={activePercentSummary}
-            favorablePercentSummary={favorablePercentSummary}
-            getRoundNumber={getRoundNumber}
-            summaryVerticalPoint={summaryVerticalPoint}
-            summaryHeight={summaryHeight}
-            summaryTextStartPosition={summaryTextStartPosition}
-            summaryTextFinalPosition={summaryTextFinalPosition}
-          />
-          <line
-            x1="0"
-            x2="490"
-            y1="169"
-            y2="169"
-            stroke="rgba(1, 1, 1, 0.2)"
-          ></line>
-          <DetailReport
-            subscriberCount={subscriberCount}
-            publishedAt={publishedAt}
-            videoTotalCount={videoTotalCount}
-            getRoundNumber={getRoundNumber}
-            getGrade={getGrade}
-            getPublishDate={getPublishDate}
-            getSubscriberGradePosition={getSubscriberGradePosition}
-          />
-        </svg>
-      </div>
-    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      className={style.reportContainer}
+      viewBox="0 0 490 488"
+    >
+      <PerformanceReport
+        dailyAverageViewCount={dailyAverageViewCount}
+        averageVideoViewCount={averageVideoViewCount}
+        favorablePercent={favorablePercent}
+        activePercent={activePercent}
+        dailyViewCountSummary={dailyViewCountSummary}
+        videoViewCountSummary={videoViewCountSummary}
+        activePercentSummary={activePercentSummary}
+        favorablePercentSummary={favorablePercentSummary}
+        getRoundNumber={getRoundNumber}
+        summaryVerticalPoint={summaryVerticalPoint}
+        summaryHeight={summaryHeight}
+        summaryTextStartPosition={summaryTextStartPosition}
+        summaryTextFinalPosition={summaryTextFinalPosition}
+      />
+      <line
+        x1="0"
+        x2="490"
+        y1="169"
+        y2="169"
+        stroke="rgba(1, 1, 1, 0.2)"
+      ></line>
+      <DetailReport
+        subscriberCount={subscriberCount}
+        publishedAt={publishedAt}
+        videoTotalCount={videoTotalCount}
+        getRoundNumber={getRoundNumber}
+        getGrade={getGrade}
+        getPublishDate={getPublishDate}
+        getSubscriberGradePosition={getSubscriberGradePosition}
+      />
+    </svg>
   );
 };
 

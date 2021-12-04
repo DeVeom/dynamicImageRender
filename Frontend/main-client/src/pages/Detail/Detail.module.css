@@ -5,8 +5,18 @@
   padding-top: 66px;
 }
 
-.svgReportContainer {
+.svgReportForPcContainer {
   padding-bottom: 20px;
+}
+
+.svgReportForTabletContainer {
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.svgReportForMobileContainer {
+  padding-bottom: 20px;
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
