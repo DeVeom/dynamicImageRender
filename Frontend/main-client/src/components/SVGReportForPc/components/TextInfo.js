@@ -1,13 +1,13 @@
 import React from 'react';
 import style from './TextInfo.module.css';
 
-function TextInfo({
+const TextInfo = ({
   dailyAverageViewCount,
   averageVideoViewCount,
   activePercent,
   favorablePercent,
   getRoundNumber,
-}) {
+}) => {
   return (
     <g>
       <g>
@@ -44,6 +44,6 @@ function TextInfo({
       </g>
     </g>
   );
-}
+};
 
 export default TextInfo;

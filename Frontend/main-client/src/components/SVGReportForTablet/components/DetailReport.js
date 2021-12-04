@@ -3,7 +3,7 @@ import style from './DetailReport.module.css';
 import Rank from './Rank';
 import DetailTextInfo from './DetailTextInfo';
 
-function DetailReport({
+const DetailReport = ({
   subscriberCountRank,
   subscriberCountRankPercent,
   expectedRevenueRank,
@@ -15,7 +15,7 @@ function DetailReport({
   getGrade,
   getSubscriberGradePosition,
   getPublishDate,
-}) {
+}) => {
   return (
     <g className={style.detailReport}>
       <Rank
@@ -35,6 +35,6 @@ function DetailReport({
       />
     </g>
   );
-}
+};
 
 export default DetailReport;

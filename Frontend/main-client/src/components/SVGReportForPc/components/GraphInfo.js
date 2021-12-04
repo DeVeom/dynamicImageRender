@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './GraphInfo.module.css';
 
-function GraphInfo({
+const GraphInfo = ({
   dailyViewCountSummary,
   videoViewCountSummary,
   activePercentSummary,
@@ -10,7 +10,7 @@ function GraphInfo({
   summaryHeight,
   summaryTextStartPosition,
   summaryTextFinalPosition,
-}) {
+}) => {
   return (
     <g>
       <g>
@@ -239,6 +239,6 @@ function GraphInfo({
       </g>
     </g>
   );
-}
+};
 
 export default GraphInfo;

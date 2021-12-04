@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './Rank.module.css';
 
-function Rank({
+const Rank = ({
   subscriberCountRank,
   subscriberCountRankPercent,
   expectedRevenueRank,
   expectedRevenueRankPercent,
-}) {
+}) => {
   return (
     <g>
       <g>
@@ -55,6 +55,6 @@ function Rank({
       </g>
     </g>
   );
-}
+};
 
 export default Rank;

@@ -137,15 +137,9 @@
   }
 }
 
-@media screen and (max-width: 1050px) {
-  .profile {
-    width: 767px;
-  }
-}
-
 @media screen and (max-width: 767px) {
   .profile {
-    width: 490px;
+    width: 100%;
   }
 
   .channelName {
@@ -169,11 +163,5 @@
   .checkCountryIcon,
   .checkCountryText {
     display: none;
-  }
-}
-
-@media screen and (max-width: 1050px) {
-  .profile {
-    width: 100%;
   }
 }
