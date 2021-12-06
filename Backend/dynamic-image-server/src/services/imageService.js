@@ -8,6 +8,9 @@ import {
 
 const generateScreenshot = async (params) => {
   const { channelId, layoutType } = params;
+  logger.info(
+    `generateScreenshot call - channerId: ${channelId} layoutType: ${layoutType}`
+  );
   let data = await getScreenshot(channelId, layoutType);
 
   const { awsEnv } = envConfig;
@@ -21,7 +24,7 @@ const generateScreenshot = async (params) => {
     new Date(),
     '',
     'YYYYMMDD'
-  )}-${layoutType}.jpeg`;
+  )}-${layoutType}.webp`;
 
   if (!data) {
     data = await createScreenshot(channelId, layoutType);
@@ -36,6 +39,10 @@ const generateScreenshot = async (params) => {
 };
 
 const getImageByDate = async (params) => {
+  const { channelId, layoutType } = params;
+  logger.info(
+    `getImageByDate call - channerId: ${channelId} layoutType: ${layoutType}`
+  );
   const data = await getS3ImageByDate(params);
 
   return data;
