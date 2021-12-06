@@ -51,7 +51,9 @@ const AnalysisMenu = ({ channelId, title }) => {
 
   useDidMountEffect(() => {
     navigator.clipboard
-      .writeText(`<img alt='${title}' src=${imgUrl} />`)
+      .writeText(
+        `<a href='https://vling.net/channel/${channelId}'><img alt='${title}' src=${imgUrl} /></a>`
+      )
       .then(() => {
         alert(`클립보드에 복사했습니다.`);
       })
