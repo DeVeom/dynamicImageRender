@@ -2,7 +2,7 @@ import React from 'react';
 import style from './SearchBox.module.css';
 
 const SearchBox = props => {
-  const { InputSearchBox, clickSearchBtn, enterSearchBtn } = props;
+  const { InputSearchBox, clickSearchBtn, enterSearchBtn, searchRef } = props;
 
   return (
     <div className={style.searchBox}>
@@ -15,6 +15,7 @@ const SearchBox = props => {
         />
       </div>
       <input
+        ref={searchRef}
         className={style.searchInput}
         onChange={InputSearchBox}
         onKeyPress={enterSearchBtn}
