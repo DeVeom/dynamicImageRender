@@ -1,4 +1,5 @@
 import { envConfig } from '../config';
+import { checkDateRegExp } from './dateUtils';
 
 const { awsEnv } = envConfig;
 
@@ -8,7 +9,7 @@ export const processImageData = (imageData, dateFilter) => {
 
   for (let image of contents) {
     const imageUrl = image['Key'];
-    if (imageUrl.endsWith('.jpeg'))
+    if (imageUrl.endsWith('.webp'))
       imageUrlList.push(
         `https://${awsEnv.bucket}.s3.${awsEnv.region}.amazonaws.com/${imageUrl}`
       );
@@ -19,5 +20,10 @@ export const processImageData = (imageData, dateFilter) => {
     dateFilter,
     imageUrlList,
   };
+
+  if (checkDateRegExp(dateFilter)) {
+    data['imageUrl'] = imageUrlList[0];
+    delete data.imageUrlList;
+  }
   return data;
 };
