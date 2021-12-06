@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './DetailTextInfo.module.css';
 
-function DetailTextInfo({
+const DetailTextInfo = ({
   subscriberCount,
   publishedAt,
   videoTotalCount,
@@ -9,7 +9,7 @@ function DetailTextInfo({
   getGrade,
   getSubscriberGradePosition,
   getPublishDate,
-}) {
+}) => {
   return (
     <g>
       <g>
@@ -65,6 +65,6 @@ function DetailTextInfo({
       </g>
     </g>
   );
-}
+};
 
 export default DetailTextInfo;

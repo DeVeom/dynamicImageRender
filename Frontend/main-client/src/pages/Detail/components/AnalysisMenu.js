@@ -5,14 +5,15 @@ import { useMutation, gql } from '@apollo/client';
 import Button from '@mui/material/Button';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import DetailSpinner from '../../../components/Spinner/DetailSpinner';
 
-const AnalysisMenu = ({ channelId }) => {
+const AnalysisMenu = ({ channelId, title }) => {
   const [isCopyOptionOpen, setIsCopyOptionOpen] = useState(false);
   const [layout, setLayout] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const modalEl = useRef();
   const handleCloseModal = ({ target }) => {
-    if (isCopyOptionOpen && !modalEl.current.contains(target))
+    if (isCopyOptionOpen && !modalEl.current?.contains(target))
       setIsCopyOptionOpen(false);
   };
 
@@ -32,26 +33,46 @@ const AnalysisMenu = ({ channelId }) => {
       generateScreenshot(channelId: "${channelId}", layoutType: "${layout}")
     }
   `;
+
+  // eslint-disable-next-line no-unused-vars
   const [mutateFunction, { loading, error, data }] = useMutation(SEND_DATA);
   const handleMutation = async layoutType => {
+    await setLayout(layoutType);
     const result = await mutateFunction();
-    setLayout(layoutType);
-    console.log(result.data.generateScreenshot);
     setImgUrl(result.data.generateScreenshot);
-    navigator.clipboard.writeText(imgUrl);
-    alert('코드가 복사되었습니다.');
   };
+
+  const useDidMountEffect = (func, deps) => {
+    const didMount = useRef(false);
+    useEffect(() => {
+      if (didMount.current) func();
+      else didMount.current = true;
+    }, deps);
+  };
+
+  useDidMountEffect(() => {
+    navigator.clipboard
+      .writeText(
+        `<a href='https://vling.net/channel/${channelId}'><img alt='${title}' src=${imgUrl} /></a>`
+      )
+      .then(() => {
+        alert(`클립보드에 복사했습니다.`);
+      })
+      .catch(() => {
+        alert(`복사 실패!`);
+      });
+  }, [imgUrl]);
 
   const copyLayoutOption = [
     {
       id: 1,
       size: '1050 X 350',
-      layoutType: 'LARGE',
+      layoutType: 'large',
     },
     {
       id: 2,
       size: '490 X 490',
-      layoutType: 'SMALL',
+      layoutType: 'small',
     },
   ];
 
@@ -95,6 +116,11 @@ const AnalysisMenu = ({ channelId }) => {
           })}
         </ul>
       </div>
+      {loading && (
+        <ThemeProvider theme={theme}>
+          <DetailSpinner className={style.spinner} />
+        </ThemeProvider>
+      )}
       <div className={style.copyBtn} onClick={handleCopyOption}>
         <ThemeProvider theme={theme}>
           <Button variant="outlined" startIcon={<ContentCopyRoundedIcon />}>

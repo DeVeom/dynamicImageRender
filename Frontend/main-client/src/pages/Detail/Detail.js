@@ -9,6 +9,7 @@ import AnalysisMenu from './components/AnalysisMenu';
 import SvgReportForPc from '../../components/SVGReportForPc/SvgReportForPc';
 import SvgReportForTablet from '../../components/SVGReportForTablet/SvgReportForTablet';
 import SvgReportForMobile from '../../components/SVGReportForMobile/SvgReportForMobile';
+import DetailSkeleton from '../../components/skeleton/DetailSkeleton';
 
 const Detail = () => {
   const isPc = useMediaQuery({
@@ -31,11 +32,9 @@ const Detail = () => {
     }
   `;
 
-  // console.log(isCopyOptionOpen);
-
   const { loading, error, data } = useQuery(GET_DATA);
 
-  if (loading) return <p>loading...</p>;
+  if (loading) return <DetailSkeleton />;
   if (error) return <p style={{ paddingTop: '100px' }}>Error T T</p>;
 
   const {
@@ -148,9 +147,9 @@ const Detail = () => {
         description={description}
         category={korCategory}
       />
-      <AnalysisMenu channelId={channelId} />
+      <AnalysisMenu channelId={channelId} title={title} />
       {isPc && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForPcContainer}>
           <SvgReportForPc
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}
@@ -171,7 +170,7 @@ const Detail = () => {
         </div>
       )}
       {isTablet && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForTabletContainer}>
           <SvgReportForTablet
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}
@@ -192,7 +191,7 @@ const Detail = () => {
         </div>
       )}
       {isMobile && (
-        <div className={style.svgReportContainer}>
+        <div className={style.svgReportForMobileContainer}>
           <SvgReportForMobile
             dailyAverageViewCount={dailyAverageViewCount}
             averageVideoViewCount={averageVideoViewCount}

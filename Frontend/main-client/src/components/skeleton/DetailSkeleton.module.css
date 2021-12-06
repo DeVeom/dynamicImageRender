@@ -1,0 +1,201 @@
+@keyframes skeleton-gradient {
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+
+  50% {
+    background-color: rgba(165, 165, 165, 0.5);
+  }
+
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+}
+
+@keyframes skeleton-svg-gradient {
+  0% {
+    fill: rgba(165, 165, 165, 0.1);
+  }
+
+  50% {
+    fill: rgba(165, 165, 165, 0.5);
+  }
+
+  100% {
+    fill: rgba(165, 165, 165, 0.1);
+  }
+}
+
+@keyframes backgroundImg-gradient {
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 66px;
+}
+
+.backgroundImgContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.backgroundImg {
+  padding-bottom: 20px;
+  width: 100%;
+  height: auto;
+  animation: backgroundImg-gradient 1.8s infinite ease-in-out;
+}
+
+@media screen and (max-width: 767px) {
+  .detailContainer {
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .backgroundImgContainer {
+    width: 767px;
+  }
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  width: 1050px;
+}
+
+.profileLeftContainer {
+  display: flex;
+  width: 50%;
+}
+
+.profileImgContainer {
+  width: 111px;
+  height: 111px;
+  border-radius: 50%;
+  overflow: hidden;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.profileTextContainer {
+  padding-left: 15px;
+  width: calc(100% - 140px);
+  border-radius: 5px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.channelCategoryContainer {
+  display: flex;
+}
+
+.profileRigthContainer {
+  display: flex;
+}
+
+.shareBtn {
+  margin-right: 9px;
+  width: 55px;
+  height: 55px;
+  border-radius: 3px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.likeBtn {
+  margin-right: 9px;
+  width: 55px;
+  height: 55px;
+  border-radius: 3px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.offerAdBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 169px;
+  height: 55px;
+  border-radius: 3px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+@media screen and (max-width: 1050px) {
+  .profile {
+    width: 100%;
+  }
+
+  .offerAdBtn {
+    width: 60px;
+    height: 55px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    width: 100%;
+  }
+
+  .channelCategoryContainer {
+    width: 140px;
+  }
+}
+
+.analysisMenu {
+  width: 1050px;
+  height: 43px;
+  border-radius: 5px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+@media screen and (max-width: 1050px) {
+  .analysisMenu {
+    width: 100%;
+  }
+}
+
+.svgReportForPcContainer {
+  display: flex;
+  padding-bottom: 20px;
+  margin-top: 58px;
+}
+
+.leftReportForPcContainer {
+  width: 630px;
+  height: 280px;
+  margin-right: 58px;
+  border-radius: 5px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.rightReportForPcContainer {
+  width: 366px;
+  height: 280px;
+  border-radius: 5px;
+  animation: skeleton-gradient 1.8s infinite ease-in-out;
+}
+
+.svgReportForTabletContainer {
+  padding-bottom: 20px;
+  width: 100%;
+  animation: skeleton-svg-gradient 1.8s infinite ease-in-out;
+}
+
+.svgReportForMobileContainer {
+  padding-bottom: 20px;
+  width: 100%;
+  animation: skeleton-svg-gradient 1.8s infinite ease-in-out;
+}

@@ -3,7 +3,7 @@ import style from './PerformanceReport.module.css';
 import TextInfo from './TextInfo';
 import GraphInfo from './GraphInfo';
 
-function PerformanceReport({
+const PerformanceReport = ({
   dailyAverageViewCount,
   averageVideoViewCount,
   activePercent,
@@ -17,7 +17,7 @@ function PerformanceReport({
   summaryHeight,
   summaryTextStartPosition,
   summaryTextFinalPosition,
-}) {
+}) => {
   return (
     <g className={style.performanceReport}>
       <text className={style.performanceReportTitle} x="20" y="210">
@@ -42,6 +42,6 @@ function PerformanceReport({
       />
     </g>
   );
-}
+};
 
 export default PerformanceReport;
