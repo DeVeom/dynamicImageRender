@@ -5,6 +5,7 @@ import { useMutation, gql } from '@apollo/client';
 import Button from '@mui/material/Button';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import DetailSpinner from '../../../components/Spinner/DetailSpinner';
 
 const AnalysisMenu = ({ channelId, title }) => {
   const [isCopyOptionOpen, setIsCopyOptionOpen] = useState(false);
@@ -12,7 +13,7 @@ const AnalysisMenu = ({ channelId, title }) => {
   const [imgUrl, setImgUrl] = useState('');
   const modalEl = useRef();
   const handleCloseModal = ({ target }) => {
-    if (isCopyOptionOpen && !modalEl.current.contains(target))
+    if (isCopyOptionOpen && !modalEl.current?.contains(target))
       setIsCopyOptionOpen(false);
   };
 
@@ -115,6 +116,11 @@ const AnalysisMenu = ({ channelId, title }) => {
           })}
         </ul>
       </div>
+      {loading && (
+        <ThemeProvider theme={theme}>
+          <DetailSpinner className={style.spinner} />
+        </ThemeProvider>
+      )}
       <div className={style.copyBtn} onClick={handleCopyOption}>
         <ThemeProvider theme={theme}>
           <Button variant="outlined" startIcon={<ContentCopyRoundedIcon />}>
