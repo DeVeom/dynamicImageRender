@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import aws from 'aws-sdk';
 import { envConfig, logger } from '../config';
 import { formatDateString } from '../utils/dateUtils';
-import { IMAGE_TYPE, PUPPETEER_OPTIONS } from '../utils/contants';
+import { CACHE_PERIOD, IMAGE_TYPE, PUPPETEER_OPTIONS } from '../utils/contants';
 const { awsEnv, layoutUrl } = envConfig;
 
 const s3 = new aws.S3({
@@ -50,6 +50,7 @@ export const createScreenshot = async (channelId, layoutType) => {
         'YYYYMMDD'
       )}-${layoutType}.${IMAGE_TYPE}`,
       ContentType: 'image/webp',
+      CacheContorl: `max-age=${CACHE_PERIOD},must-revalidate,public`,
       Body: capturedImage,
     };
 
