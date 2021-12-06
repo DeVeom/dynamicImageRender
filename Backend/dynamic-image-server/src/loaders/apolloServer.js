@@ -16,7 +16,9 @@ export default async (app) => {
     },
     Mutation: {
       generateScreenshot: async (parent, args, context, info) => {
-        logger.verbose(`${info.path.typename}: ${info.path.key}`);
+        logger.verbose(
+          `Apollo server - ${info.path.typename}: ${info.path.key}`
+        );
         const { channelId } = args;
         if (!channelId) {
           throw new ApolloError(
@@ -29,7 +31,6 @@ export default async (app) => {
         }
         let { layoutType } = args;
         if (!layoutType || layoutType === 'undefined') layoutType = 'large';
-        logger.info(`channerId: ${channelId}, layoutType: ${layoutType}`);
         const data = await imageService.generateScreenshot({
           channelId,
           layoutType,

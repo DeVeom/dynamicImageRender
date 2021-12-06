@@ -1,26 +1,43 @@
 import React, { useState, useRef } from 'react';
-import style from './Main.module.css';
-import List from '../List/List';
+import { gql, useQuery } from '@apollo/client';
 import SearchTitleText from './components/SearchTitleText';
 import SearchBox from './components/SearchBox';
-import { gql, useQuery } from '@apollo/client';
+import style from './Main.module.css';
+import List from '../List/List';
 
 const Main = () => {
   const [inputKeyword, setInputKeyword] = useState('');
   const [keyword, setKeyword] = useState('');
+  const [order, setOrder] = useState('');
+  const [textColor, setTextColor] = useState('a');
+  const [hoveredDesc, setHoveredDesc] = useState([false, false]);
   const searchRef = useRef();
 
   const GET_LIST = gql`
-    query GetList($keyword: String!, $size: Int!, $from: Int!) {
-      getChannelsForList(keyword: $keyword, size: $size, from: $from) {
+    query GetList(
+      $keyword: String!
+      $size: Int!
+      $from: Int!
+      $order: String!
+    ) {
+      getChannelsForList(
+        keyword: $keyword
+        size: $size
+        from: $from
+        order: $order
+      ) {
         channelsForList
       }
     }
   `;
 
   const { loading, error, data, fetchMore } = useQuery(GET_LIST, {
-    fetchPolicy: 'network-only',
-    variables: { keyword: `${keyword}`, from: 0, size: 20 },
+    variables: {
+      keyword: `${keyword}`,
+      from: 0,
+      size: 20,
+      order: `${order}`,
+    },
   });
 
   const onLoadMore = () => {
@@ -59,12 +76,37 @@ const Main = () => {
     }
   };
 
+  const clickSortBox = e => {
+    if (e === 'subscriberCount') return setOrder('subscriberCount');
+    if (e === 'dailyViewCount') return setOrder('dailyViewCount');
+    if (e === 'subscriberChange') return setOrder('subscriberChange');
+    if (e === 'averageVideoViewCount') return setOrder('averageVideoViewCount');
+    if (e === 'dailyAverageViewCount') return setOrder('dailyAverageViewCount');
+  };
+
+  const changeSortBoxColor = e => {
+    if (e === 'a') return setTextColor('a');
+    if (e === 'b') return setTextColor('b');
+    if (e === 'c') return setTextColor('c');
+    if (e === 'd') return setTextColor('d');
+    if (e === 'e') return setTextColor('e');
+  };
+
+  const handleHoveredDesc = idx => {
+    const newArr = Array(data?.getChannelsForList.channelsForList.length).fill(
+      false
+    );
+    newArr[idx] = true;
+    setHoveredDesc(newArr);
+  };
+
   return (
     <div>
       <section className={style.searchContainer}>
         <SearchTitleText />
         <div className={style.searchBoxContainer}>
           <SearchBox
+            searchRef={searchRef}
             setKeyword={setKeyword}
             InputSearchBox={InputSearchBox}
             clickSearchBtn={clickSearchBtn}
@@ -82,7 +124,12 @@ const Main = () => {
         loading={loading}
         data={data}
         onLoadMore={onLoadMore}
-        searchRef={searchRef}
+        clickSortBox={clickSortBox}
+        textColor={textColor}
+        changeSortBoxColor={changeSortBoxColor}
+        hoveredDesc={hoveredDesc}
+        setHoveredDesc={setHoveredDesc}
+        handleHoveredDesc={handleHoveredDesc}
       />
     </div>
   );
