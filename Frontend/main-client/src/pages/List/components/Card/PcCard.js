@@ -38,8 +38,8 @@ const PcCard = props => {
         <div
           className={
             hoveredDesc[i]
-              ? style.notHoveredDescription
-              : style.hoveredDescription
+              ? style.hoveredDescription
+              : style.notHoveredDescription
           }
           onMouseOver={() => {
             handleHoveredDesc(i);
