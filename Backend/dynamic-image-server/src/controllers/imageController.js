@@ -5,7 +5,7 @@ import {
   checkYearRegExp,
 } from '../utils/dateUtils';
 import { processImageData } from '../utils/processingUtils';
-import { LAYOUT_TYPE } from '../utils/contants';
+import { CACHE_PERIOD, LAYOUT_TYPE } from '../utils/contants';
 
 const viewImageDirect = async (req, res, next) => {
   try {
