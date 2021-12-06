@@ -44,19 +44,19 @@ export const getChannelForGuest = async (id) => {
         expectedRevenueRankPercent,
         subscriberCount,
         publishedAt,
-        videoTotalCount,                 
+        videoTotalCount,            
       }
     }`;
 
     const data = await client.query({ query: QUERY });
-
+    logger.info(data);
     return data;
   } catch (err) {
     logger.error(err);
   }
 };
 
-export const getChannelsForList = async (keyword, from, size) => {
+export const getChannelsForList = async (keyword, from, size, order) => {
   try {
     const GET_LIST = gql`
     query {
@@ -69,7 +69,7 @@ export const getChannelsForList = async (keyword, from, size) => {
       maxSubscriber:200000000000,
       minViews:0,
       maxViews:200000000000,
-      order: "subscriberCount",
+      order: "${order}",
       minVideoViews:0,
       maxVideoViews:200000000000,
       minAdPrice:0,
@@ -79,9 +79,11 @@ export const getChannelsForList = async (keyword, from, size) => {
       )}`;
 
     const result = await client.query({ query: GET_LIST });
+    logger.info(result);
     const {
       data: { channelsForList },
     } = result;
+
     return channelsForList;
   } catch (err) {
     logger.error(err);
