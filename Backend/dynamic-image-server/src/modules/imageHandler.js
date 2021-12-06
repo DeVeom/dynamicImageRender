@@ -50,7 +50,7 @@ export const createScreenshot = async (channelId, layoutType) => {
         'YYYYMMDD'
       )}-${layoutType}.${IMAGE_TYPE}`,
       ContentType: 'image/webp',
-      CacheContorl: `max-age=${CACHE_PERIOD},must-revalidate,public`,
+      CacheControl: `max-age=${CACHE_PERIOD}, must-revalidate, public`,
       Body: capturedImage,
     };
 
