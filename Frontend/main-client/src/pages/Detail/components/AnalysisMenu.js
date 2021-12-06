@@ -88,10 +88,6 @@ const AnalysisMenu = ({ channelId, title }) => {
     <div className={style.analysisMenu}>
       <div className={style.analysisTextContainer}>
         <p className={style.analysisMenuText}>채널 분석</p>
-        <p className={style.analysisMenuText}>영상 분석</p>
-        <p className={style.analysisMenuText}>시청자 분석</p>
-        <p className={style.analysisMenuText}>광고 단가</p>
-        <p className={style.analysisMenuText}>관련 채널 분석</p>
       </div>
       <div
         ref={modalEl}

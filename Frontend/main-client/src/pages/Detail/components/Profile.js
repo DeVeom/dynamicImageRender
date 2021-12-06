@@ -24,31 +24,6 @@ const Profile = ({ thumbnails, title, description, category }) => {
           </div>
         </div>
       </div>
-      <div className={style.profileRigthContainer}>
-        <div className={style.checkCountry}>
-          <img
-            className={style.checkCountryIcon}
-            alt="버즈앤비"
-            src="https://vling.net/media/icons/channel-detail-nation-icon.png"
-          />
-          <p className={style.checkCountryText}>대한민국</p>
-        </div>
-        <div className={style.shareBtn}>
-          <img
-            alt="버즈앤비"
-            src="https://vling.net/media/icons/share-icon-new.png"
-          />
-        </div>
-        <div className={style.likeBtn}>
-          <img
-            alt="버즈앤비"
-            src="https://vling.net/media/icons/favorite-icon-new.png"
-          />
-        </div>
-        <div className={style.offerAdBtn}>
-          <p className={style.offerAdText}>광고 제안하기</p>
-        </div>
-      </div>
     </div>
   );
 };
