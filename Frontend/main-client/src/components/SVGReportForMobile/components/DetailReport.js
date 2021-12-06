@@ -2,7 +2,7 @@ import React from 'react';
 import style from './DetailReport.module.css';
 import DetailTextInfo from './DetailTextInfo';
 
-function DetailReport({
+const DetailReport = ({
   subscriberCount,
   publishedAt,
   videoTotalCount,
@@ -10,7 +10,7 @@ function DetailReport({
   getGrade,
   getSubscriberGradePosition,
   getPublishDate,
-}) {
+}) => {
   return (
     <g className={style.detailReport}>
       <DetailTextInfo
@@ -24,6 +24,6 @@ function DetailReport({
       />
     </g>
   );
-}
+};
 
 export default DetailReport;

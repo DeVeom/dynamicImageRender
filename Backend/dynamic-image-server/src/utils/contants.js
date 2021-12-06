@@ -1,6 +1,5 @@
 export const LAYOUT_TYPE = Object.freeze({ large: {}, small: {} });
 export const IMAGE_TYPE = 'webp';
-
 export const PUPPETEER_OPTIONS = [
   '--lang=ko-kr,kr',
   '--disable-gpu',
@@ -40,3 +39,4 @@ export const PUPPETEER_OPTIONS = [
   '--use-gl=swiftshader',
   '--use-mock-keychain',
 ];
+export const CACHE_PERIOD = 60 * 60;

@@ -76,7 +76,12 @@ const SvgReportForTablet = ({
   };
 
   return (
-    <svg className={style.reportContainer}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      className={style.reportContainer}
+      viewBox="0 0 768 650"
+    >
       <PerformanceReport
         dailyAverageViewCount={dailyAverageViewCount}
         averageVideoViewCount={averageVideoViewCount}
