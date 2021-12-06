@@ -13,8 +13,13 @@ export const resolvers = {
       const data = { channelForGuest: channelData };
       return data;
     },
-    async getChannelsForList(_, { keyword, from, size }) {
-      const channelListData = await getChannelsForList(keyword, from, size);
+    async getChannelsForList(_, { keyword, from, size, order }) {
+      const channelListData = await getChannelsForList(
+        keyword,
+        from,
+        size,
+        order
+      );
       const data = { channelsForList: channelListData };
       return data;
     },

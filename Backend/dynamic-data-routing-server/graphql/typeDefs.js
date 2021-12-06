@@ -9,6 +9,7 @@ export const typeDefs = gql`
       keyword: String!
       from: Int!
       size: Int!
+      order: String!
     ): ChannelsForList
   }
 

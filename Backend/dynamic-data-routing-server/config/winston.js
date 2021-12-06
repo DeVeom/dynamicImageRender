@@ -33,7 +33,7 @@ const logger = winston.createLogger({
   ),
   transports: [
     new winstonDayily({
-      level: "info",
+      level: "verbose",
       datePattern: "YYYY-MM-DD",
       dirname: logDir,
       filename: `%DATE%.log`,
@@ -71,6 +71,7 @@ logger.add(new WinstonCloudwatch(cloudwatchConfig));
 if (process.env.NODE_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
+      level: "info",
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.simple()
