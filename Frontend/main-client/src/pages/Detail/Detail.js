@@ -139,79 +139,80 @@ const Detail = () => {
   const korCategory = category.map(category => handleCategory(category));
 
   return (
-    <section className={style.detailContainer}>
-      <Banner banner={banner} title={title} />
-      <Profile
-        thumbnails={thumbnails}
-        title={title}
-        description={description}
-        category={korCategory}
-      />
-      <AnalysisMenu channelId={channelId} title={title} />
-      {isPc && (
-        <div className={style.svgReportForPcContainer}>
-          <SvgReportForPc
-            dailyAverageViewCount={dailyAverageViewCount}
-            averageVideoViewCount={averageVideoViewCount}
-            favorablePercent={favorablePercent}
-            activePercent={activePercent}
-            dailyViewCountSummary={dailyViewCountSummary}
-            videoViewCountSummary={videoViewCountSummary}
-            activePercentSummary={activePercentSummary}
-            favorablePercentSummary={favorablePercentSummary}
-            subscriberCountRank={subscriberCountRank}
-            subscriberCountRankPercent={subscriberCountRankPercent}
-            expectedRevenueRank={expectedRevenueRank}
-            expectedRevenueRankPercent={expectedRevenueRankPercent}
-            subscriberCount={subscriberCount}
-            publishedAt={publishedAt}
-            videoTotalCount={videoTotalCount}
-          />
-        </div>
-      )}
-      {isTablet && (
-        <div className={style.svgReportForTabletContainer}>
-          <SvgReportForTablet
-            dailyAverageViewCount={dailyAverageViewCount}
-            averageVideoViewCount={averageVideoViewCount}
-            favorablePercent={favorablePercent}
-            activePercent={activePercent}
-            dailyViewCountSummary={dailyViewCountSummary}
-            videoViewCountSummary={videoViewCountSummary}
-            activePercentSummary={activePercentSummary}
-            favorablePercentSummary={favorablePercentSummary}
-            subscriberCountRank={subscriberCountRank}
-            subscriberCountRankPercent={subscriberCountRankPercent}
-            expectedRevenueRank={expectedRevenueRank}
-            expectedRevenueRankPercent={expectedRevenueRankPercent}
-            subscriberCount={subscriberCount}
-            publishedAt={publishedAt}
-            videoTotalCount={videoTotalCount}
-          />
-        </div>
-      )}
-      {isMobile && (
-        <div className={style.svgReportForMobileContainer}>
-          <SvgReportForMobile
-            dailyAverageViewCount={dailyAverageViewCount}
-            averageVideoViewCount={averageVideoViewCount}
-            favorablePercent={favorablePercent}
-            activePercent={activePercent}
-            dailyViewCountSummary={dailyViewCountSummary}
-            videoViewCountSummary={videoViewCountSummary}
-            activePercentSummary={activePercentSummary}
-            favorablePercentSummary={favorablePercentSummary}
-            subscriberCountRank={subscriberCountRank}
-            subscriberCountRankPercent={subscriberCountRankPercent}
-            expectedRevenueRank={expectedRevenueRank}
-            expectedRevenueRankPercent={expectedRevenueRankPercent}
-            subscriberCount={subscriberCount}
-            publishedAt={publishedAt}
-            videoTotalCount={videoTotalCount}
-          />
-        </div>
-      )}
-    </section>
+    <DetailSkeleton />
+    // <section className={style.detailContainer}>
+    //   <Banner banner={banner} title={title} />
+    //   <Profile
+    //     thumbnails={thumbnails}
+    //     title={title}
+    //     description={description}
+    //     category={korCategory}
+    //   />
+    //   <AnalysisMenu channelId={channelId} title={title} />
+    //   {isPc && (
+    //     <div className={style.svgReportForPcContainer}>
+    //       <SvgReportForPc
+    //         dailyAverageViewCount={dailyAverageViewCount}
+    //         averageVideoViewCount={averageVideoViewCount}
+    //         favorablePercent={favorablePercent}
+    //         activePercent={activePercent}
+    //         dailyViewCountSummary={dailyViewCountSummary}
+    //         videoViewCountSummary={videoViewCountSummary}
+    //         activePercentSummary={activePercentSummary}
+    //         favorablePercentSummary={favorablePercentSummary}
+    //         subscriberCountRank={subscriberCountRank}
+    //         subscriberCountRankPercent={subscriberCountRankPercent}
+    //         expectedRevenueRank={expectedRevenueRank}
+    //         expectedRevenueRankPercent={expectedRevenueRankPercent}
+    //         subscriberCount={subscriberCount}
+    //         publishedAt={publishedAt}
+    //         videoTotalCount={videoTotalCount}
+    //       />
+    //     </div>
+    //   )}
+    //   {isTablet && (
+    //     <div className={style.svgReportForTabletContainer}>
+    //       <SvgReportForTablet
+    //         dailyAverageViewCount={dailyAverageViewCount}
+    //         averageVideoViewCount={averageVideoViewCount}
+    //         favorablePercent={favorablePercent}
+    //         activePercent={activePercent}
+    //         dailyViewCountSummary={dailyViewCountSummary}
+    //         videoViewCountSummary={videoViewCountSummary}
+    //         activePercentSummary={activePercentSummary}
+    //         favorablePercentSummary={favorablePercentSummary}
+    //         subscriberCountRank={subscriberCountRank}
+    //         subscriberCountRankPercent={subscriberCountRankPercent}
+    //         expectedRevenueRank={expectedRevenueRank}
+    //         expectedRevenueRankPercent={expectedRevenueRankPercent}
+    //         subscriberCount={subscriberCount}
+    //         publishedAt={publishedAt}
+    //         videoTotalCount={videoTotalCount}
+    //       />
+    //     </div>
+    //   )}
+    //   {isMobile && (
+    //     <div className={style.svgReportForMobileContainer}>
+    //       <SvgReportForMobile
+    //         dailyAverageViewCount={dailyAverageViewCount}
+    //         averageVideoViewCount={averageVideoViewCount}
+    //         favorablePercent={favorablePercent}
+    //         activePercent={activePercent}
+    //         dailyViewCountSummary={dailyViewCountSummary}
+    //         videoViewCountSummary={videoViewCountSummary}
+    //         activePercentSummary={activePercentSummary}
+    //         favorablePercentSummary={favorablePercentSummary}
+    //         subscriberCountRank={subscriberCountRank}
+    //         subscriberCountRankPercent={subscriberCountRankPercent}
+    //         expectedRevenueRank={expectedRevenueRank}
+    //         expectedRevenueRankPercent={expectedRevenueRankPercent}
+    //         subscriberCount={subscriberCount}
+    //         publishedAt={publishedAt}
+    //         videoTotalCount={videoTotalCount}
+    //       />
+    //     </div>
+    //   )}
+    // </section>
   );
 };
 

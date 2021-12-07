@@ -29,12 +29,7 @@ const DetailSkeleton = () => {
             <div className={style.channelCategoryContainer}></div>
           </div>
         </div>
-        <div className={style.profileRigthContainer}>
-          <div className={style.checkCountry}></div>
-          <div className={style.shareBtn}></div>
-          <div className={style.likeBtn}></div>
-          <div className={style.offerAdBtn}></div>
-        </div>
+        <div className={style.profileRigthContainer}></div>
       </div>
       <div className={style.analysisMenu}></div>
       {isPc && (
