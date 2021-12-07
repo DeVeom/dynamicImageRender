@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "cat .env.development > .env && PORT=3001 react-scripts start",
-    "build": "cat .env.production > .env && react-scripts build",
+    "build": "cat .env.production > .env && set HTTPS=true && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

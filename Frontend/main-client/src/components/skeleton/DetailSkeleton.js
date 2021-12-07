@@ -1,6 +1,9 @@
 import React from 'react';
 import style from './DetailSkeleton.module.css';
 import { useMediaQuery } from 'react-responsive';
+import Button from '@mui/material/Button';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const DetailSkeleton = () => {
   const isPc = useMediaQuery({
@@ -11,6 +14,14 @@ const DetailSkeleton = () => {
   });
   const isMobile = useMediaQuery({
     query: '(max-width:767px)',
+  });
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ff0044',
+      },
+    },
   });
 
   return (
@@ -31,11 +42,25 @@ const DetailSkeleton = () => {
         </div>
         <div className={style.profileRigthContainer}></div>
       </div>
-      <div className={style.analysisMenu}></div>
+      <div className={style.analysisMenu}>
+        <div className={style.analysisTextContainer}>
+          <p className={style.analysisMenuText}>채널 분석</p>
+        </div>
+        <div className={style.copyBtn}>
+          <ThemeProvider theme={theme}>
+            <Button variant="outlined" startIcon={<ContentCopyRoundedIcon />}>
+              COPY
+            </Button>
+          </ThemeProvider>
+        </div>
+      </div>
       {isPc && (
-        <div className={style.svgReportForPcContainer}>
-          <div className={style.leftReportForPcContainer}></div>
-          <div className={style.rightReportForPcContainer}></div>
+        <div>
+          <p className={style.performanceReportTitle}>Perfrmance 요약</p>
+          <div className={style.svgReportForPcContainer}>
+            <div className={style.leftReportForPcContainer}></div>
+            <div className={style.rightReportForPcContainer}></div>
+          </div>
         </div>
       )}
       {isTablet && (
@@ -45,6 +70,9 @@ const DetailSkeleton = () => {
           className={style.svgReportForTabletContainer}
           viewBox="0 0 768 650"
         >
+          <text className={style.performanceReportTitle} x="0" y="30">
+            Performance 요약
+          </text>
           <rect x="16" y="50" rx="5" ry="5" width="736" height="268"></rect>
           <rect x="16" y="345" rx="5" ry="5" width="736" height="290"></rect>
         </svg>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import style from './AnalysisMenu.module.css';
 import { useMutation, gql } from '@apollo/client';
 import Button from '@mui/material/Button';
@@ -12,17 +12,18 @@ const AnalysisMenu = ({ channelId, title }) => {
   const [layout, setLayout] = useState('');
   const [imgUrl, setImgUrl] = useState('');
   const modalEl = useRef();
-  const handleCloseModal = ({ target }) => {
+  const handleCloseModal = useCallback(({ target }) => {
+    console.log(1);
     if (isCopyOptionOpen && !modalEl.current?.contains(target))
       setIsCopyOptionOpen(false);
-  };
+  });
 
   useEffect(() => {
     window.addEventListener('click', handleCloseModal);
     return () => {
       window.removeEventListener('click', handleCloseModal);
     };
-  });
+  }, [handleCloseModal]);
 
   const handleCopyOption = () => {
     setIsCopyOptionOpen(!isCopyOptionOpen);
