@@ -42,8 +42,20 @@ RUN apt-get install -y \
     libxtst6 \
     xdg-utils
 
+# 한글 폰트 설치
+RUN mkdir /tmp/noto && cd /tmp/noto \
+  && wget -q https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKkr-hinted.zip \
+  && unzip NotoSansCJKkr-hinted.zip \
+  && mkdir -p /usr/share/fonts/opentype/noto \
+  && cp NotoSansCJKkr-Regular.otf NotoSansCJKkr-Bold.otf /usr/share/fonts/opentype/noto/ \
+  && chmod -R a=rX,u+w /usr/share/fonts/opentype/noto/ \
+  && fc-cache -fv \
+  && rm -rf /tmp/noto
+
+
 ## Install packages
 # 현재 패키지 설치 정보를 도커 이미지에 복사. package-lock.json도 복사하는 것이 안전
+RUN cd /usr/src/app
 COPY package*.json ./
 # 설치 정보를 읽어 들여서 패키지 설치
 RUN npm install
