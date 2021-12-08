@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import style from '../../List.module.css';
+import Fade from '@mui/material/Fade';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import Tooltip from '@mui/material/Tooltip';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { handleCategory } from '../../../../utils/KorCategory';
+import style from '../../List.module.css';
 
 const PcCard = props => {
-  const { data, i, hoveredDesc, setHoveredDesc, handleHoveredDesc } = props;
+  const { data, i, handleHoveredDesc } = props;
   const { REACT_APP_LINK_TO_DETAIL } = process.env;
   const [newWindowName, setNewWindowName] = useState(0);
+  const theme = createTheme({
+    palette: {
+      black: {
+        main: '#918e8e',
+      },
+    },
+  });
 
   <handleCategory />;
 
@@ -24,39 +37,90 @@ const PcCard = props => {
         alt="profile"
         className={style.profile}
       />
-      <section
-        className={style.infoWrapper}
-        onClick={() => {
-          setNewWindowName(newWindowName + 1);
-          return window.open(
-            `${REACT_APP_LINK_TO_DETAIL}/search/${data.channelId}`,
-            `ToDetailPage${newWindowName}`
-          );
-        }}
-      >
-        <div className={style.infoName}>{data.title}</div>
+      <section className={style.infoWrapper}>
         <div
-          className={
-            hoveredDesc[i]
-              ? style.hoveredDescription
-              : style.notHoveredDescription
-          }
-          onMouseOver={() => {
-            handleHoveredDesc(i);
-          }}
-          onMouseOut={() => {
-            setHoveredDesc(!hoveredDesc[i]);
+          className={style.infoName}
+          onClick={() => {
+            setNewWindowName(newWindowName + 1);
+            return window.open(
+              `${REACT_APP_LINK_TO_DETAIL}/search/${data.channelId}`,
+              `ToDetailPage${newWindowName}`
+            );
           }}
         >
-          {data.description}
+          {data.title}
         </div>
-        {data.category.map((category, i) => {
-          return (
-            <div className={style.infoCategory} key={i}>
-              {handleCategory(category)}
-            </div>
-          );
-        })}
+        <div
+          className={style.hoveredDescription}
+          onClick={() => {
+            setNewWindowName(newWindowName + 1);
+            return window.open(
+              `${REACT_APP_LINK_TO_DETAIL}/search/${data.channelId}`,
+              `ToDetailPage${newWindowName}`
+            );
+          }}
+        >
+          {data.description.length > 400 ? (
+            <Tooltip
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 600 }}
+              enterDelay={500}
+              leaveDelay={50}
+              title={`${data.description}`}
+              placement="top-start"
+              followCursor
+            >
+              <Box>{data.description}</Box>
+            </Tooltip>
+          ) : (
+            <Tooltip
+              TransitionComponent={Fade}
+              TransitionProps={{ timeout: 600 }}
+              enterDelay={500}
+              leaveDelay={50}
+              title={`${data.description}`}
+              placement="bottom-start"
+              followCursor
+            >
+              <Box>{data.description}</Box>
+            </Tooltip>
+          )}
+        </div>
+        <div className={style.categoryNclipboard}>
+          {data.category.map((category, i) => {
+            return (
+              <div className={style.infoCategory} key={i}>
+                {handleCategory(category)}
+              </div>
+            );
+          })}
+          <div className={style.clipboardWrapper}>
+            <ThemeProvider theme={theme}>
+              <Tooltip
+                title="위 유튜버 정보를 복사합니다."
+                enterDelay={500}
+                leaveDelay={50}
+                placement="top"
+                followCursor
+              >
+                <Box>
+                  <div className={style.copyedDesc}>
+                    <Button
+                      variant="text"
+                      color="black"
+                      size="small"
+                      onClick={() => {
+                        handleHoveredDesc();
+                        navigator.clipboard.writeText(`${data.description}`);
+                      }}
+                      startIcon={<ContentCopyRoundedIcon />}
+                    ></Button>
+                  </div>
+                </Box>
+              </Tooltip>
+            </ThemeProvider>
+          </div>
+        </div>
       </section>
       <section className={style.statusWrapper}>
         <ul>

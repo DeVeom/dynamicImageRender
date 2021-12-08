@@ -18,7 +18,7 @@
   color: white;
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (min-width: 650px) and (max-width: 810px) {
   .searchTitle {
     font-size: 50px;
   }
@@ -29,7 +29,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (min-width: 376px) and (max-width: 650px) {
   .searchTitle {
     font-size: 35px;
     font-weight: 900;
@@ -39,5 +39,41 @@
     font-size: 18px;
     font-weight: 700;
     color: white;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .searchTitle {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+  }
+
+  .searchTitleMain {
+    padding-left: 85px;
+    padding-bottom: 10px;
+  }
+
+  .searchSubTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background-color: cornflowerblue;
+  }
+
+  .searchSubTitleWrapper {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .searchSubMain {
+    padding-bottom: 5px;
+  }
+
+  .searchSub {
+    margin-left: 50px;
   }
 }

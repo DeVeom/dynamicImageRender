@@ -5,8 +5,8 @@ import Spinner from '../../components/Spinner/Spinner';
 import SortBox from './components/SortBox/SortBox';
 import PcCard from './components/Card/PcCard';
 import TabletCard from './components/Card/TabletCard';
-import MobileCard from './components/Card/MobileCard';
-import ListSkeleton from './components/Skeleton/ListSkeleton';
+import MobileLCard from './components/Card/MobileLCard';
+import PcSkeleton from './components/Skeleton/ListSkeleton';
 import style from './List.module.css';
 
 const List = props => {
@@ -29,8 +29,11 @@ const List = props => {
   const isTablet = useMediaQuery({
     query: '(min-width:768px) and (max-width:1050px)',
   });
+  // const isMobileL = useMediaQuery({
+  //   query: '(min-width:425px) and (max-width:768px)',
+  // });
 
-  if (loading) return <ListSkeleton />;
+  if (loading) return <PcSkeleton />;
   if (error) return alert(`Error: ${error.message}`);
 
   return (
@@ -40,7 +43,19 @@ const List = props => {
         textColor={textColor}
         changeSortBoxColor={changeSortBoxColor}
       />
-      {data && data.getChannelsForList.channelsForList && (
+      {data &&
+      data.getChannelsForList.channelsForList &&
+      data.getChannelsForList.channelsForList.length === 0 ? (
+        <div className={style.noneWrapper}>
+          <img
+            src="https://dev.vling.net/media/icons/easyTracker-empty-area.png"
+            alt="no result!"
+          ></img>
+          <span>
+            <strong>검색 결과가 없습니다.</strong>
+          </span>
+        </div>
+      ) : (
         <InfiniteScroll
           dataLength={(data && data.getChannelsForList.channelsForList).length}
           next={onLoadMore}
@@ -61,7 +76,7 @@ const List = props => {
                 ) : isTablet ? (
                   <TabletCard data={data} />
                 ) : (
-                  <MobileCard data={data} />
+                  <MobileLCard data={data} />
                 )}
               </section>
             );
