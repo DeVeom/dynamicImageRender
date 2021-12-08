@@ -1,7 +1,9 @@
 export const LAYOUT_TYPE = Object.freeze({ large: {}, small: {} });
 export const IMAGE_TYPE = 'webp';
+export const NS_PER_SEC = 1e9;
+export const MS_PER_NS = 1e-6;
 export const PUPPETEER_OPTIONS = [
-  '--lang=ko-kr,kr',
+  '--lang=ko-KR,kr',
   '--disable-gpu',
   '--autoplay-policy=user-gesture-required',
   '--disable-background-networking',
