@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from '../../List.module.css';
 
-const MobileCard = props => {
+const MobileLCard = props => {
   const { data } = props;
   const { REACT_APP_LINK_TO_DETAIL } = process.env;
   const [newWindowName, setNewWindowName] = useState(0);
@@ -55,4 +55,4 @@ const MobileCard = props => {
   );
 };
 
-export default MobileCard;
+export default MobileLCard;

@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useMediaQuery } from 'react-responsive';
 import Skeleton from '@mui/material/Skeleton';
 import style from '../../List.module.css';
 import SortBox from '../SortBox/SortBox';
@@ -26,7 +27,7 @@ const Card = () => {
   );
 };
 
-const ListSkeleton = () => {
+const PcSkeleton = () => {
   return (
     <div className={style.listWrapper}>
       <SortBox />
@@ -46,4 +47,40 @@ const ListSkeleton = () => {
   );
 };
 
-export default ListSkeleton;
+// const TabletSkeleton = () => {
+//   return (
+//     <div className={style.cardMobileWrapper}>
+//       <section className={style.cardMobileTop}>
+//         <Skeleton sx={{ m: 1 }} variant="circular" width={30} height={30} />
+//         <Skeleton height={35} width={300} />
+//       </section>
+//       <section className={style.cardMobileBottom}>
+//         <section calssName={style.cardMobileBottomBox}>
+//           <Skeleton animation="wave" height={35} width={200} />
+//           <Skeleton animation={false} height={35} />
+//         </section>
+//         <section calssName={style.cardMobileBottomBox}>
+//           <Skeleton animation="wave" height={35} width={200} />
+//           <Skeleton animation={false} height={35} />
+//         </section>
+//         <section calssName={style.cardMobileBottomBox}>
+//           <Skeleton animation="wave" height={35} width={200} />
+//           <Skeleton animation={false} height={35} />
+//         </section>
+//       </section>
+//     </div>
+//   );
+// };
+
+// const ListSkeleton = () => {
+//   const isPc = useMediaQuery({
+//     query: '(min-width:1050px)',
+//   });
+//   const isTablet = useMediaQuery({
+//     query: '(min-width:768px) and (max-width:1050px)',
+//   });
+
+//   return <>{isPc ? <PcSkeleton /> : isTablet ? <TabletSkeleton /> : null}</>;
+// };
+
+export default PcSkeleton;

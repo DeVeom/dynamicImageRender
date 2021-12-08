@@ -7,32 +7,15 @@
   border-radius: 3px;
 }
 
-.searchOption {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  background-color: white;
-  cursor: pointer;
-}
-
-.searchOptionText {
-  padding-right: 13px;
-  font-size: 16px;
-}
-
-.searchOptionIcon {
-  padding-top: 5px;
-}
-
 .searchInput {
-  width: calc(100% - 140px);
+  width: 100%;
   border: none;
   font-size: 16px;
   outline-style: none;
 }
 
 .searchInput::placeholder {
+  padding-left: 10px;
   font-size: 16px;
   opacity: 0.5;
 }
@@ -57,5 +40,19 @@
   .searchBox {
     margin-left: 150px;
     width: 80vw;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .searchBox {
+    margin-left: 200px;
+    width: 80vw;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .searchBox {
+    margin-left: 215px;
+    width: 65vw;
   }
 }

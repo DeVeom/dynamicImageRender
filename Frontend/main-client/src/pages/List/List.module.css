@@ -12,6 +12,26 @@
   min-height: 3500px;
 }
 
+.noneWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 230px;
+}
+
+.noneWrapper img {
+  height: 80px;
+  width: 80px;
+}
+
+.noneWrapper span {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #c7c7c7;
+}
+
 .card {
   width: auto;
   height: 140px;
@@ -61,56 +81,30 @@
   white-space: nowrap;
 }
 
-/* .notHoveredDescription {
-  position: relative;
-  background: #000000;
-  border-radius: 0.4em;
-  color: white;
-  top: -50px;
-  font-size: 14px;
-}
-
-.notHoveredDescription:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border: 12px solid transparent;
-  border-top-color: #000000;
-  border-bottom: 0;
-  margin-left: -12px;
-  margin-bottom: -12px;
-} */
-
 .hoveredDescription {
-  display: flex;
-  align-items: center;
-  float: right;
-  position: absolute;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 1;
-  width: 610px;
-  min-height: 40px;
-  max-height: 73px;
-  background-color: #ffffff;
-  font-size: 13px;
-  color: black;
-}
-
-.notHoveredDescription {
-  height: 20px;
+  width: 333px;
+  height: 23px;
   line-height: 24px;
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
   cursor: pointer;
 }
 
-.infoDescription:hover {
-  overflow: visible;
+.categoryNclipboard {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.clipboardWrapper {
+  position: absolute;
+  right: 10px;
+}
+
+.copyedDesc {
+  width: 30px;
 }
 
 .infoCategory {
@@ -269,3 +263,11 @@
     cursor: pointer;
   }
 }
+/* 
+@media screen and (max-width: 768px) {
+  .cardMobileBottomBox {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 300px;
+  }
+} */
