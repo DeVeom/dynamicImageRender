@@ -1,11 +1,14 @@
 .backgroundImgContainer {
   display: flex;
   justify-content: center;
+  position: relative;
+  padding-bottom: calc((176 / 1061) * 100%);
+  margin-bottom: 20px;
   width: 100%;
 }
 
 .backgroundImg {
-  margin-bottom: 20px;
+  position: absolute;
   width: 100%;
   height: auto;
 }
@@ -13,5 +16,6 @@
 @media screen and (max-width: 767px) {
   .backgroundImgContainer {
     width: 767px;
+    padding-bottom: 125px;
   }
 }
