@@ -84,7 +84,7 @@ const getImageUrlsByDate = async (req, res, next) => {
       } else {
         throw new Error('dateFilter is invalid value');
       }
-      const imageData = await imageService.getImageUrlsByDate(params);
+      const imageData = await imageService.getImageByDate(params);
       data = processImageData(imageData, dateFilter);
     }
     res.status(200).json(data);
