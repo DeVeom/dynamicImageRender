@@ -12,10 +12,10 @@
   border: none;
   font-size: 16px;
   outline-style: none;
+  padding-left: 10px;
 }
 
 .searchInput::placeholder {
-  padding-left: 10px;
   font-size: 16px;
   opacity: 0.5;
 }
