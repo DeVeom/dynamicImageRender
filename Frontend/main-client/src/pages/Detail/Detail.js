@@ -9,7 +9,7 @@ import AnalysisMenu from './components/AnalysisMenu';
 import SvgReportForPc from '../../components/SVGReportForPc/SvgReportForPc';
 import SvgReportForTablet from '../../components/SVGReportForTablet/SvgReportForTablet';
 import SvgReportForMobile from '../../components/SVGReportForMobile/SvgReportForMobile';
-import DetailSkeleton from '../../components/skeleton/DetailSkeleton';
+import DetailSkeleton from '../../components/Skeleton/DetailSkeleton';
 
 const Detail = () => {
   const isPc = useMediaQuery({
