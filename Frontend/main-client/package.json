@@ -21,8 +21,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "cat .env.development > .env && react-scripts start",
-    "build": "cat .env.production > .env && react-scripts build",
+    "start": "cat .env.development > .env && set HTTPS=true && react-scripts start",
+    "build": "cat .env.production > .env && set HTTPS=true && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
