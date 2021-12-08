@@ -7,7 +7,6 @@ import {
 import fetch from "cross-fetch";
 import config from "../config/index";
 import { logger } from "../config/winston";
-import { logReqInfo, logResInfo } from "../src/middlewares/httpLogger";
 
 const { DATA_URI } = config;
 
@@ -30,12 +29,10 @@ export const generateScreenshot = async (channelId, layoutType) => {
         imageUrl
       }
     }`;
-    logReqInfo;
 
     const data = await client.mutate({ mutation: GET_IMAGE_URL });
     return data;
   } catch (err) {
     logger.error(err);
   }
-  logResInfo;
 };
