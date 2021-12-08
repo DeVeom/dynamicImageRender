@@ -1,4 +1,5 @@
 import { logger } from '../config';
+import { NS_PER_SEC, MS_PER_NS } from '../utils/contants';
 
 export const logReqInfo = (req, res, next) => {
   const reqEndPoint = req.route.path.split('/')[1];
@@ -13,8 +14,6 @@ export const logReqInfo = (req, res, next) => {
 
 export const logResInfo = (req, res, next) => {
   const { reqMethod, startTime, headers, clientIp, originalUrl } = req;
-  const NS_PER_SEC = 1e9;
-  const MS_PER_NS = 1e-6;
   const diff = process.hrtime(startTime);
   logger.http(
     `RES ${reqMethod.toUpperCase()} ${headers.host} ${originalUrl} lang: ${
