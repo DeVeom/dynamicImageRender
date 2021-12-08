@@ -34,7 +34,7 @@ const DetailSkeleton = () => {
         />
       </div>
       <div className={style.profile}>
-        <div className={style.profileLeftContainer}>
+        <div className={style.profileContainer}>
           <div className={style.profileImgContainer}></div>
           <div className={style.profileTextContainer}>
             <div className={style.channelCategoryContainer}></div>

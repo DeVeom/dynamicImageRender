@@ -4,7 +4,7 @@ import style from './Profile.module.css';
 const Profile = ({ thumbnails, title, description, category }) => {
   return (
     <div className={style.profile}>
-      <div className={style.profileLeftContainer}>
+      <div className={style.profileContainer}>
         <div className={style.profileImgContainer}>
           <img className={style.profileImg} alt={title} src={thumbnails} />
         </div>

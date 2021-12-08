@@ -79,7 +79,7 @@
   width: 1050px;
 }
 
-.profileLeftContainer {
+.profileContainer {
   display: flex;
   width: 50%;
 }
@@ -103,49 +103,18 @@
   display: flex;
 }
 
-.profileRigthContainer {
-  display: flex;
-}
-
-.shareBtn {
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
-.likeBtn {
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
-.offerAdBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 169px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
 @media screen and (max-width: 1050px) {
   .profile {
     width: 100%;
-  }
-
-  .offerAdBtn {
-    width: 60px;
-    height: 55px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .profile {
+    width: 100%;
+  }
+
+  .profileContainer {
     width: 100%;
   }
 
