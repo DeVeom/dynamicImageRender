@@ -82,17 +82,6 @@
 }
 
 .hoveredDescription {
-  width: 333px;
-  height: 23px;
-  line-height: 24px;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  cursor: pointer;
-}
-
-.categoryNclipboard {
   display: flex;
   align-items: center;
   position: relative;

@@ -33,7 +33,7 @@ const viewImageDirect = async (req, res, next) => {
         const monthYearString = splittedArr.join('/');
         params['bucketFilter'] = monthYearString;
 
-        const imageData = await imageService.getImageUrlsByDate(params);
+        const imageData = await imageService.getImageByDate(params);
         if (imageData.Contents.length === 0) {
           throw new Error(`image does not exist at ${date}`);
         }

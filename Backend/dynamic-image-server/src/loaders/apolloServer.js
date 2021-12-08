@@ -3,6 +3,7 @@ import typeDefs from './schema';
 import { imageService } from '../services';
 import { logger } from '../config';
 import { ApolloError } from 'apollo-server-errors';
+import { NS_PER_SEC, MS_PER_NS } from '../utils/contants';
 
 export default async (app) => {
   const resolvers = {
@@ -16,6 +17,10 @@ export default async (app) => {
     },
     Mutation: {
       generateScreenshot: async (parent, args, context, info) => {
+        const {
+          req: { headers, startTime, originalUrl },
+        } = context;
+
         logger.verbose(
           `Apollo server - ${info.path.typename}: ${info.path.key}`
         );
@@ -35,6 +40,12 @@ export default async (app) => {
           channelId,
           layoutType,
         });
+        const diff = process.hrtime(startTime);
+        logger.http(
+          `RES ${headers.host} ${originalUrl}  elapsed: ${
+            Math.round((diff[0] * NS_PER_SEC + diff[1]) * MS_PER_NS * 100) / 100
+          }ms`
+        );
         return data;
       },
     },
@@ -53,6 +64,8 @@ export default async (app) => {
     typeDefs,
     resolvers,
     context: ({ req }) => {
+      const resStartTime = process.hrtime();
+      req.startTime = resStartTime;
       return { req };
     },
     formatError,

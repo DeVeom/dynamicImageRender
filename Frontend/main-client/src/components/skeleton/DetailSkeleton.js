@@ -1,6 +1,9 @@
 import React from 'react';
 import style from './DetailSkeleton.module.css';
 import { useMediaQuery } from 'react-responsive';
+import Button from '@mui/material/Button';
+import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const DetailSkeleton = () => {
   const isPc = useMediaQuery({
@@ -13,6 +16,14 @@ const DetailSkeleton = () => {
     query: '(max-width:767px)',
   });
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#ff0044',
+      },
+    },
+  });
+
   return (
     <section className={style.detailContainer}>
       <div className={style.backgroundImgContainer}>
@@ -23,24 +34,33 @@ const DetailSkeleton = () => {
         />
       </div>
       <div className={style.profile}>
-        <div className={style.profileLeftContainer}>
+        <div className={style.profileContainer}>
           <div className={style.profileImgContainer}></div>
           <div className={style.profileTextContainer}>
             <div className={style.channelCategoryContainer}></div>
           </div>
         </div>
-        <div className={style.profileRigthContainer}>
-          <div className={style.checkCountry}></div>
-          <div className={style.shareBtn}></div>
-          <div className={style.likeBtn}></div>
-          <div className={style.offerAdBtn}></div>
+        <div className={style.profileRigthContainer}></div>
+      </div>
+      <div className={style.analysisMenu}>
+        <div className={style.analysisTextContainer}>
+          <p className={style.analysisMenuText}>채널 분석</p>
+        </div>
+        <div className={style.copyBtn}>
+          <ThemeProvider theme={theme}>
+            <Button variant="outlined" startIcon={<ContentCopyRoundedIcon />}>
+              COPY
+            </Button>
+          </ThemeProvider>
         </div>
       </div>
-      <div className={style.analysisMenu}></div>
       {isPc && (
-        <div className={style.svgReportForPcContainer}>
-          <div className={style.leftReportForPcContainer}></div>
-          <div className={style.rightReportForPcContainer}></div>
+        <div>
+          <p className={style.performanceReportTitle}>Perfrmance 요약</p>
+          <div className={style.svgReportForPcContainer}>
+            <div className={style.leftReportForPcContainer}></div>
+            <div className={style.rightReportForPcContainer}></div>
+          </div>
         </div>
       )}
       {isTablet && (
@@ -50,6 +70,9 @@ const DetailSkeleton = () => {
           className={style.svgReportForTabletContainer}
           viewBox="0 0 768 650"
         >
+          <text className={style.performanceReportTitle} x="0" y="30">
+            Performance 요약
+          </text>
           <rect x="16" y="50" rx="5" ry="5" width="736" height="268"></rect>
           <rect x="16" y="345" rx="5" ry="5" width="736" height="290"></rect>
         </svg>

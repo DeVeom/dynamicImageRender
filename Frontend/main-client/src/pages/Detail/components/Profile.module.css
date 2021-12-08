@@ -5,9 +5,9 @@
   width: 1050px;
 }
 
-.profileLeftContainer {
+.profileContainer {
   display: flex;
-  width: 50%;
+  width: 100%;
 }
 
 .profileImgContainer {
@@ -37,7 +37,9 @@
 }
 
 .channelDescription {
+  width: 50%;
   margin: 10px 0;
+  padding-bottom: 1px;
   font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -59,65 +61,6 @@
   border-radius: 13px;
 }
 
-.profileRigthContainer {
-  display: flex;
-}
-
-.checkCountry {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-right: 13px;
-  height: 55px;
-  font-size: 13px;
-}
-
-.checkCountryIcon {
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-.shareBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border: 1px solid rgba(1, 1, 1, 0.15);
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.likeBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border: 1px solid rgba(1, 1, 1, 0.15);
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.offerAdBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 169px;
-  height: 55px;
-  border-radius: 3px;
-  color: white;
-  background-color: #ff0044;
-  cursor: pointer;
-}
-
-.offerAdBtn:hover {
-  background-color: #e1003d;
-}
-
 @media screen and (max-width: 1050px) {
   .profile {
     width: 100%;
@@ -125,15 +68,6 @@
 
   .channelName {
     font-size: 16px;
-  }
-
-  .offerAdBtn {
-    width: 60px;
-    height: 55px;
-  }
-
-  .offerAdText {
-    font-size: 10px;
   }
 }
 
@@ -143,11 +77,11 @@
   }
 
   .channelName {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .channelDescription {
-    display: none;
+    width: 100%;
   }
 
   .channelCategoryContainer {
@@ -158,10 +92,5 @@
     margin: 0 5px 5px 0;
     font-size: 10px;
     margin-top: 10px;
-  }
-
-  .checkCountryIcon,
-  .checkCountryText {
-    display: none;
   }
 }
