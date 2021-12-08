@@ -82,18 +82,29 @@
 }
 
 .hoveredDescription {
+  height: 20px;
+  line-height: 24px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.copyedDesc {
+  width: 30px;
+}
+
+.categoryNclipboard {
   display: flex;
   align-items: center;
   position: relative;
 }
 
 .clipboardWrapper {
+  display: flex;
   position: absolute;
-  right: 10px;
-}
-
-.copyedDesc {
-  width: 30px;
+  right: 5px;
 }
 
 .infoCategory {
@@ -249,14 +260,23 @@
 
   .cardMobileTop {
     margin-left: 5px;
+
     cursor: pointer;
   }
 }
+
 /* 
+
 @media screen and (max-width: 768px) {
+
   .cardMobileBottomBox {
+
     display: flex;
+
     justify-content: flex-end;
+
     margin-left: 300px;
+
   }
+
 } */
