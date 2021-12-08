@@ -5,6 +5,7 @@ import router from "./routes";
 import { logger } from "../config/winston";
 import { typeDefs } from "../graphql/typeDefs";
 import { resolvers } from "../graphql/resolvers";
+import router from "./router";
 import cors from "cors";
 
 const app = express();

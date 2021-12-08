@@ -4,13 +4,6 @@ import winstonDaily from 'winston-daily-rotate-file';
 import packageJson from '../../package.json';
 import { envConfig } from './index';
 
-/*
- * VLING LOG FORMAT
- * 2021-11-09T08:39:44.830Z [vling_payment:prod] verbose: Router.payments.get
- * 2021-11-09T08:39:44.830Z [vling_payment:prod] info: userId: e954d338-0bdb-4635-bd07-d40cfebf8852
- * 2021-11-09T09:01:45.242Z [vling_payment:prod] http: RES GET pay.vling.net /geo lang: ko,en;q=0.9,en-US;q=0.8 clientip: 220.76.193.38 useragent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.40 elapsed: 917.92ms
- */
-
 const logDir = 'logs';
 const { combine, timestamp, printf } = winston.format;
 

@@ -79,7 +79,7 @@
   width: 1050px;
 }
 
-.profileLeftContainer {
+.profileContainer {
   display: flex;
   width: 50%;
 }
@@ -103,49 +103,18 @@
   display: flex;
 }
 
-.profileRigthContainer {
-  display: flex;
-}
-
-.shareBtn {
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
-.likeBtn {
-  margin-right: 9px;
-  width: 55px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
-.offerAdBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 169px;
-  height: 55px;
-  border-radius: 3px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
-}
-
 @media screen and (max-width: 1050px) {
   .profile {
     width: 100%;
-  }
-
-  .offerAdBtn {
-    width: 60px;
-    height: 55px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .profile {
+    width: 100%;
+  }
+
+  .profileContainer {
     width: 100%;
   }
 
@@ -155,16 +124,57 @@
 }
 
 .analysisMenu {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
   width: 1050px;
-  height: 43px;
-  border-radius: 5px;
-  animation: skeleton-gradient 1.8s infinite ease-in-out;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(1, 1, 1, 0.2);
+}
+
+.analysisTextContainer {
+  display: flex;
+}
+
+.analysisMenuText {
+  margin-right: 32px;
+  padding: 12px 0;
+  cursor: pointer;
+}
+
+.analysisMenuText:hover {
+  color: #ff0044;
+}
+
+.analysisMenuText:first-child {
+  color: #ff0044;
+  border-bottom: 2px solid #ff0044;
 }
 
 @media screen and (max-width: 1050px) {
   .analysisMenu {
     width: 100%;
   }
+}
+
+@media screen and (max-width: 767px) {
+  .analysisMenuText {
+    font-size: 15px;
+    margin-right: 14px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .analysisMenuText {
+    font-size: 12px;
+    margin-right: 14px;
+  }
+}
+
+.performanceReportTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 18px;
 }
 
 .svgReportForPcContainer {
@@ -198,4 +208,10 @@
   padding-bottom: 20px;
   width: 100%;
   animation: skeleton-svg-gradient 1.8s infinite ease-in-out;
+}
+
+.performanceReportTitle {
+  font-size: 16px;
+  font-weight: 500;
+  fill: black;
 }

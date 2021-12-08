@@ -13,8 +13,9 @@ const AnalysisMenu = ({ channelId, title }) => {
   const [imgUrl, setImgUrl] = useState('');
   const modalEl = useRef();
   const handleCloseModal = ({ target }) => {
-    if (isCopyOptionOpen && !modalEl.current?.contains(target))
+    if (isCopyOptionOpen && !modalEl.current?.contains(target)) {
       setIsCopyOptionOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const AnalysisMenu = ({ channelId, title }) => {
     return () => {
       window.removeEventListener('click', handleCloseModal);
     };
-  });
+  }, [handleCloseModal]);
 
   const handleCopyOption = () => {
     setIsCopyOptionOpen(!isCopyOptionOpen);

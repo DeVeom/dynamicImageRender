@@ -5,6 +5,10 @@ import { setCache } from './middlewares/cacheHandler';
 
 const router = express.Router();
 
+router.get('/liveness', async (req, res, next) => {
+  res.status(200).json({});
+});
+
 router.get(
   '/image/view/:layoutType/:channelId',
   logReqInfo,
