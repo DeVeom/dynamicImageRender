@@ -7,14 +7,14 @@ const SearchTitleText = () => {
     query: '(min-width:1050px)',
   });
   const isCommon = useMediaQuery({
-    query: '(min-width:376px) and (max-width:1050px)',
+    query: '(min-width:480px) and (max-width:1050px)',
   });
 
   return (
     <>
       {isPc ? (
         <div className={style.searchTitleText}>
-          <p className={style.searchTitle}>블링,요즘 뜨는 유튜버 찾아줘!</p>
+          <p className={style.searchTitle}>블링, 요즘 뜨는 유튜버 찾아줘!</p>
           <div className={style.searchSubTitleContainer}>
             <span className={style.searchSubTitle}>
               vling은 광고주와 유튜버가 필요한 모든 데이터와
@@ -24,7 +24,7 @@ const SearchTitleText = () => {
         </div>
       ) : isCommon ? (
         <div className={style.searchTitleText}>
-          <p className={style.searchTitle}>블링,요즘 뜨는 유튜버 찾아줘!</p>
+          <p className={style.searchTitle}>블링, 요즘 뜨는 유튜버 찾아줘!</p>
           <div className={style.searchSubTitleContainer}>
             <span className={style.searchSubTitle}>
               vling은 광고주와 유튜버가 필요한 모든 데이터와

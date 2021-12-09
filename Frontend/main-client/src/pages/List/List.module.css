@@ -33,18 +33,19 @@
 }
 
 .card {
+  display: flex;
+  align-items: center;
   width: auto;
-  height: 140px;
+  height: 150px;
   padding: 10px 20px;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .cardWrapper {
-  position: relative;
   display: flex;
-  padding: 10px 0;
-  width: 1010px;
-  height: 110px;
-  border-bottom: 1px solid #d9d9d9;
+  align-items: center;
+  width: auto;
+  height: 90px;
 }
 
 .rank {
@@ -52,7 +53,7 @@
   align-items: center;
   margin-right: 15px;
   width: 30px;
-  height: 100px;
+  height: 100%;
   font-size: 20px;
   font-weight: 800;
 }
@@ -66,9 +67,12 @@
 }
 
 .infoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin-right: 15px;
   width: 333px;
-  height: 117px;
+  height: 100%;
 }
 
 .infoName {
@@ -82,13 +86,12 @@
 }
 
 .hoveredDescription {
-  height: 20px;
-  line-height: 24px;
+  width: 333px;
   font-size: 14px;
+  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal;
-  cursor: pointer;
+  white-space: nowrap;
 }
 
 .copyedDesc {
@@ -108,7 +111,8 @@
 }
 
 .infoCategory {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   padding: 6px 10px;
   min-width: 48px;
@@ -260,23 +264,28 @@
 
   .cardMobileTop {
     margin-left: 5px;
-
     cursor: pointer;
   }
 }
 
 /* 
 
+
 @media screen and (max-width: 768px) {
+
 
   .cardMobileBottomBox {
 
+
     display: flex;
+
 
     justify-content: flex-end;
 
+
     margin-left: 300px;
+
 
   }
 
-} */
+*/
