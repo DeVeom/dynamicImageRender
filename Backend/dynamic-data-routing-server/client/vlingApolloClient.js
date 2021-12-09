@@ -48,7 +48,7 @@ export const getChannelForGuest = async (id) => {
       }
     }`;
 
-    const data = await client.query({ query: QUERY });
+    const data = await client.query({ query: QUERY, fetchPolicy: "no-cache" });
     logger.info(data);
     return data;
   } catch (err) {
@@ -78,7 +78,10 @@ export const getChannelsForList = async (keyword, from, size, order) => {
       nation:"KR",
       )}`;
 
-    const result = await client.query({ query: GET_LIST });
+    const result = await client.query({
+      query: GET_LIST,
+      fetchPolicy: "no-cache",
+    });
     logger.info(result);
     const {
       data: { channelsForList },

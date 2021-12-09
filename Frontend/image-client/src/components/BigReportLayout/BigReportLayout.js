@@ -16,7 +16,9 @@ const BigReportLayout = () => {
     }
   `;
 
-  const { loading, error, data } = useQuery(GET_DATA);
+  const { loading, error, data } = useQuery(GET_DATA, {
+    fetchPolicy: 'no-cache',
+  });
 
   if (loading) return <p>loading...</p>;
   if (error) return <p style={{ paddingTop: '100px' }}>Error T T</p>;
