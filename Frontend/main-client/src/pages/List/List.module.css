@@ -264,23 +264,28 @@
 
   .cardMobileTop {
     margin-left: 5px;
-
     cursor: pointer;
   }
 }
 
 /* 
 
+
 @media screen and (max-width: 768px) {
+
 
   .cardMobileBottomBox {
 
+
     display: flex;
+
 
     justify-content: flex-end;
 
+
     margin-left: 300px;
+
 
   }
 
-} */
+*/

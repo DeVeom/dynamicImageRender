@@ -7,7 +7,7 @@ const SearchTitleText = () => {
     query: '(min-width:1050px)',
   });
   const isCommon = useMediaQuery({
-    query: '(min-width:376px) and (max-width:1050px)',
+    query: '(min-width:480px) and (max-width:1050px)',
   });
 
   return (

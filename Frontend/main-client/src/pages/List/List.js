@@ -24,7 +24,7 @@ const List = props => {
   } = props;
 
   const isPc = useMediaQuery({
-    query: '(min-width:1050px)',
+    query: '(min-width:1051px)',
   });
   const isTablet = useMediaQuery({
     query: '(min-width:768px) and (max-width:1050px)',
