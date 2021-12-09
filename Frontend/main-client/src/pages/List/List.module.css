@@ -198,8 +198,8 @@
 }
 
 @media screen and (max-width: 1050px) {
-  .subscriberSort {
-    margin-right: 300px;
+  .listWrapper {
+    width: 100%;
   }
 
   .card {
@@ -258,10 +258,6 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1050px) {
-  .subscriberSort {
-    margin-right: 430px;
-  }
-
   .cardMobileTop {
     margin-left: 5px;
     cursor: pointer;
