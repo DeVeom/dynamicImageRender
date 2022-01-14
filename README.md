@@ -1,30 +1,4 @@
-# README #
+# Dynamic-image-render
 
-
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+## :white_check_mark: 프로젝트 구조
+![프로젝트_아키텍처](https://user-images.githubusercontent.com/88504900/149430132-e9d1cb02-993c-413d-a377-00593bde236c.jpeg)
